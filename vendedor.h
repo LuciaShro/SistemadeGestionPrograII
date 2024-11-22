@@ -16,7 +16,7 @@ public:
     float getComisiones();
     std::string getFechaIngreso();
 
-    void cargar(Venta& venta, detalleVenta& detalleVenta);
+    void cargar();
     void mostrar();
     bool escribirDisco(int pos);
     bool leerDisco(int pos);

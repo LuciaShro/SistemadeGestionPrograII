@@ -1,4 +1,5 @@
 #include "ArchivoProductos.h"
+#include "ComprasAlProveedor.h"
 #include <cstring>
 #include <iostream>
 #include <iomanip>
@@ -38,7 +39,6 @@ void ArchivoProductos::agregarRegistro(){
 bool ArchivoProductos::listarRegistros(){
     FILE *listadoProductos;
     Producto producto;
-    listadoProductos=fopen(_nombreArchivoProductos, "rb");
     listadoProductos=fopen("archivoProductos.dat", "rb");
     if(listadoProductos==NULL){
         cout<< "NO SE PUDO ABRIR EL ARCHIVO"<<endl;
@@ -49,7 +49,7 @@ bool ArchivoProductos::listarRegistros(){
          << setw(35) << "DESCRIPCION"
          << setw(12) << "PRECIO"
          << setw(15) << "STOCK"
-         << setw(17) << "FECHA"
+         /*<< setw(17) << "FECHA"*/
          << endl;
     cout << string(110, '-') << endl;
 
@@ -61,7 +61,7 @@ bool ArchivoProductos::listarRegistros(){
              << setw(35) << producto.getDescripcion()
              << setw(12) << fixed << setprecision(2) << producto.getPrecio()
              << setw(15) << producto.getStock()
-             << setw(17) << producto.getFecha()
+            /* << setw(17) << producto.getFecha()*/
              << endl;
     }
     fclose(listadoProductos);
@@ -138,6 +138,7 @@ bool ArchivoProductos::modificarPrecioProducto(){
         fseek(modificarPrecio, -sizeof(Producto), SEEK_CUR);
         fwrite(&producto, sizeof(producto), 1, modificarPrecio);
         cout<< "PRODUCTO MODIFICADO"<<endl;
+        producto.mostrar();
         return true;
 
     }
@@ -184,4 +185,29 @@ bool ArchivoProductos::actualizarProducto(Producto& producto){
     }
     fclose(archivo);
     return false;
+}
+
+int ArchivoProductos::getCantidadRegistros(){
+    int total, cantidad;
+    Producto producto;
+    FILE *fProductos;
+
+    fProductos=fopen(_nombreArchivoProductos, "rb");
+    if(fProductos==nullptr){
+        cout<< "NO SE PUDO ABRIR EL ARCHIVO DE PRODUCTOS"<<endl;
+        return -1;
+    }
+
+    fseek(fProductos, 0, SEEK_END);
+    total=ftell(fProductos);
+
+    if(total==-1){
+        fclose(fProductos);
+        return 0;
+    }
+
+    cantidad=total/sizeof(producto);
+    fclose(fProductos);
+
+    return cantidad;
 }

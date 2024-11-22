@@ -16,4 +16,5 @@
     bool buscarProductoPorNombre();
     bool modificarPrecioProducto();
     bool actualizarProducto(Producto& producto);
+    int getCantidadRegistros();
 };

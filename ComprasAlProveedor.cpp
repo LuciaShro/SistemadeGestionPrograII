@@ -3,6 +3,8 @@
 #include <iostream>
 using namespace std;
 
+ComprasAlProveedor::ComprasAlProveedor(){}
+
 ComprasAlProveedor::ComprasAlProveedor(Producto& producto):_producto(producto){
 }
 
@@ -52,23 +54,41 @@ string ComprasAlProveedor::getFechaDeCompra(){
     return _fecha.toString();
 }
 
+int ComprasAlProveedor::getIdProducto(){
+    return _producto.getIDProducto();
+}
+
+int ComprasAlProveedor::getIdProveedor(){
+    return _proveedor.getIdproveedor();
+}
+
+const char* ComprasAlProveedor::getMarca(){
+    return _proveedor.getMarca();
+}
+
+const char* ComprasAlProveedor::getNombreProducto(){
+    return _producto.getNombre();
+}
+
 void ComprasAlProveedor::SumaDeStock(Producto& producto){
     if(producto.getIDProducto()==_producto.getIDProducto()){
         int stockAnterior=producto.getStock();
         int stockActual=stockAnterior+_CantidadProductos;
-        _producto.setStock(stockActual);
+        producto.setStock(stockActual);
     }
     else {
         cout<< "ID DE PRODUCTO NO ENCONTRADO"<<endl;
     }
 }
 
-void ComprasAlProveedor::cargar(Producto producto){
+void ComprasAlProveedor::cargar(Producto& producto){
     int idproveedor, idproducto, dia, mes, anio;
     char nombreproveedor[50], nombreproducto[50], separador;
     cout<< "FECHA DE COMPRA: ";
     cin>> dia >> separador >> mes >> separador >> anio;
     setFechaDeCompra(dia, mes, anio);
+
+    ArchivoProveedores archivoProveedor;
     cout<< "ID DEL PROVEEDOR: ";
     while(true){
         cin>>idproveedor;
@@ -78,22 +98,50 @@ void ComprasAlProveedor::cargar(Producto producto){
         cin.clear();
         cin.ignore();
     }
-    else{
-        _proveedor.setIdproveedor(idproveedor);
-        break;
+    else {
+         if(archivoProveedor.VerificarRegistroExistente(idproveedor)){
+           _proveedor.setIdproveedor(idproveedor);
+           Proveedores proveedor;
+                int pos = archivoProveedor.buscar(idproveedor);  // Buscar en el archivo el proveedor
+                if (pos != -1) {
+                    archivoProveedor.leerRegistros(idproveedor, pos); // Leer el proveedor de la posición encontrada
+                    _proveedor.setMarca(proveedor.getMarca());  // Asignar la marca automáticamente
+                }
+
+
+
+
+
+            break;
+         }
+         else {
+            cout<< "PROVEEDOR INEXISTENTE. INTENTA NUEVAMENTE"<<endl;
+            cout<< "ID DEL PROVEEDOR: ";
+         }
     }
     }
     cin.ignore();
-    cout<< "MARCA: ";
+
+
+    /*cout<< "MARCA: ";
     cin.getline(nombreproveedor, 50);
-    _proveedor.setMarca(nombreproveedor);
+    _proveedor.setMarca(nombreproveedor);*/
+
+
+
     cout<<"ID DEL PRODUCTO: ";
     cin>>idproducto;
     _producto.setIDProducto(idproducto);
     cin.ignore();
+
+
+
     cout<< "NOMBRE DEL PRODUCTO: ";
     cin.getline(nombreproducto, 50);
     _producto.setNombre(nombreproducto);
+
+
+
     cout<< "CANTIDAD DE PRODUCTOS COMPRADOS: ";
     cin>>_CantidadProductos;
     cout<< "PRECIO UNITARIO DEL PRODUCTO: $ ";
@@ -103,10 +151,10 @@ void ComprasAlProveedor::cargar(Producto producto){
 
 void ComprasAlProveedor::mostrar(){
     cout<< "FECHA DE COMPRA AL PROVEEDOR: "<<getFechaDeCompra()<<endl;
-    cout<< "ID DEL PROVEEDOR: "<<_proveedor.getIdproveedor()<<endl;
-    cout<< "MARCA: "<<_proveedor.getMarca()<<endl;
-    cout<< "ID DEL PRODUCTO: "<<_producto.getIDProducto()<<endl;
-    cout<< "NOMBRE DEL PRODUCTO: "<<_producto.getNombre()<<endl;
+    cout<< "ID DEL PROVEEDOR: "<<getIdProveedor()<<endl;
+    cout<< "MARCA: "<<getMarca()<<endl;
+    cout<< "ID DEL PRODUCTO: "<<getIdProducto()<<endl;
+    cout<< "NOMBRE DEL PRODUCTO: "<<getNombreProducto()<<endl;
     cout<< "CANTIDAD DE PRODUCTOS COMPRADOS: "<<getCantidadProductos()<<endl;
     cout<< "PRECIO UNITARIO DEL PRODUCTO: $"<<getPrecioUnitario()<<endl;
     cout<< "PRECIO TOTAL: $"<<getPrecioTotal()<<endl;

@@ -32,12 +32,22 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="ArchivoCliente.cpp" />
+		<Unit filename="ArchivoCliente.h" />
 		<Unit filename="ArchivoComprasAlProveedor.cpp" />
 		<Unit filename="ArchivoComprasAlProveedor.h" />
+		<Unit filename="ArchivoDetalleDeVenta.cpp" />
+		<Unit filename="ArchivoDetalleDeVenta.h" />
 		<Unit filename="ArchivoDevoluciones.cpp" />
 		<Unit filename="ArchivoDevoluciones.h" />
 		<Unit filename="ArchivoProductos.cpp" />
 		<Unit filename="ArchivoProductos.h" />
+		<Unit filename="ArchivoProveedores.cpp" />
+		<Unit filename="ArchivoProveedores.h" />
+		<Unit filename="ArchivoVendedor.cpp" />
+		<Unit filename="ArchivoVendedor.h" />
+		<Unit filename="ArchivoVenta.cpp" />
+		<Unit filename="ArchivoVenta.h" />
 		<Unit filename="Cliente.cpp" />
 		<Unit filename="Cliente.h" />
 		<Unit filename="ComprasAlProveedor.cpp" />
@@ -49,6 +59,8 @@
 		<Unit filename="devoluciones.cpp" />
 		<Unit filename="devoluciones.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="menu.cpp" />
+		<Unit filename="menu.h" />
 		<Unit filename="persona.cpp" />
 		<Unit filename="persona.h" />
 		<Unit filename="productos.cpp" />

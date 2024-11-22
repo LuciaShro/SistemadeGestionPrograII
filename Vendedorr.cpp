@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Vendedor::Vendedor(float comision, Fecha fechaIngreso):Persona(){
+Vendedor::Vendedor(float comision, Fecha fechaIngreso):Persona(_Id, _Apellidos, _Nombres, _Nacimiento, _Telefono, _Mail, _Domicilio){
         _Comisiones=comision;
         _fechaIngreso=fechaIngreso;
 }
@@ -52,7 +52,3 @@ void Vendedor::mostrar(){
     cout << "Monto de comision: $ " <<getComisiones() << endl;
     cout << "Fecha de ingreso: " <<getFechaIngreso() << endl;
 }
-
-/*bool Vendedor::escribirDisco(int pos){}
-
-bool Vendedor::leerDisco(int pos){}*/

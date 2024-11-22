@@ -19,17 +19,18 @@ class Devoluciones{
         int getIDProducto();
         std::string getIngresoDevolucion();
         int getIDProveedor();
-        bool getDevolucionRealizada();
+        const char* getDevolucionRealizada();
 
-        void ComparacionID(Producto producto);
-        void DevolucionExitosa();
-        void cargar(Producto producto);
+        void realizarDevolucion(Producto& producto);
+        void ComparacionID(Producto& producto);
+        void DevolucionExitosa(Producto& producto);
+        void cargar(Producto& producto);
         void mostrar();
         bool escribirDisco(int pos);
         bool leerDisco(int pos);
 
     private:
-        Producto& _idProducto;
+        Producto _idProducto;
         Proveedores _idProveedor;
         Fecha _ingresoDevolucion;
         bool _DevolucionRealizada;

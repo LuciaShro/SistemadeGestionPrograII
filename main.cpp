@@ -14,24 +14,40 @@
 #include "ArchivoProductos.h"
 #include "ArchivoComprasAlProveedor.h"
 #include "ArchivoDevoluciones.h"
+#include "ArchivoVendedor.h"
+#include "ArchivoProveedores.h"
+#include "ArchivoVenta.h"
+#include "menu.h"
 using namespace std;
 
-int main()
-{
-    ArchivoProductos archivo("archivoProductos.dat");
-    /*for(int i=0; i<5; i++){
-        archivo.agregarRegistro();
-        system("cls");
-    }*/
-    archivo.listarRegistros();
+int main(){
 
-    ArchivoComprasAlProveedor archivoCOMPRAS("archivoComprasAlProveedor.dat");
-    /*archivoCOMPRAS.agregarRegistro();*/
-    /*archivoCOMPRAS.listarCompras();*/
+    ArchivoVendedor vendedor;
+    vendedor.FunGuardarRegistro();
 
-    ArchivoDevoluciones devolucion("archivoDevoluciones.dat");
-    /*devolucion.agregarDevolucion();*/
-    devolucion.listarDevoluciones();
+    /*ArchivoProveedores archivoPro;
+    for(int i=0; i<7; i++){
+        archivoPro.FunGuardarRegistro();
+    }
+    archivoPro.listarRegistros();*/
+    /*ArchivoProductos archivo("archivoProductos.dat");
+    archivo.listarRegistros();*/
+
+   /*ArchivoComprasAlProveedor archivoCOMPRAS("archivoComprasAlProveedor.dat");
+
+   archivoCOMPRAS.agregarRegistro();
+
+    archivoCOMPRAS.listarCompras();*/
+
+    /*archivo.listarRegistros();*/
+
+    /*ArchivoDevoluciones devolucion("archivoDevoluciones.dat");
+    devolucion.agregarDevolucion();
+    devolucion.listarDevoluciones();*/
+   /* system("cls");
+    archivo.listarRegistros();*/
+
+    /*menuPrincipal();*/
     return 0;
 
 }

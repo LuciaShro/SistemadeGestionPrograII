@@ -6,16 +6,16 @@
 class Producto{
     public:
         Producto();
-        Producto (int id, char* nombre, float precio, int stock, char* descripcion, Fecha fecha);
+        Producto (int id, char* nombre, float precio, int stock, char* descripcion);
         void setIDProducto(int id);
         void setNombre(char* nombre);
         void setPrecio(float precio);
         void setStock(int stock);
         void setDescripcion(char* descripcion);
-        void setFecha(int dia, int mes, int anio);
+        /*void setFecha(int dia, int mes, int anio);*/
 
         void actualizarStock(int stockNuevo);
-        std::string getFecha();
+        /*std::string getFecha();*/
         int getIDProducto();
         const char* getNombre();
         float getPrecio();
@@ -30,7 +30,7 @@ class Producto{
         int _IDProducto;
         char _nombre[100];
         float _precio;
-        Fecha _fecha;
+        /*Fecha _fecha;*/
         int _stock;
         char _descripcion[200];
 

@@ -122,19 +122,30 @@ void Persona::cargar(){
 
     cout<< "DNI: ";
     cin>>_Id;
+    cin.ignore();
     cout<< "NOMBRE: ";
-    cin>>_Nombres;
+    /*cin>>_Nombres;*/
+    cin.getline(_Nombres, 100);
+
     cout<< "APELLIDO: ";
-    cin>>_Apellidos;
+    /*cin>>_Apellidos;*/
+    cin.getline(_Apellidos, 100);
+
     cout<< "NACIMIENTO: ";
     cin>> dia >> separador >> mes >> separador >> anio;
     setNacimiento(dia, mes, anio);
 
     cout<< "TELEFONO: ";
-    cin>>_Telefono;
+    cin.ignore();
+    /*cin>>_Telefono;*/
+    cin.getline(_Telefono, 11);
     setTelefono(_Telefono);
+
     cout<< "MAIL: ";
-    cin>>_Mail;
+    /*cin>>_Mail;*/
+    cin.ignore();
+    cin.getline(_Mail, 100);
+
     cout<< "ESTADO(0-INACTIVO, 1-ACTIVO): ";
     cin>>_Estado;
 }
