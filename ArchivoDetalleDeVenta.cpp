@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstring>
 #include "ArchivoDetalleDeVenta.h"
+#include "ArchivoProductos.h"
+#include "productos.h"
 using namespace std;
 
 ArchivoDetalleDeVenta::ArchivoDetalleDeVenta(){
@@ -25,22 +27,46 @@ bool ArchivoDetalleDeVenta::GuardarRegistro(const detalleVenta &detalle){
     return resultado;
 }
 
-///MODIFICADO
 void ArchivoDetalleDeVenta::FunGuardarRegistro(int idVenta){
     cout << "DETALLE DE LA VENTA" << endl;
     ArchivoDetalleDeVenta ArchivoDetalle;
     detalleVenta detalle;
-    Producto producto;
+    Producto obj;
+    Producto &producto = obj;
 
-    producto.cargar();
+
     detalle.setIDVenta(idVenta);
-    detalle.cargar(producto);
+
+    ///solicitar el id
+    ///buscarlo en archivos productos
+    ///lo que te devuelve cargarlo en producto
+
+    producto = BuscarProducto(producto); ///BUSCAR PRODUCTO (LA FUNCION ESTA DEBAJO)
+
+    detalle.cargar(producto); //Aca mande lo que se cargo automaticamente en producto
 
     if(ArchivoDetalle.GuardarRegistro(detalle)){
             cout << "DETALLE CARGADO CON EXITO" << endl;
         }else{
             cout << "NO SE PUDO CARGAR EL DETALLE" << endl;
         }
+}
+
+///AGREGUE EL BUSCAR PRODUCTO (EN EL .H TAMBIEN)
+Producto ArchivoDetalleDeVenta::BuscarProducto(Producto &producto){
+    ArchivoProductos archivo("archivoProductos.dat");
+    int id;
+    cout << "Ingrese el id del Producto: ";
+    cin >> id;
+    if(id > 0){
+        for(int i=0;i<archivo.getCantidadRegistros(); i++){
+            producto = archivo.leerRegistro(i);
+            if(id == producto.getIDProducto()){
+                return producto;
+            }
+        }
+    }
+
 }
 
 detalleVenta ArchivoDetalleDeVenta::leerRegistro(int IdVenta){

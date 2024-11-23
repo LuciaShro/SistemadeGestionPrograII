@@ -31,7 +31,6 @@ bool ArchivoVendedor::GuardarRegistro(const Vendedor &vendedor){
     return resultado;
 }
 
-///MODIFICADO
 void ArchivoVendedor::FunGuardarRegistro(){
     cout << "INGRESE LA INFORMACION DEL VENDEDOR " << endl;
     ArchivoVendedor  ArchVendedor;
@@ -47,9 +46,7 @@ void ArchivoVendedor::FunGuardarRegistro(){
 
     vendedor.cargar();
 
-    int id = vendedor.getId();
-
-    bool result = ArchVendedor.VerificarRegistroExistente(id);
+    bool result = ArchVendedor.VerificarRegistroExistente(vendedor.getId());
 
     if(result){
         cout << "EL USUARIO YA SE ENCUENTRA REGISTRADO EN EL SISTEMA " << endl;
@@ -61,7 +58,6 @@ void ArchivoVendedor::FunGuardarRegistro(){
         }
     }
 }
-
 
 Vendedor ArchivoVendedor::leerRegistro(int IdVendedor){
     FILE *pVendedor;
@@ -140,7 +136,7 @@ int ArchivoVendedor::buscar(int id){
     pVendedor = fopen(_nombreArchivoVendedor,"rb");
 
     if(pVendedor == nullptr){
-        return 0;
+        return -1;
     }
 
     while(fread(&vendedor,sizeof(vendedor),1,pVendedor) == 1){

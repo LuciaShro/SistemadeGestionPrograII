@@ -18,7 +18,11 @@ bool ArchivoCliente::GuardarRegistro(const Cliente &cliente){
         return false;
     }
 
-    resultado = fwrite(&cliente, sizeof(cliente), 1, pCliente);
+    resultado = fwrite(&cliente, sizeof(cliente), 1, pCliente)== 1;
+
+    if(!resultado){
+        cout<< "Error. No se pudo escribir en el archivo"<<endl;
+    } // agrego esto para verificar que se haya escribido en el archivo
 
     fclose(pCliente);
 
@@ -32,29 +36,53 @@ void ArchivoCliente::FunGuardarRegistro(){
     Cliente cliente;
     int dni;
 
-    cout <<"INGRESE EL DNI " << endl;
-    cin >> dni;
-    cliente.setId(dni);
+    while(true){
+        cout <<"INGRESE EL DNI: ";
+        cin>>dni;
+        if(cin.fail() || dni<0){
+        cout<< "DNI INCORRECTO. INTENTA NUEVAMENTE"<<endl;
+        cin.clear();
+        cin.ignore();
+    }
+    else{
+        break;
+    }
+    }
 
-    bool result = ArchCliente.VerificarRegistroExistente(cliente.getId());
+    bool result = ArchCliente.VerificarRegistroExistente(dni);
+
 
     if(result){
+        cout<< "EL USUARIO YA SE ENCUENTRA REGISTRADO EN EL SISTEMA"<<endl;
+        return;
+    }
+
+     cliente.setId(dni);
+     cliente.cargar();
+
+     if(GuardarRegistro(cliente)){
+        cout<< "CLIENTE CARGADO CON EXITO"<<endl;
+     }
+     else {
+        cout<< "ERROR AL CARGAR EL CLIENTE"<<endl;
+     }
+
+    /*if(result){
         cout << "EL USUARIO YA SE ENCUENTRA REGISTRADO EN EL SISTEMA, POR LO QUE NO SE PUEDE VOLVER A INGRESAR " << endl;
     }else{
-        if(ArchCliente.GuardarRegistro(cliente)){
-            cliente.cargar();
+        if(GuardarRegistro(cliente)){
             cout << "CLIENTE CARGADO CON EXITO" << endl;
         }else{
             cout << "NO SE PUDO CARGAR EL CLIENTE" << endl;
         }
-    }
+    }*/
 }
 
 Cliente ArchivoCliente::leerRegistro(int IdCliente){
     FILE *pCliente;
     Cliente cliente;
 
-    ArchivoCliente archCliente;
+    /*ArchivoCliente archCliente;*/ // lo saco porque en ningun momento lo utilizamos
 
     pCliente = fopen(_nombreArchivoCliente, "rb");
 
@@ -66,6 +94,7 @@ Cliente ArchivoCliente::leerRegistro(int IdCliente){
     fread(&cliente, sizeof(cliente), 1, pCliente);
 
     fclose(pCliente);
+    return cliente;
 }
 
 int ArchivoCliente::getCantidadRegistros(){
@@ -92,7 +121,7 @@ void ArchivoCliente::mostrarCliente(Cliente cliente){
 }
 
 void ArchivoCliente::listarRegistros(){
-    FILE *pCliente;
+    /*FILE *pCliente;*/ // lo comento porque en ningun momento se utiliza
     Cliente cliente;
     ArchivoCliente archCliente;
 
@@ -134,23 +163,19 @@ int ArchivoCliente::buscar(int id){
     pCliente = fopen(_nombreArchivoCliente, "rb");
 
     if(pCliente == nullptr){
-        return false;
+        return -1;
     }
 
     while(fread(&cliente,sizeof(cliente), 1, pCliente)== 1){
         if(cliente.getId() == id){
-            break;
+            fclose(pCliente); // una vez que encuentra el registro, se cierra el archivo
+            return pos;
         }
         pos++;
     }
 
     fclose(pCliente);
-
-    if(cliente.getId() == id){
-        return pos;
-    }else{
-        return -1;
-    }
+    return -1;
 }
 
 void ArchivoCliente::FunModificarRegistro(){
@@ -198,7 +223,7 @@ bool ArchivoCliente::BajaDeRegistro(){
 bool ArchivoCliente::VerificarRegistroExistente(int id){
     ArchivoCliente archCliente;
 
-    int pos = archCliente.buscar(id);
+    int pos = buscar(id);
 
     if(pos == -1){
         return false;
@@ -207,9 +232,35 @@ bool ArchivoCliente::VerificarRegistroExistente(int id){
     }
 }
 ///AGREGADO
-void ArchivoCliente::BuscarCliente(int id){
+/*void ArchivoCliente::BuscarCliente(int id){
     ArchivoCliente archCliente;
 
     int pos = archCliente.buscar(id);
     archCliente.mostrarCliente(archCliente.leerRegistro(pos));
+}*/
+
+// MODIFICACION DE BUSCAR CLIENTE PARA QUE NO TENGA QUE PASAR POR PARAMETRO NINGUN ID
+
+bool ArchivoCliente::BuscarCliente(){
+    FILE *buscarCliente;
+    Cliente cliente;
+
+    buscarCliente=fopen(_nombreArchivoCliente, "rb");
+    if(buscarCliente==nullptr){
+        cout<< "ERROR AL ABRIR EL ARCHIVO"<<endl;
+        return false;
+    }
+    int id;
+    cout<< "INGRESAR EL DNI DEL CLIENTE A BUSCAR: ";
+    cin>>id;
+    while(fread(&cliente, sizeof(Cliente), 1, buscarCliente)==1){
+        if(cliente.getId()==id){
+            cliente.mostrar();
+            fclose(buscarCliente);
+            return true;
+        }
+    }
+    cout<< "CLIENTE NO ENCONTRADO"<<endl;
+    fclose(buscarCliente);
+    return false;
 }

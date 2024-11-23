@@ -15,7 +15,8 @@ public:
     int buscar(int id);
     bool BajaDeRegistro();
     bool VerificarRegistroExistente(int id);
-    void BuscarCliente(int id);
+    /*void BuscarCliente(int id);*/
+    bool BuscarCliente();
 private:
     char _nombreArchivoCliente[100];
 };

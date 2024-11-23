@@ -133,22 +133,15 @@ void detalleVenta::RestarStock(Producto& producto, int idProducto, int cantidad)
     }
 }
 
-void detalleVenta::cargar(Producto& producto){
-    cout<< "ID de VENTA: ";
-    while(true){
-        cin>>_IDVenta;
-        if(cin.fail()){
-        cout<< "INCORRECTO. INTENTA NUEVAMENTE"<<endl;
-        cout<< "INGRESAR EL ID DE VENTA: ";
-        cin.clear();
-        cin.ignore();
-    }
-    else{
-        break;
-    }
-    }
-    cout<< "ID de PRODUCTO: ";
-    while(true){
+///MODIFICADO
+void detalleVenta::cargar(Producto &producto){
+    cout<< "ID de VENTA: " << getIDVenta() << endl;
+
+    _IDProducto = producto.getIDProducto(); ///Declare el id que recibo del producto que ya viene cargado
+
+    cout<< "ID de PRODUCTO: " << getIDProducto() << endl; //Aca se muestra
+
+    /*while(true){
         cin>>_IDProducto;
         if(cin.fail()){
         cout<< "INCORRECTO. INTENTA NUEVAMENTE"<<endl;
@@ -159,7 +152,8 @@ void detalleVenta::cargar(Producto& producto){
     else{
         break;
     }
-    }
+    }*/
+    //esto siguiria igual
     cout<< "CANTIDAD: ";
     while(true){
         cin>>_cantidad;
@@ -173,7 +167,8 @@ void detalleVenta::cargar(Producto& producto){
         break;
     }
     }
-    RestarStock(producto, _IDProducto, _cantidad);
+
+    RestarStock(producto, getIDProducto(), _cantidad);
     setPrecioTotal(producto);
 }
 

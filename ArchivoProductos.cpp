@@ -211,3 +211,20 @@ int ArchivoProductos::getCantidadRegistros(){
 
     return cantidad;
 }
+
+///CREE ESTA FUN. PARA QUE SEA UTILIZADA EN ARCH.DETALLE YA QUE ERA NECESARIA
+Producto ArchivoProductos::leerRegistro(int idProducto){
+    FILE *pProducto;
+    Producto producto;
+
+    pProducto = fopen(_nombreArchivoProductos, "rb");
+
+    if(pProducto == nullptr){
+        return producto;
+    }
+
+    fseek(pProducto,sizeof(producto)*idProducto, SEEK_SET);
+    fread(&producto, sizeof(producto), 1, pProducto);
+
+    fclose(pProducto);
+}

@@ -761,3 +761,217 @@
 	"Vendedor.h"
 	"persona.h"
 
+1732379547 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\archivocliente.cpp
+	<iostream>
+	<cstring>
+	"ArchivoCliente.h"
+
+1732379580 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\archivocliente.h
+	"Cliente.h"
+
+1732319396 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\cliente.h
+	"persona.h"
+
+1732319396 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\persona.h
+	"FECHA.h"
+	<string>
+
+1732319396 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\fecha.h
+	<string>
+
+1732319396 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\archivocomprasalproveedor.cpp
+	"ArchivoComprasAlProveedor.h"
+	<cstring>
+	<iostream>
+	<iomanip>
+	<fstream>
+
+1732319396 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\archivocomprasalproveedor.h
+	"ComprasAlProveedor.h"
+	"ArchivoProductos.h"
+
+1732319396 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\comprasalproveedor.h
+	"proveedores.h"
+	"productos.h"
+	"devoluciones.h"
+	"ArchivoProveedores.h"
+
+1732319396 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\proveedores.h
+
+1732319527 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\productos.h
+	<string>
+	"FECHA.h"
+
+1732319396 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\devoluciones.h
+	"FECHA.h"
+	"proveedores.h"
+	"productos.h"
+
+1732319396 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\archivoproveedores.h
+	"proveedores.h"
+
+1732330514 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\archivoproductos.h
+	"productos.h"
+
+1732381947 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\archivodetalledeventa.cpp
+	<iostream>
+	<cstring>
+	"ArchivoDetalleDeVenta.h"
+	"ArchivoProductos.h"
+	"productos.h"
+
+1732380113 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\archivodetalledeventa.h
+	"detalleVenta.h"
+	"productos.h"
+
+1732319396 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\detalleventa.h
+	<string>
+	"Cliente.h"
+	"productos.h"
+
+1732319396 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\archivodevoluciones.cpp
+	"ArchivoDevoluciones.h"
+	<cstring>
+	<iostream>
+	<iomanip>
+	<fstream>
+
+1732319396 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\archivodevoluciones.h
+	"productos.h"
+	"devoluciones.h"
+	"proveedores.h"
+	"ArchivoProductos.h"
+
+1732330459 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\archivoproductos.cpp
+	"ArchivoProductos.h"
+	"ComprasAlProveedor.h"
+	<cstring>
+	<iostream>
+	<iomanip>
+	<fstream>
+
+1732319396 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\archivoproveedores.cpp
+	<iostream>
+	<cstring>
+	"ArchivoProveedores.h"
+
+1732323247 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\archivovendedor.cpp
+	"ArchivoVendedor.h"
+	"ArchivoVenta.h"
+	"ArchivoDetalleDeVenta.h"
+	<cstring>
+	<iostream>
+
+1732319396 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\archivovendedor.h
+	"vendedor.h"
+	"productos.h"
+	"persona.h"
+
+1732319396 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\vendedor.h
+	"persona.h"
+	"FECHA.h"
+	"venta.h"
+	"detalleVenta.h"
+
+1732319396 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\venta.h
+	<string>
+	"FECHA.h"
+	"detalleVenta.h"
+
+1732319396 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\archivoventa.h
+	"venta.h"
+
+1732319396 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\archivoventa.cpp
+	<iostream>
+	"ArchivoVenta.h"
+	"ArchivoDetalleDeVenta.h"
+	<cstring>
+	"venta.h"
+
+1732319396 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\cliente.cpp
+	"Cliente.h"
+	<iostream>
+	<cstring>
+
+1732381947 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\detalleventa.cpp
+	"detalleVenta.h"
+	"Cliente.h"
+	"productos.h"
+	<iostream>
+
+1732319396 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\devoluciones.cpp
+	"devoluciones.h"
+	<cstring>
+	<string>
+	<iostream>
+	"productos.h"
+
+1732319396 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\fecha.cpp
+	"Fecha.h"
+	<iostream>
+
+1732382966 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\main.cpp
+	<iostream>
+	<cstring>
+	"cliente.h"
+	"vendedor.h"
+	"proveedores.h"
+	"persona.h"
+	"venta.h"
+	"FECHA.h"
+	"productos.h"
+	"detalleVenta.h"
+	"devoluciones.h"
+	"ComprasAlProveedor.h"
+	"ArchivoProductos.h"
+	"ArchivoComprasAlProveedor.h"
+	"ArchivoDevoluciones.h"
+	"ArchivoVendedor.h"
+	"ArchivoProveedores.h"
+	"ArchivoVenta.h"
+	"ArchivoCliente.h"
+	"ArchivoDetalleDeVenta.h"
+	"menu.h"
+
+1732319396 c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\menu.h
+
+1732319396 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\menu.cpp
+	<iostream>
+	"menu.h"
+	"ArchivoProductos.h"
+	"ArchivoComprasAlProveedor.h"
+	"ArchivoDevoluciones.h"
+
+1732319396 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\persona.cpp
+	"persona.h"
+	<cstring>
+	<iostream>
+
+1732319396 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\productos.cpp
+	"productos.h"
+	<limits>
+	<cstring>
+	<iostream>
+
+1732319396 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\proveedores.cpp
+	<iostream>
+	<cstring>
+	"Proveedores.h"
+	<cstring>
+
+1732319396 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\vendedor.cpp
+	<iostream>
+	<cstring>
+	"Vendedor.h"
+	"persona.h"
+
+1732319396 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\venta.cpp
+	"venta.h"
+	<cstring>
+	<iostream>
+
+1732319519 source:c:\users\administrator\onedrive\documentos\sistemadegestionprograii\sistemadegestionprograii\comprasalproveedor.cpp
+	"ComprasAlProveedor.h"
+	<cstring>
+	<iostream>
+
