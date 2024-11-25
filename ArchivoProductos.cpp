@@ -212,6 +212,7 @@ int ArchivoProductos::getCantidadRegistros(){
     return cantidad;
 }
 
+
 ///CREE ESTA FUN. PARA QUE SEA UTILIZADA EN ARCH.DETALLE YA QUE ERA NECESARIA (lu schiro)
 Producto ArchivoProductos::leerRegistro(int idProducto){
     FILE *pProducto;

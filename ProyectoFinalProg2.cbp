@@ -67,6 +67,7 @@
 		<Unit filename="productos.h" />
 		<Unit filename="proveedores.cpp" />
 		<Unit filename="proveedores.h" />
+		<Unit filename="rlutil.h" />
 		<Unit filename="vendedor.cpp" />
 		<Unit filename="vendedor.h" />
 		<Unit filename="venta.cpp" />

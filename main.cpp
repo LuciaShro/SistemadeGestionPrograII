@@ -45,7 +45,7 @@ int main(){
    /* system("cls");
     archivo.listarRegistros();*/
 
-    menuPrincipal();
+    /*menuPrincipal();*/
     return 0;
 
 }

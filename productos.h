@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include "categoria.h"
 #include "FECHA.h"
 
 class Producto{

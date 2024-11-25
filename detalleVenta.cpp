@@ -149,6 +149,18 @@ void detalleVenta::cargar(Producto& producto){
     }*/
     /*cout<< "ID de PRODUCTO: ";
     while(true){
+=======
+
+///MODIFICADO
+void detalleVenta::cargar(Producto &producto){
+    cout<< "ID de VENTA: " << getIDVenta() << endl;
+
+    _IDProducto = producto.getIDProducto(); ///Declare el id que recibo del producto que ya viene cargado
+
+    cout<< "ID de PRODUCTO: " << getIDProducto() << endl; //Aca se muestra
+
+    /*while(true){
+>>>>>>> 8321dac17b18d8f0763e7c718cfeb684d89bd30c
         cin>>_IDProducto;
         if(cin.fail()){
         cout<< "INCORRECTO. INTENTA NUEVAMENTE"<<endl;
@@ -166,6 +178,7 @@ void detalleVenta::cargar(Producto& producto){
 
     cout<< "ID de PRODUCTO: " << getIDProducto() << endl; //Aca se muestra
 
+    //esto siguiria igual
     cout<< "CANTIDAD: ";
     while(true){
         cin>>_cantidad;
@@ -179,7 +192,8 @@ void detalleVenta::cargar(Producto& producto){
         break;
     }
     }
-    RestarStock(producto, _IDProducto, _cantidad);
+
+    RestarStock(producto, getIDProducto(), _cantidad);
     setPrecioTotal(producto);
 }
 

@@ -108,10 +108,6 @@ void ComprasAlProveedor::cargar(Producto& producto){
                     _proveedor.setMarca(proveedor.getMarca());  // Asignar la marca automáticamente
                 }
 
-
-
-
-
             break;
          }
          else {
