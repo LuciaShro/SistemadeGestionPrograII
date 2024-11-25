@@ -6,20 +6,30 @@
 
 using namespace std;
 
+void mostrarCentrado(const std::string& texto, int fila) {
+    rlutil::locate((115 - texto.length()) / 2, fila);  // Ancho fijo de 115 columnas
+    std::cout << texto;
+}
+
 void menuPrincipal(){
+    rlutil::setBackgroundColor(rlutil::WHITE);
+    rlutil::setColor(rlutil::BLACK);
     int opcion;
     do {
-        cout << endl << "============ MENU PRINCIPAL ============" << endl;
-        cout << endl << "  1 - CLIENTES"<< endl;
-        cout << "  2 - VENTAS"<< endl;
-        cout << "  3 - VENDEDORES"<< endl;
-        cout << "  4 - PRODUCTOS"<< endl;
-        cout << "  5 - PROVEEDORES"<< endl;
-        cout << "  6 - DEVOLUCIONES"<< endl;
-        cout << "  7 - INFORMES"<< endl;
-        cout << "  8 - CONFIGURACIONES"<< endl;
-        cout << "  9 - SALIR"<< endl;
-        cout << endl << "  Seleccione una opcion para avanzar: ";
+        rlutil::cls();
+        mostrarCentrado("----------------------",3);
+        mostrarCentrado("----------------------",5);
+        mostrarCentrado("MENU PRINCIPAL", 4);
+        mostrarCentrado(" 1 - CLIENTES",6);
+        mostrarCentrado(" 2 - VENTAS",7);
+        mostrarCentrado(" 3 - VENDEDORES",8);
+        mostrarCentrado(" 4 - PRODUCTOS",9);
+        mostrarCentrado(" 5 - PROVEEDORES",10);
+        mostrarCentrado(" 6 - DEVOLUCIONES", 11);
+        mostrarCentrado(" 7 - INFORMES", 12);
+        mostrarCentrado(" 8 - CONFIGURACIONES",13);
+        mostrarCentrado(" 9 - SALIR",14);
+        mostrarCentrado("Seleccione una opcion para avanzar: ", 18);
         cin >> opcion;
 
         switch (opcion){
@@ -32,14 +42,18 @@ void menuPrincipal(){
             case 7: menuInformes(); break;
             case 8: menuConfiguraciones(); break;
             case 9: cout << "  Saliendo del sistema..."; break;
-            default: cout << "  Numero de Opcion invalida, por favor intente nuevamente." << endl;
-
+            default:
+            rlutil::setColor(rlutil::RED);
+            cout << "  Numero de Opcion invalida, por favor intente nuevamente." << endl;
+            rlutil::anykey(); // esto es para cuando queremos que muestre el mensaje de incorrecto y luego introduzca la opcion nuevamente
+            rlutil::setColor(rlutil::BLACK);
 
         }
     }while(opcion !=9);
 }
 
 void menuClientes() {
+    system("cls");
     int opcion;
     do {
         cout << endl << "============ CLIENTES ============" << endl << endl;

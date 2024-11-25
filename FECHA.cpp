@@ -25,16 +25,52 @@ int Fecha::getAnio(){
     return _anio;
 }
 
-void Fecha::setDia(int dia){
-    _dia = dia;
+// MODIFICACION POR LU PAZ - PARA VALIDAR DIA SEGÚN MES
+
+void Fecha::setDia(int dia) {
+    while (true) {
+        int diasMes;
+        switch (_mes) {
+            case 4: case 6: case 9: case 11:
+            diasMes = 30;
+            break;
+            case 2:
+            if(esBisiesto(_anio)){
+                diasMes=29;
+            }
+            else{
+                diasMes=28;
+            }
+            break;
+            default:
+            diasMes = 31;
+        }
+
+        if (dia >= 1 && dia <= diasMes) {
+            _dia = dia;
+            break;
+        } else {
+            std::cout << "Día inválido para el mes " << ". Intente nuevamente, ingresando el día correspondiente: ";
+            std::cin >> dia;
+        }
+    }
 }
 
+//MODIFICACION POR LU PAZ - VALIDACIÓN DE MES
 void Fecha::setMes(int mes){
+    while(mes<1 || mes>12){
+        std::cout<< "Mes invalido. Debe estar entre 1 y 12. Intente nuevamente, ingresando el mes correspondiente: ";
+        std::cin>>mes;
+    }
     _mes = mes;
 }
 
 void Fecha::setAnio(int anio){
     _anio = anio;
+}
+
+bool Fecha::esBisiesto(int anio){
+    return (anio%4==0 && anio%100!=0) || (anio%400==0);
 }
 
 std::string Fecha::toString(){

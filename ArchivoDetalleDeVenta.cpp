@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include "ArchivoDetalleDeVenta.h"
+#include "ArchivoProductos.h"
 using namespace std;
 
 ArchivoDetalleDeVenta::ArchivoDetalleDeVenta(){
@@ -27,7 +28,34 @@ bool ArchivoDetalleDeVenta::GuardarRegistro(const detalleVenta &detalle){
 
 ///MODIFICADO
 void ArchivoDetalleDeVenta::FunGuardarRegistro(int idVenta){
-    cout << "DETALLE DE LA VENTA" << endl;
+      cout << "DETALLE DE LA VENTA" << endl;
+    ArchivoDetalleDeVenta ArchivoDetalle;
+    detalleVenta detalle;
+    Producto obj;
+    Producto &producto = obj;
+
+
+    detalle.setIDVenta(idVenta);
+
+    ///solicitar el id
+    ///buscarlo en archivos productos
+    ///lo que te devuelve cargarlo en producto
+
+    producto = BuscarProducto(producto); ///BUSCAR PRODUCTO (LA FUNCION ESTA DEBAJO)
+
+    detalle.cargar(producto); //Aca mande lo que se cargo automaticamente en producto
+
+    if(ArchivoDetalle.GuardarRegistro(detalle)){
+            cout << "DETALLE CARGADO CON EXITO" << endl;
+        }else{
+            cout << "NO SE PUDO CARGAR EL DETALLE" << endl;
+        }
+
+
+
+
+
+    /*cout << "DETALLE DE LA VENTA" << endl;
     ArchivoDetalleDeVenta ArchivoDetalle;
     detalleVenta detalle;
     Producto producto;
@@ -40,7 +68,24 @@ void ArchivoDetalleDeVenta::FunGuardarRegistro(int idVenta){
             cout << "DETALLE CARGADO CON EXITO" << endl;
         }else{
             cout << "NO SE PUDO CARGAR EL DETALLE" << endl;
+        }*/
+}
+
+///AGREGUE EL BUSCAR PRODUCTO (EN EL .H TAMBIEN)
+Producto ArchivoDetalleDeVenta::BuscarProducto(Producto &producto){
+    ArchivoProductos archivo("archivoProductos.dat");
+    int id;
+    cout << "Ingrese el id del Producto: ";
+    cin >> id;
+    if(id > 0){
+        for(int i=0;i<archivo.getCantidadRegistros(); i++){
+            producto = archivo.leerRegistro(i);
+            if(id == producto.getIDProducto()){
+                return producto;
+            }
         }
+    }
+    return Producto(); // puse como RETURN PRODUCTO ya que sino agrega una advertencia en el log
 }
 
 detalleVenta ArchivoDetalleDeVenta::leerRegistro(int IdVenta){
@@ -57,6 +102,7 @@ detalleVenta ArchivoDetalleDeVenta::leerRegistro(int IdVenta){
     fread(&detalle, sizeof(detalle), 1, pDetalle);
 
     fclose(pDetalle);
+    return detalle; // lo agrego para que no figure la advertencia de que no retorna nada en el log
 }
 
 int ArchivoDetalleDeVenta::getCantidadRegistros(){

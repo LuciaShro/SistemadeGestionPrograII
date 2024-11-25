@@ -1,6 +1,8 @@
 #include "venta.h"
 #include <cstring>
 #include <iostream>
+#include "ArchivoVendedor.h"
+#include "ArchivoCliente.h"
 
 using namespace std;
 
@@ -78,6 +80,8 @@ std::string Venta::getFecha(){
 void Venta::cargar(){
     int dia, mes, anio;
     char separador;
+    ArchivoVendedor vendedor;
+    ArchivoCliente cliente;
     /*cout<< "INGRESAR EL ID VENTA: ";
     while(true){
         cin>>_IDVenta;
@@ -98,17 +102,23 @@ void Venta::cargar(){
     cin>>_formaDePago;
     cout << "--------------------------------" << endl;
     cout<< "INGRESE LOS DATOS DEL CLIENTE: ";
-    _cliente.cargar();
+
+    cliente.FunGuardarRegistro();
+
+    /*_cliente.cargar();*/
+
+
     cout<< "INGRESE EL DNI DEL VENDEDOR: ";
     while(true){
         cin>>_idVendedor;
-        if(cin.fail()){
-        cout<< "INGRESAR UN NUMERO VALIDO"<<endl;
+        if(cin.fail()|| _idVendedor<0 || vendedor.buscar(_idVendedor)==-1){
+        cout<< "INGRESAR UN DNI VALIDO"<<endl;
         cout<< "INGRESE EL DNI DEL VENDEDOR: ";
         cin.clear();
         cin.ignore();
     }
     else{
+        setIDVendedor(_idVendedor);
         break;
     }
     }

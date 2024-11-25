@@ -1,5 +1,6 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
+#include "rlutil.h"
 
 void menuPrincipal();
 void menuClientes();
@@ -11,5 +12,5 @@ void menuProveedores();
 void menuInformes();
 void menuConfiguraciones();
 
-
+void mostrarCentrado(std::string& texto, int fila);
 #endif // MENU_H_INCLUDED

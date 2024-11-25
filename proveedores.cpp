@@ -72,7 +72,7 @@ void Proveedores::cargar(){
     cout<< "INGRESAR EL ID DEL PROVEEDOR: ";
     while(true){
         cin>>_Idproveedor;
-        if(cin.fail()){
+        if(cin.fail() || _Idproveedor<0){
         cout<< "INCORRECTO. INTENTA NUEVAMENTE"<<endl;
         cout<< "INGRESAR EL ID DEL PROVEEDOR: ";
         cin.clear();

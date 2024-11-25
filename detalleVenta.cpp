@@ -132,9 +132,9 @@ void detalleVenta::RestarStock(Producto& producto, int idProducto, int cantidad)
         cout << "EL ID DEL PRODUCTO INGRESADO NO COINCIDE CON EL INGRESADO" << endl;
     }
 }
-
+// MODIFICADO
 void detalleVenta::cargar(Producto& producto){
-    cout<< "ID de VENTA: ";
+    /*cout<< "ID de VENTA: ";
     while(true){
         cin>>_IDVenta;
         if(cin.fail()){
@@ -146,8 +146,8 @@ void detalleVenta::cargar(Producto& producto){
     else{
         break;
     }
-    }
-    cout<< "ID de PRODUCTO: ";
+    }*/
+    /*cout<< "ID de PRODUCTO: ";
     while(true){
         cin>>_IDProducto;
         if(cin.fail()){
@@ -159,7 +159,13 @@ void detalleVenta::cargar(Producto& producto){
     else{
         break;
     }
-    }
+    }*/
+    cout<< "ID de VENTA: " << getIDVenta() << endl;
+
+    _IDProducto = producto.getIDProducto(); ///Declare el id que recibo del producto que ya viene cargado
+
+    cout<< "ID de PRODUCTO: " << getIDProducto() << endl; //Aca se muestra
+
     cout<< "CANTIDAD: ";
     while(true){
         cin>>_cantidad;
@@ -190,8 +196,8 @@ void detalleVenta::mostrar(){
     }
 }
 
-bool detalleVenta::escribirDisco(int pos){
+/*bool detalleVenta::escribirDisco(int pos){
 }
 
 bool detalleVenta::leerDisco(int pos){
-}
+}*/

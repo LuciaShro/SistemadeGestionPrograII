@@ -72,7 +72,7 @@ bool ArchivoProductos::buscarProductoPorID(){
     FILE *buscarProducto;
     Producto producto;
     buscarProducto=fopen(_nombreArchivoProductos, "rb");
-    buscarProducto=fopen("ArchivoProductos.dat", "rb");
+    /*buscarProducto=fopen("ArchivoProductos.dat", "rb");*/
     if(buscarProducto==NULL){
         cout<< "NO SE PUDO ABRIR EL ARCHIVO"<<endl;
         return false;
@@ -210,4 +210,21 @@ int ArchivoProductos::getCantidadRegistros(){
     fclose(fProductos);
 
     return cantidad;
+}
+
+///CREE ESTA FUN. PARA QUE SEA UTILIZADA EN ARCH.DETALLE YA QUE ERA NECESARIA (lu schiro)
+Producto ArchivoProductos::leerRegistro(int idProducto){
+    FILE *pProducto;
+    Producto producto;
+
+    pProducto = fopen(_nombreArchivoProductos, "rb");
+
+    if(pProducto == nullptr){
+        return producto;
+    }
+
+    fseek(pProducto,sizeof(producto)*idProducto, SEEK_SET);
+    fread(&producto, sizeof(producto), 1, pProducto);
+
+    fclose(pProducto);
 }

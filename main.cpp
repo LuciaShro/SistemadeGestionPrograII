@@ -2,7 +2,6 @@
 #include <cstring>
 #include "cliente.h"
 #include "vendedor.h"
-#include "categoria.h"
 #include "proveedores.h"
 #include "persona.h"
 #include "venta.h"
@@ -17,21 +16,18 @@
 #include "ArchivoVendedor.h"
 #include "ArchivoProveedores.h"
 #include "ArchivoVenta.h"
+#include "ArchivoDetalleDeVenta.h"
+#include "ArchivoCliente.h"
 #include "menu.h"
 using namespace std;
 
 int main(){
 
-    ArchivoVendedor vendedor;
-    vendedor.FunGuardarRegistro();
 
-    /*ArchivoProveedores archivoPro;
-    for(int i=0; i<7; i++){
-        archivoPro.FunGuardarRegistro();
-    }
-    archivoPro.listarRegistros();*/
-    /*ArchivoProductos archivo("archivoProductos.dat");
-    archivo.listarRegistros();*/
+
+    /*ArchivoVenta venta;
+    venta.FunGuardarRegistro();*/
+
 
    /*ArchivoComprasAlProveedor archivoCOMPRAS("archivoComprasAlProveedor.dat");
 
@@ -40,14 +36,16 @@ int main(){
     archivoCOMPRAS.listarCompras();*/
 
     /*archivo.listarRegistros();*/
-
     /*ArchivoDevoluciones devolucion("archivoDevoluciones.dat");
     devolucion.agregarDevolucion();
-    devolucion.listarDevoluciones();*/
+
+    ArchivoProductos archivo("archivoProductos.dat");
+    archivo.listarRegistros();*/
+    /*devolucion.listarDevoluciones();*/
    /* system("cls");
     archivo.listarRegistros();*/
 
-    /*menuPrincipal();*/
+    menuPrincipal();
     return 0;
 
 }

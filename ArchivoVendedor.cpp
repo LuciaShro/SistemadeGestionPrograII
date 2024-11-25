@@ -77,6 +77,7 @@ Vendedor ArchivoVendedor::leerRegistro(int IdVendedor){
     fread(&vendedor,sizeof(vendedor), 1, pVendedor);
 
     fclose(pVendedor);
+    return vendedor;
 }
 
 int ArchivoVendedor::getCantidadRegistros(){
@@ -140,7 +141,7 @@ int ArchivoVendedor::buscar(int id){
     pVendedor = fopen(_nombreArchivoVendedor,"rb");
 
     if(pVendedor == nullptr){
-        return 0;
+        return -1; // retornar -1 porque si es 0 siempre va a ser verdadero
     }
 
     while(fread(&vendedor,sizeof(vendedor),1,pVendedor) == 1){
@@ -153,7 +154,6 @@ int ArchivoVendedor::buscar(int id){
 
     fclose(pVendedor); // cierre del archivo y retorna -1 en caso de no encontrar el ID
     return -1;
-
 }
 
 void ArchivoVendedor::FunModificarRegistro(){

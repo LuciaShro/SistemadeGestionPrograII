@@ -120,8 +120,21 @@ void Persona::cargar(){
     int dia, mes, anio;
     char separador;
 
-    cout<< "DNI: ";
-    cin>>_Id;
+    /*cout<< "DNI: ";
+    while(true){
+        cin>>_Id;
+        if(cin.fail() || _Id<0){
+        cout<< "INCORRECTO. INTENTA NUEVAMENTE"<<endl;
+        cout<< "INGRESAR EL DNI: ";
+        cin.clear();
+        cin.ignore();
+    }
+    else{
+        break;
+    }
+    }
+
+    /*cin>>_Id;*/
     cin.ignore();
     cout<< "NOMBRE: ";
     /*cin>>_Nombres;*/
@@ -143,7 +156,6 @@ void Persona::cargar(){
 
     cout<< "MAIL: ";
     /*cin>>_Mail;*/
-    cin.ignore();
     cin.getline(_Mail, 100);
 
     cout<< "ESTADO(0-INACTIVO, 1-ACTIVO): ";

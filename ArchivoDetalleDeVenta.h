@@ -14,6 +14,7 @@ public:
     bool modificarRegistro(int pos, const detalleVenta &detalle);
     void FunModificarRegistro();
     int buscar(int id);
+    Producto BuscarProducto(Producto &producto);
 private:
     char _NombreArchivoDetalle[100];
 };

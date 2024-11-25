@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include "productos.h"
+#include "ArchivoProveedores.h"
 
 using namespace std;
 
@@ -126,20 +127,23 @@ void Devoluciones::cargar(Producto& producto){
     }
     }
      _idProducto.setIDProducto(id);
+
+    // MODIFICACION POR LU PAZ - Validación del id proveedor del archivo proveedores
     cout<< "INGRESAR EL ID DEL PROVEEDOR: ";
+    ArchivoProveedores proveedor;
     while(true){
         cin>>idproveedor;
-        if(cin.fail()|| idproveedor!=_idProveedor.getIdproveedor()){
+        if(cin.fail()|| proveedor.buscar(idproveedor)==-1){
         cout<< "INCORRECTO. INTENTA NUEVAMENTE"<<endl;
         cout<< "INGRESAR EL ID DEL PROVEEDOR: ";
         cin.clear();
         cin.ignore();
     }
     else{
+        setIDProveedor(idproveedor);
         break;
     }
     }
-    _idProveedor.setIdproveedor(idproveedor);
     cout<< "INGRESAR FECHA DE DEVOLUCION: ";
     cin>> dia >> separador >> mes >> separador >> anio;
     setIngresoDevolucion(dia, mes, anio);
