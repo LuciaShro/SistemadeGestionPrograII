@@ -5,7 +5,7 @@ class ArchivoCliente{
 public:
     ArchivoCliente();
     bool GuardarRegistro(const Cliente &cliente);
-    void FunGuardarRegistro();
+    int FunGuardarRegistro();
     Cliente leerRegistro(int IdCliente); ///(Listado buscar)
     void listarRegistros(); ///Listado General
     int getCantidadRegistros();
@@ -17,6 +17,10 @@ public:
     bool VerificarRegistroExistente(int id);
     /*void BuscarCliente(int id);*/
     bool BuscarCliente();
+    void MostrarNombreyApellido(int dni);
+    bool ActualizacionPuntaje(Cliente& cliente);
+    bool ActualizacionPuntajeResta(Cliente& cliente); // NUEVA FUNCION (lu paz)
+
 private:
     char _nombreArchivoCliente[100];
 };

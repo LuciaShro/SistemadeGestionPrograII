@@ -18,6 +18,8 @@ public:
     bool BajaDeRegistro();
     bool VerificarRegistroExistente(int id);
     void BuscarVendedor(int id);
+    void SetComision(int idVenta, int idVendedor);
+
 private:
      char _nombreArchivoVendedor[100];
 };

@@ -28,7 +28,10 @@ bool ArchivoDetalleDeVenta::GuardarRegistro(const detalleVenta &detalle){
 }
 
 void ArchivoDetalleDeVenta::FunGuardarRegistro(int idVenta){
-      cout << "DETALLE DE LA VENTA" << endl;
+    bool respuesta =1;
+    ArchivoProductos archivoProductos("archivoProductos.dat");
+    while(respuesta!=0){
+        cout << "DETALLE DE LA VENTA" << endl;
     ArchivoDetalleDeVenta ArchivoDetalle;
     detalleVenta detalle;
     Producto obj;
@@ -43,55 +46,41 @@ void ArchivoDetalleDeVenta::FunGuardarRegistro(int idVenta){
 
     producto = BuscarProducto(producto); ///BUSCAR PRODUCTO (LA FUNCION ESTA DEBAJO)
 
+    // probando que se reste el stock
+    cout<< "Stock antes de la compra: "<<producto.getStock()<<endl;
+
     detalle.cargar(producto); //Aca mande lo que se cargo automaticamente en producto
+    archivoProductos.actualizarProducto(producto);
 
     if(ArchivoDetalle.GuardarRegistro(detalle)){
             cout << "DETALLE CARGADO CON EXITO" << endl;
         }else{
             cout << "NO SE PUDO CARGAR EL DETALLE" << endl;
         }
+        cout << "---------------------------------------------" << endl;
+        cout << "¿DESEA AGREGAR OTRO PRODUCTO A LA COMPRA? 1-Si, 0-No " << endl;
+        cin >> respuesta;
+        if(!respuesta){
+            respuesta = 0;
+        }
 
-
-
-
-
-    /*cout << "DETALLE DE LA VENTA" << endl;
-    ArchivoDetalleDeVenta ArchivoDetalle;
-    detalleVenta detalle;
-    Producto obj;
-    Producto &producto = obj;
-
-
-    detalle.setIDVenta(idVenta);
-
-    ///solicitar el id
-    ///buscarlo en archivos productos
-    ///lo que te devuelve cargarlo en producto
-
-    producto = BuscarProducto(producto); ///BUSCAR PRODUCTO (LA FUNCION ESTA DEBAJO)
-
-    detalle.cargar(producto); //Aca mande lo que se cargo automaticamente en producto
-
-    if(ArchivoDetalle.GuardarRegistro(detalle)){
-            cout << "DETALLE CARGADO CON EXITO" << endl;
-        }else{
-            cout << "NO SE PUDO CARGAR EL DETALLE" << endl;
-        }*/
+    }
 }
 
-///AGREGUE EL BUSCAR PRODUCTO (EN EL .H TAMBIEN)
+///AGREGUE EL BUSCAR PRODUCTO (EN EL .H TAMBIEN) // MODIFICACION POR LU PAZ PARA LA VALIDACIÓN DEL BUSCAR PRODUCTO
 Producto ArchivoDetalleDeVenta::BuscarProducto(Producto &producto){
     ArchivoProductos archivo("archivoProductos.dat");
     int id;
-    cout << "Ingrese el id del Producto: ";
-    cin >> id;
-    if(id > 0){
+    while (id!=producto.getIDProducto()){
+        cout << "Ingrese el id del Producto: ";
+        cin >> id;
         for(int i=0;i<archivo.getCantidadRegistros(); i++){
             producto = archivo.leerRegistro(i);
             if(id == producto.getIDProducto()){
                 return producto;
             }
         }
+    cout<< "Producto no entrado. Intente nuevamente"<<endl;
     }
     return Producto(); // puse como RETURN PRODUCTO ya que sino agrega una advertencia en el log
 }
@@ -219,4 +208,11 @@ void ArchivoDetalleDeVenta::FunModificarRegistro(){
     }else{
         cout << "LA VENTA NO SE HA SIDO ENCONTRADA EN EL SISTEMA" << endl;
     }
+}
+
+void ArchivoDetalleDeVenta::BuscarDetalle(int id){
+    ArchivoDetalleDeVenta archDetalle;
+
+    int pos = archDetalle.buscar(id);
+    archDetalle.mostrarDetalle(archDetalle.leerRegistro(pos));
 }

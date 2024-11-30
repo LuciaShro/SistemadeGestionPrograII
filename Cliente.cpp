@@ -1,4 +1,5 @@
 #include "Cliente.h"
+#include "ArchivoCliente.h"
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -22,11 +23,17 @@ int Cliente::getPuntaje(){
 
 void Cliente::agregarPuntos(int puntos) {
         _Puntaje += puntos;
-        cout << "Puntos agregados. Puntaje actual: " << _Puntaje << endl;
+        cout << "Puntos agregados"<<endl;
 }
 
-void Cliente::PuntajeMeta()
+/*void Cliente::agregarPuntos(){
+    _Puntaje+=puntos;
+    cout<< "Puntos agregados. Puntaje actual: "<<_Puntaje<<endl;
+}*/
+
+bool Cliente::PuntajeMeta()
 {
+    ArchivoCliente archCliente;
     if(_Puntaje>0)
     {
         if(_Puntaje >=100)
@@ -48,10 +55,11 @@ void Cliente::PuntajeMeta()
                     intentos = 3;
                     cout << "¡Sus puntos han sido canjeados! " << endl;
                     cout <<"Cantidad de puntos que quedan disponibles: " << getPuntaje() << endl;
-                    break;
+                    archCliente.ActualizacionPuntajeResta(*this);
+                    return true;
                 case 2:
                     cout << "Genial sus puntos quedan guardados para ser utulizados en una proxima ocasion " << endl;
-                    break;
+                    return false;
                 default:
                     intentos++;
                     if(intentos == 3)
@@ -60,7 +68,7 @@ void Cliente::PuntajeMeta()
                     }else{
                         cout << "Parece ser que los datos ingresado son incorrectos :( , vuelva a intentarlo " << endl;
                     }
-                    break;
+                    /*break;*/
                 }
                 system("pause");
                 system("cls");
@@ -68,7 +76,9 @@ void Cliente::PuntajeMeta()
         }
 
     }
+    return false;
 }
+
 void Cliente::cargar()
 {
     cout<< "------------ "<<"DATOS DEL CLIENTE"<< " --------------"<<endl;

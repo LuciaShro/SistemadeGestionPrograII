@@ -1,6 +1,7 @@
 #include <iostream>
 #include "ArchivoVenta.h"
 #include "ArchivoDetalleDeVenta.h"
+#include "ArchivoVendedor.h"
 #include <cstring>
 #include "venta.h"
 
@@ -48,12 +49,16 @@ void ArchivoVenta::FunGuardarRegistro(){
             cout << "VENTA CARGADA CON EXITO" << endl;
             archDetalle.FunGuardarRegistro(Nventa); //como parametro se envie el id de la venta
 
+
+            ArchivoVendedor ArchVendedor;
+            ArchVendedor.SetComision(Nventa, venta.getIDVendedor());///LLAMO A ARCH.VENDEDOR PARA HACER EL SET DE LA COMISION*/
+
         }else{
             cout << "NO SE PUDO CARGAR LA VENTA" << endl;
         }
 
         cout << "---------------------------------------------" << endl;
-        cout << "DESEA REGISTRAR UNA VENTA MAS? 1-Si, 0-No " << endl;
+        cout << "DESEA REGISTRAR UNA NUEVA VENTA? 1-Si, 0-No " << endl;
         cin >> respuesta;
         if(!respuesta){
             cargar = 0;

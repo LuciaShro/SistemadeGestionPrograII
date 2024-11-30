@@ -25,6 +25,7 @@ public:
     const char* getDomicilio();
     bool ValidacionTelefono(const char* telefono);
     void cargar();
+    void CargarClienteSinRegistro();
     void mostrar();
     bool escribirDisco(int pos);
     bool leerDisco(int pos);

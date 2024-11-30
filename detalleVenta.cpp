@@ -132,7 +132,7 @@ void detalleVenta::RestarStock(Producto& producto, int idProducto, int cantidad)
         cout << "EL ID DEL PRODUCTO INGRESADO NO COINCIDE CON EL INGRESADO" << endl;
     }
 }
-// MODIFICADO
+// MODIFICADO // MODIFICADO 30/11/2024 LU PAZ
 void detalleVenta::cargar(Producto& producto){
     /*cout<< "ID de VENTA: ";
     while(true){
@@ -149,7 +149,6 @@ void detalleVenta::cargar(Producto& producto){
     }*/
     /*cout<< "ID de PRODUCTO: ";
     while(true){
-=======
 
 ///MODIFICADO
 void detalleVenta::cargar(Producto &producto){
@@ -159,8 +158,7 @@ void detalleVenta::cargar(Producto &producto){
 
     cout<< "ID de PRODUCTO: " << getIDProducto() << endl; //Aca se muestra
 
-    /*while(true){
->>>>>>> 8321dac17b18d8f0763e7c718cfeb684d89bd30c
+    while(true){
         cin>>_IDProducto;
         if(cin.fail()){
         cout<< "INCORRECTO. INTENTA NUEVAMENTE"<<endl;
@@ -182,19 +180,26 @@ void detalleVenta::cargar(Producto &producto){
     cout<< "CANTIDAD: ";
     while(true){
         cin>>_cantidad;
-        if(cin.fail()){
+        if(cin.fail() || _cantidad<=0){
         cout<< "INCORRECTO. INTENTA NUEVAMENTE"<<endl;
+        cin.clear();
+        cin.ignore();
         cout<< "CANTIDAD: ";
+    }
+    else{
+        if(producto.getStock()<getCantidad()){
+        cout<< "No hay cantidad suficiente"<<endl;
+        cout<< "Intenta nuevamente. Cantidad: ";
         cin.clear();
         cin.ignore();
     }
     else{
-        break;
+       RestarStock(producto, getIDProducto(), _cantidad);
+       setPrecioTotal(producto);
+       break;
     }
     }
-
-    RestarStock(producto, getIDProducto(), _cantidad);
-    setPrecioTotal(producto);
+    }
 }
 
 void detalleVenta::mostrar(){

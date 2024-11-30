@@ -25,26 +25,6 @@ int main(){
 
 
 
-    /*ArchivoVenta venta;
-    venta.FunGuardarRegistro();*/
-
-
-   /*ArchivoComprasAlProveedor archivoCOMPRAS("archivoComprasAlProveedor.dat");
-
-   archivoCOMPRAS.agregarRegistro();
-
-    archivoCOMPRAS.listarCompras();*/
-
-    /*archivo.listarRegistros();*/
-    /*ArchivoDevoluciones devolucion("archivoDevoluciones.dat");
-    devolucion.agregarDevolucion();
-
-    ArchivoProductos archivo("archivoProductos.dat");
-    archivo.listarRegistros();*/
-    /*devolucion.listarDevoluciones();*/
-   /* system("cls");
-    archivo.listarRegistros();*/
-
     /*menuPrincipal();*/
     return 0;
 

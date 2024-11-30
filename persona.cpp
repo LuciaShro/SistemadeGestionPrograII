@@ -116,11 +116,9 @@ bool Persona::ValidacionTelefono(const char* telefono){
     }else{return false;}
 }
 
-void Persona::cargar(){
-    int dia, mes, anio;
-    char separador;
-
-    /*cout<< "DNI: ";
+///AGREGADO RECIENTEMENTE
+void Persona::CargarClienteSinRegistro(){
+    cout << "DNI: ";
     while(true){
         cin>>_Id;
         if(cin.fail() || _Id<0){
@@ -133,15 +131,44 @@ void Persona::cargar(){
         break;
     }
     }
-
-    /*cin>>_Id;*/
     cin.ignore();
+    /*cin>>_Id;*/
     cout<< "NOMBRE: ";
-    /*cin>>_Nombres;*/
     cin.getline(_Nombres, 100);
 
     cout<< "APELLIDO: ";
-    /*cin>>_Apellidos;*/
+    cin.getline(_Apellidos, 100);
+
+    setNacimiento(1, 1, 2024);
+
+    setEstado(0);
+}
+
+void Persona::cargar(){
+    int dia, mes, anio;
+    char separador;
+
+    cout<< "DNI: ";
+    while(true){
+        cin>>_Id;
+        if(cin.fail() || _Id<0){
+        cout<< "INCORRECTO. INTENTA NUEVAMENTE"<<endl;
+        cout<< "INGRESAR EL DNI: ";
+        cin.clear();
+        cin.ignore();
+    }
+    else{
+        cin.ignore();
+        break;
+    }
+    }
+
+    /*cin>>_Id;
+    cin.ignore();*/
+    cout<< "NOMBRE: ";
+    cin.getline(_Nombres, 100);
+
+    cout<< "APELLIDO: ";
     cin.getline(_Apellidos, 100);
 
     cout<< "NACIMIENTO: ";
@@ -158,8 +185,9 @@ void Persona::cargar(){
     /*cin>>_Mail;*/
     cin.getline(_Mail, 100);
 
-    cout<< "ESTADO(0-INACTIVO, 1-ACTIVO): ";
-    cin>>_Estado;
+    /*cout<< "(0-INACTIVO, 1-ACTIVO): ";
+    cin>>_Estado;*/
+    setEstado(1);
 }
 
 void Persona::mostrar(){

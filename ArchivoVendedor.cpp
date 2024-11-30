@@ -222,3 +222,31 @@ void ArchivoVendedor::BuscarVendedor(int id){
     int pos = archVendedor.buscar(id);
     archVendedor.mostrarVendedor(archVendedor.leerRegistro(pos));
 }
+
+
+///SETEA LA COMISION, SOLO REEMPLAZA NO ACUMULA TODAVIA
+void ArchivoVendedor::SetComision(int idVenta, int idVendedor){
+     ArchivoDetalleDeVenta archDetalle;
+     detalleVenta detalle;
+     int posDetalle = archDetalle.buscar(idVenta);
+     if (posDetalle == -1) {
+        cout << "Error: Detalle de venta no encontrado." << endl;
+        return;
+     }
+     detalle = archDetalle.leerRegistro(posDetalle);
+
+     Vendedor vendedor;
+
+     int posVendedor = buscar(idVendedor);
+     if (posVendedor == -1) {
+        cout << "Error: Vendedor no encontrado." << endl;
+        return;
+     }
+
+     vendedor = leerRegistro(posVendedor);
+
+     vendedor.setComisiones(idVendedor, detalle);
+
+     modificarRegistro(posVendedor,vendedor);
+}
+

@@ -4,6 +4,7 @@
 #include "ArchivoVendedor.h"
 #include "ArchivoCliente.h"
 
+
 using namespace std;
 
 Venta::Venta(){
@@ -26,8 +27,8 @@ void Venta::setIDVenta(int id){
     _IDVenta=id;
 }
 
-void Venta::setCliente(){
-    _cliente.cargar();
+void Venta::setCliente(int idCliente){
+  _cliente.setId(idCliente);
 }
 
 void Venta::setIDVendedor(int idVendedor){
@@ -52,9 +53,9 @@ void Venta::setFormaDePago(int fp){
 }
 
 void Venta::setFecha(int dia, int mes, int anio){
-    _fecha.setDia(dia);
     _fecha.setMes(mes);
     _fecha.setAnio(anio);
+    _fecha.setDia(dia);
 }
 
 int Venta::getIDVenta(){
@@ -76,49 +77,67 @@ const char* Venta::getFormaDePago(){
 std::string Venta::getFecha(){
     return _fecha.toString();
 }
-
+// MODIFICADO 27-11-2024 - LU PAZ
 void Venta::cargar(){
-    int dia, mes, anio;
+    int dia, mes, anio, idcliente, intentos;
     char separador;
-    ArchivoVendedor vendedor;
+    ArchivoVendedor archVendedor;
     ArchivoCliente cliente;
-    /*cout<< "INGRESAR EL ID VENTA: ";
-    while(true){
-        cin>>_IDVenta;
-        if(cin.fail()){
-        cout<< "INGRESAR UN NUMERO VALIDO"<<endl;
-        cout<< "INGRESAR EL ID VENTA: ";
-        cin.clear();
-        cin.ignore();
-    }
-    else{
-        break;
-    }
-    }*/
+
     cout<< "INGRESAR LA FECHA DE LA VENTA: ";
     cin>> dia >> separador >> mes >> separador >> anio;
     setFecha(dia, mes, anio);
+
     cout<< "INGRESE LA FORMA DE PAGO(1-Efectivo, 2-Debito, 3-Credito, 4-Billetera Virtual): ";
-    cin>>_formaDePago;
+    int formaDePago;
+    cin>>formaDePago;
+    while(intentos!=3){
+        if(formaDePago >= 1 && formaDePago<=4){
+            setFormaDePago(formaDePago);
+            break;
+        }else{
+            cout << "INGRESO INCORRECTO, VUELVA A INTENTARLO " << endl;
+            cout << "---------------------------------------------" << endl;
+            intentos++;
+            if(intentos == 3){return;}
+            cout<< "INGRESE LA FORMA DE PAGO(1-Efectivo, 2-Debito, 3-Credito, 4-Billetera Virtual): ";
+            cin>>formaDePago;
+        }
+    }
+
+
+
     cout << "--------------------------------" << endl;
     cout<< "INGRESE LOS DATOS DEL CLIENTE: ";
 
-    cliente.FunGuardarRegistro();
-
-    /*_cliente.cargar();*/
+    idcliente= cliente.FunGuardarRegistro();
+    if(idcliente!=-1){
+        _cliente.setId(idcliente);
+    }
+    else {
+        cout<< "No se pudo registrar el cliente"<<endl;
+    }
 
 
     cout<< "INGRESE EL DNI DEL VENDEDOR: ";
     while(true){
         cin>>_idVendedor;
-        if(cin.fail()|| _idVendedor<0 || vendedor.buscar(_idVendedor)==-1){
+        if(cin.fail()|| _idVendedor<0 || archVendedor.buscar(_idVendedor)==-1){
         cout<< "INGRESAR UN DNI VALIDO"<<endl;
         cout<< "INGRESE EL DNI DEL VENDEDOR: ";
         cin.clear();
         cin.ignore();
     }
     else{
+        Vendedor vendedor;
+        detalleVenta detalle;
         setIDVendedor(_idVendedor);
+
+        int posVendedor = archVendedor.buscar(getIDVendedor());
+        vendedor = archVendedor.leerRegistro(posVendedor);
+
+        vendedor.setComisiones(getIDVendedor(), detalle);
+
         break;
     }
     }

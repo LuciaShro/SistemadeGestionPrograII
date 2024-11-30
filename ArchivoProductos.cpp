@@ -115,7 +115,7 @@ bool ArchivoProductos::buscarProductoPorNombre(){
     fclose(buscarProductoNombre);
     return false;
 }
-
+// MODIFICADO LU PAZ - 30/11/2024
 bool ArchivoProductos::modificarPrecioProducto(){
     FILE *modificarPrecio;
     Producto producto;
@@ -135,10 +135,14 @@ bool ArchivoProductos::modificarPrecioProducto(){
         cin>>NuevoPrecio;
         producto.setPrecio(NuevoPrecio);
 
-        fseek(modificarPrecio, -sizeof(Producto), SEEK_CUR);
+        long posicionActual=ftell(modificarPrecio);
+
+        fseek(modificarPrecio, posicionActual-sizeof(Producto), SEEK_SET);
         fwrite(&producto, sizeof(producto), 1, modificarPrecio);
         cout<< "PRODUCTO MODIFICADO"<<endl;
         producto.mostrar();
+
+        fclose(modificarPrecio);
         return true;
 
     }
@@ -166,7 +170,7 @@ bool ArchivoProductos::buscarPRODUCTOID(int id, Producto& producto){
     fclose(buscarProducto);
     return false;
 }
-
+// MODIFICACION LU PAZ - 30/11/2024
 bool ArchivoProductos::actualizarProducto(Producto& producto){
     FILE *archivo=fopen(_nombreArchivoProductos, "rb+");
     if(archivo==nullptr){
@@ -176,7 +180,10 @@ bool ArchivoProductos::actualizarProducto(Producto& producto){
     Producto prod;
     while(fread(&prod, sizeof(Producto), 1, archivo)==1){
         if(prod.getIDProducto()==producto.getIDProducto()){
-            fseek(archivo, -sizeof(Producto), SEEK_CUR);
+
+            long posicionActual=ftell(archivo);
+
+            fseek(archivo, posicionActual-sizeof(Producto), SEEK_SET);
             fwrite(&producto, sizeof(Producto), 1, archivo);
             fclose(archivo);
             return true;
@@ -229,3 +236,5 @@ Producto ArchivoProductos::leerRegistro(int idProducto){
 
     fclose(pProducto);
 }
+
+

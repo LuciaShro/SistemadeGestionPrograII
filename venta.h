@@ -8,7 +8,7 @@ class Venta{
         Venta();
         Venta(int idVenta, Cliente cliente, int idVendedor, char* fp, Fecha fecha);
         void setIDVenta(int id);
-        void setCliente();
+        void setCliente(int idCliente);
         void setIDVendedor(int idVendedor);
         void setFormaDePago(int fp);
         void setFecha(int dia, int mes, int anio);

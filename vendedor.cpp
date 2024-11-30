@@ -12,9 +12,9 @@ Vendedor::Vendedor(float comision, Fecha fechaIngreso):Persona(){
 
 Vendedor::Vendedor():Persona(1, "Apellido", "Nombre",_Nacimiento, "123456789", "sistema@gestion.com", "Florida"), _Comisiones(0.0), _fechaIngreso(){}
 
-void Vendedor::setComisiones(Venta& venta,detalleVenta& detalleVenta){
-    if(getId()==venta.getIDVendedor()){
-        _Comisiones=(detalleVenta.getPrecioTotal()*10)/100;
+void Vendedor::setComisiones(int idVendedor,detalleVenta& detalleVenta){
+    if(getId()==idVendedor){
+        _Comisiones+=(detalleVenta.getPrecioTotal()*10)/100;
     }
     else {
         cout<< "no es valido"<<endl;

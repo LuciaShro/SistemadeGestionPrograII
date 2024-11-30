@@ -29,10 +29,10 @@ bool ArchivoCliente::GuardarRegistro(const Cliente &cliente){
     return resultado;
 }
 
-///MODIFICADO
-void ArchivoCliente::FunGuardarRegistro(){
+///MODIFICADO - 27/11/2024
+int ArchivoCliente::FunGuardarRegistro(){
     cout << "INFORMACION DEL CLIENTE " << endl;
-    ArchivoCliente  ArchCliente;
+    /*ArchivoCliente  ArchCliente;*/
     Cliente cliente;
     int dni;
 
@@ -45,37 +45,58 @@ void ArchivoCliente::FunGuardarRegistro(){
         cin.ignore();
     }
     else{
+        cliente.setId(dni);
         break;
     }
     }
 
-    bool result = ArchCliente.VerificarRegistroExistente(dni);
-
+    bool result = VerificarRegistroExistente(dni);
 
     if(result){
         cout<< "EL USUARIO YA SE ENCUENTRA REGISTRADO EN EL SISTEMA"<<endl;
-        return;
+        /*cliente.agregarPuntos(puntos);*/
+        MostrarNombreyApellido(dni);
+        cliente.agregarPuntos(10);
+        ActualizacionPuntaje(cliente);
+        return dni;
     }
 
-     cliente.setId(dni);
+
+    cout << "CLIENTE NO EXISTENTE. ¿DESEA REGISTRARSE? 1-SI, 0-NO " << endl;
+    int respuesta;
+    while(true){
+        cin>>respuesta;
+        if(respuesta!=1 && respuesta!=0){
+            cout<< "RESPUESTA INCORRECTA"<<endl;
+            cout<< "INTENTA NUEVAMENTE: ";
+            cin.clear();
+            cin.ignore();
+        }
+        else{
+            if(respuesta==1){
+            cliente.setId(dni);
+            cliente.cargar();
+            cliente.agregarPuntos(10);
+        }
+        else{
+        cliente.CargarClienteSinRegistro();
+        }
+        break;
+        }
+    }
+
+     /*cliente.setId(dni);
      cliente.cargar();
+     cliente.agregarPuntos(10);*/
 
      if(GuardarRegistro(cliente)){
         cout<< "CLIENTE CARGADO CON EXITO"<<endl;
+        return dni;
      }
      else {
         cout<< "ERROR AL CARGAR EL CLIENTE"<<endl;
+        return -1;
      }
-
-    /*if(result){
-        cout << "EL USUARIO YA SE ENCUENTRA REGISTRADO EN EL SISTEMA, POR LO QUE NO SE PUEDE VOLVER A INGRESAR " << endl;
-    }else{
-        if(GuardarRegistro(cliente)){
-            cout << "CLIENTE CARGADO CON EXITO" << endl;
-        }else{
-            cout << "NO SE PUDO CARGAR EL CLIENTE" << endl;
-        }
-    }*/
 }
 
 Cliente ArchivoCliente::leerRegistro(int IdCliente){
@@ -263,4 +284,101 @@ bool ArchivoCliente::BuscarCliente(){
     cout<< "CLIENTE NO ENCONTRADO"<<endl;
     fclose(buscarCliente);
     return false;
+}
+
+void ArchivoCliente::MostrarNombreyApellido(int dni){
+    Cliente cliente;
+   int pos = buscar(dni);
+   cliente = leerRegistro(pos);
+   cout << cliente.getNombres() << endl;
+   cout << cliente.getApellidos() << endl;
+}
+
+bool ArchivoCliente::ActualizacionPuntaje(Cliente& cliente){
+    FILE *archivoClientes=fopen(_nombreArchivoCliente, "rb+");
+    if(archivoClientes==nullptr){
+        cout<< "NO SE PUDO ABRIR EL ARCHIVO"<<endl;
+        return false;
+    }
+
+    Cliente clientfile;
+    bool encontrado=false;
+
+    while(fread(&clientfile, sizeof(Cliente), 1, archivoClientes)==1){
+        /*cout << "DNI en el archivo: " << clientfile.getId() << endl;
+        cout << "DNI del cliente a actualizar: " << cliente.getId() << endl;*/
+        if(clientfile.getId()==cliente.getId()){
+
+            int puntajeActual=clientfile.getPuntaje();
+            int nuevoPuntaje=puntajeActual+cliente.getPuntaje();
+            clientfile.setPuntaje(nuevoPuntaje);
+
+            long posicionactual = ftell(archivoClientes); // obtengo la posicion actual del puntero
+
+
+
+            fseek(archivoClientes, posicionactual-sizeof(Cliente), SEEK_SET); // retrocede al inicio de la posicion actual
+            fwrite(&clientfile, sizeof(Cliente), 1, archivoClientes);
+            encontrado=true;
+            break;
+            /*fclose(archivoClientes);
+            return true;*/
+        }
+    }
+    fclose(archivoClientes);
+
+     if (encontrado) {
+        cout << "Puntaje actualizado con exito" << endl;
+        cout << "Puntaje actual del cliente: "<<clientfile.getPuntaje()<<endl;
+        clientfile.PuntajeMeta();
+        return true;
+    } else {
+        cout << "Cliente no encontrado" << endl;
+        return false;
+    }
+}
+
+// Nueva funcion para actualizar el puntaje luego de la resta de Puntaje Meta
+
+bool ArchivoCliente::ActualizacionPuntajeResta(Cliente& cliente){
+    FILE *archivoClientes=fopen(_nombreArchivoCliente, "rb+");
+    if(archivoClientes==nullptr){
+        cout<< "NO SE PUDO ABRIR EL ARCHIVO"<<endl;
+        return false;
+    }
+
+    Cliente clientfile;
+    bool encontrado=false;
+
+    while(fread(&clientfile, sizeof(Cliente), 1, archivoClientes)==1){
+        /*cout << "DNI en el archivo: " << clientfile.getId() << endl;
+        cout << "DNI del cliente a actualizar: " << cliente.getId() << endl;*/
+        if(clientfile.getId()==cliente.getId()){
+
+            int puntajeActual=clientfile.getPuntaje();
+            int nuevoPuntaje=puntajeActual-100;
+            clientfile.setPuntaje(nuevoPuntaje);
+
+            long posicionactual = ftell(archivoClientes); // obtengo la posicion actual del puntero
+
+
+
+            fseek(archivoClientes, posicionactual-sizeof(Cliente), SEEK_SET); // retrocede al inicio de la posicion actual
+            fwrite(&clientfile, sizeof(Cliente), 1, archivoClientes);
+            encontrado=true;
+            break;
+            /*fclose(archivoClientes);
+            return true;*/
+        }
+    }
+    fclose(archivoClientes);
+
+     if (encontrado) {
+        cout << "Puntaje restado y actualizado con exito" << endl;
+        cout << "Puntaje actual del cliente: "<<clientfile.getPuntaje()<<endl;
+        return true;
+    } else {
+        cout << "Cliente no encontrado" << endl;
+        return false;
+    }
 }
