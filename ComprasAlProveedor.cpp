@@ -1,6 +1,7 @@
 #include "ComprasAlProveedor.h"
 #include <cstring>
 #include <iostream>
+#include "rlutil.h"
 using namespace std;
 
 ComprasAlProveedor::ComprasAlProveedor(){}
@@ -83,9 +84,20 @@ void ComprasAlProveedor::SumaDeStock(Producto& producto){
 
 void ComprasAlProveedor::cargar(Producto& producto){
     int idproveedor, idproducto, dia, mes, anio;
-    char nombreproveedor[50], nombreproducto[50], separador;
+    char nombreproveedor[50], nombreproducto[50];
     cout<< "FECHA DE COMPRA: ";
-    cin>> dia >> separador >> mes >> separador >> anio;
+    rlutil::locate(18,3);
+    cout<< "  /  /   ";
+    rlutil::locate(18,3);
+    cin>>dia;
+    rlutil::locate(21,3);
+    cin>>mes;
+    rlutil::locate(24,3);
+    cin>>anio;
+
+
+
+    /*cin>> dia >> separador >> mes >> separador >> anio;*/
     setFechaDeCompra(dia, mes, anio);
 
     ArchivoProveedores archivoProveedor;

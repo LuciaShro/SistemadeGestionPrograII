@@ -2,6 +2,7 @@
 #include <cstring>
 #include "Vendedor.h"
 #include "persona.h"
+#include "rlutil.h"
 
 using namespace std;
 
@@ -37,11 +38,19 @@ std::string Vendedor::getFechaIngreso(){
 
 void Vendedor::cargar(){
     int dia, mes, anio;
-    char separador;
-    cout<< "------------ "<<"DATOS DEL VENDEDOR"<< " --------------"<<endl;
+    /*char separador;*/
     Persona::cargar();
     cout<< "FECHA DE INGRESO DEL VENDEDOR: ";
-    cin>> dia >> separador >> mes >> separador >> anio;
+    rlutil::locate(31,7);
+    cout<< "  /  /   ";
+    rlutil::locate(31,7);
+    cin>>dia;
+    rlutil::locate(34,7);
+    cin>>mes;
+    rlutil::locate(37,7);
+    cin>>anio;
+
+    /*cin>> dia >> separador >> mes >> separador >> anio;*/
     setFechaIngreso(dia, mes, anio);
     /*setComisiones(venta, detalleVenta);*/
 }

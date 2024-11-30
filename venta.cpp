@@ -3,7 +3,7 @@
 #include <iostream>
 #include "ArchivoVendedor.h"
 #include "ArchivoCliente.h"
-
+#include "rlutil.h"
 
 using namespace std;
 
@@ -80,12 +80,20 @@ std::string Venta::getFecha(){
 // MODIFICADO 27-11-2024 - LU PAZ
 void Venta::cargar(){
     int dia, mes, anio, idcliente, intentos;
-    char separador;
+    /*char separador;*/
     ArchivoVendedor archVendedor;
     ArchivoCliente cliente;
 
     cout<< "INGRESAR LA FECHA DE LA VENTA: ";
-    cin>> dia >> separador >> mes >> separador >> anio;
+    rlutil::locate(32,1);
+    cout<< "  /  /   ";
+    rlutil::locate(32,1);
+    cin>>dia;
+    rlutil::locate(35,1);
+    cin>>mes;
+    rlutil::locate(38,1);
+    cin>>anio;
+    /*cin>> dia >> separador >> mes >> separador >> anio;*/
     setFecha(dia, mes, anio);
 
     cout<< "INGRESE LA FORMA DE PAGO(1-Efectivo, 2-Debito, 3-Credito, 4-Billetera Virtual): ";

@@ -23,8 +23,9 @@ using namespace std;
 
 int main(){
 
-
-
+    ArchivoProductos archivo("archivoProductos.dat");
+    ArchivoComprasAlProveedor archivoCompras("archivoComprasAlProveedor.dat");
+    archivoCompras.agregarRegistro();
     /*menuPrincipal();*/
     return 0;
 

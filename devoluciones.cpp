@@ -4,6 +4,7 @@
 #include <iostream>
 #include "productos.h"
 #include "ArchivoProveedores.h"
+#include "rlutil.h"
 
 using namespace std;
 
@@ -111,7 +112,7 @@ void Devoluciones::realizarDevolucion(Producto& producto){
 void Devoluciones::cargar(Producto& producto){
     int id, idproveedor, dia, mes, anio;
     bool confirmacion;
-    char separador;
+    /*char separador;*/
     cout<< "-------------"<<"DEVOLUCIONES AL PROVEEDOR"<< "-------------"<<endl;
     cout<< "INGRESAR EL ID DEL PRODUCTO: ";
     while(true){
@@ -145,7 +146,17 @@ void Devoluciones::cargar(Producto& producto){
     }
     }
     cout<< "INGRESAR FECHA DE DEVOLUCION: ";
-    cin>> dia >> separador >> mes >> separador >> anio;
+    rlutil::locate(30,6);
+    cout<< "  /  /   ";
+    rlutil::locate(30,6);
+    cin>>dia;
+    rlutil::locate(33,6);
+    cin>>mes;
+    rlutil::locate(36,6);
+    cin>>anio;
+
+
+    /*cin>> dia >> separador >> mes >> separador >> anio;*/
     setIngresoDevolucion(dia, mes, anio);
     /*cout<< "¿CUANTOS PRODUCTOS DEL ID "<<_idProducto.getIDProducto()<<" DESEA REALIZAR LA DEVOLUCION?"<<endl;
     cin>>cantidadProductos;*/

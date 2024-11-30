@@ -1,6 +1,7 @@
 #include "persona.h"
 #include <cstring>
 #include <iostream>
+#include "rlutil.h"
 using namespace std;
 
 Persona::Persona(){
@@ -146,7 +147,7 @@ void Persona::CargarClienteSinRegistro(){
 
 void Persona::cargar(){
     int dia, mes, anio;
-    char separador;
+    /*char separador;*/
 
     cout<< "DNI: ";
     while(true){
@@ -172,7 +173,16 @@ void Persona::cargar(){
     cin.getline(_Apellidos, 100);
 
     cout<< "NACIMIENTO: ";
-    cin>> dia >> separador >> mes >> separador >> anio;
+    rlutil::locate(12,4);
+    cout<< "  /  /   ";
+    rlutil::locate(12,4);
+    cin>>dia;
+    rlutil::locate(15,4);
+    cin>>mes;
+    rlutil::locate(18,4);
+    cin>>anio;
+
+    /*cin>> dia >> separador >> mes >> separador >> anio;*/
     setNacimiento(dia, mes, anio);
 
     cout<< "TELEFONO: ";
@@ -199,7 +209,3 @@ void Persona::mostrar(){
     cout<< "EL MAIL ES: "<<getMail()<<endl;
     cout<< "EL ESTADO DE LA PERSONA ES: "<<getEstado()<<endl;
 }
-
-bool Persona::escribirDisco(int pos){}
-
-bool Persona::leerDisco(int pos){}
