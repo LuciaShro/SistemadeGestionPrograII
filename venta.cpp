@@ -77,6 +77,10 @@ const char* Venta::getFormaDePago(){
 std::string Venta::getFecha(){
     return _fecha.toString();
 }
+
+int Venta::getMesVenta(){
+    return _fecha.getMes();
+}
 // MODIFICADO 27-11-2024 - LU PAZ
 void Venta::cargar(){
     int dia, mes, anio, idcliente, intentos;

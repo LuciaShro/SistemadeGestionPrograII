@@ -28,12 +28,14 @@ int main(){
     devolucion.BuscarDevolucionXIdProducto();*/
 
 
+    ArchivoVenta venta;
+    venta.listarRegistros();
+
     ArchivoDetalleDeVenta detalle;
     detalle.listarRegistros();
 
 
-    ArchivoProductos archivo("archivoProductos.dat");
-    archivo.listarRegistros();
+    venta.VentasXmes();
 
     /*menuPrincipal();*/
     return 0;

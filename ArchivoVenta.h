@@ -16,6 +16,9 @@ public:
 
     int ContarVenta();
     void BuscarVenta(int id);
+    bool BuscarVentasXMes();
+
+    float VentasXmes(); // Total de dinero acumulado por mes
 private:
     char _nombreArchivoVenta[50];
 };

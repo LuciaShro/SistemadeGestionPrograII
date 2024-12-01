@@ -101,6 +101,7 @@ Venta ArchivoVenta::leerRegistro(int IdVenta){
     fread(&venta, sizeof(venta), 1, pVenta);
 
     fclose(pVenta);
+    return venta; // le agregue esto porque no retornaba nada
 }
 
 
@@ -249,4 +250,68 @@ void ArchivoVenta::BuscarVenta(int id){
     int pos = archVenta.buscar(id);
     archVenta.mostrarVenta(archVenta.leerRegistro(pos));
 
+}
+
+// AGREGADO POR LU PAZ
+
+bool ArchivoVenta::BuscarVentasXMes(){
+    FILE *ventasXmes;
+    Venta ventas;
+    ventasXmes=fopen(_nombreArchivoVenta, "rb");
+    if(ventasXmes==nullptr){
+        cout<< "No se pudo abrir el archivo"<<endl;
+        return false;
+    }
+
+    int mes;
+    bool encontrado=false;
+    cout<< "Ingresar el mes del 1 al 12: ";
+    cin>>mes;
+    while(fread(&ventas, sizeof(Venta), 1, ventasXmes)==1){
+        if(ventas.getMesVenta()==mes){
+            ventas.mostrar();
+            encontrado=true;
+        }
+    }
+    if(!encontrado){
+        cout<< "No se registraron ventas en ese mes"<<endl;
+    }
+    fclose(ventasXmes);
+    return encontrado;
+}
+
+float ArchivoVenta::VentasXmes(){
+    FILE *totalXmes;
+    Venta ventas;
+    detalleVenta detalle;
+    float totalMes=0;
+    totalXmes=fopen(_nombreArchivoVenta, "rb");
+    if(totalXmes==nullptr){
+        cout<< "No se pudo abrir el archivo"<<endl;
+        return -1;
+    }
+    int mes;
+    cout<< "Ingresar el mes de total de ventas del 1 al 12: ";
+    cin>>mes;
+    while(fread(&ventas, sizeof(Venta), 1, totalXmes)==1){
+        if(ventas.getMesVenta()==mes){
+            FILE *archivoDetalle;
+            archivoDetalle=fopen("DetalleVenta.dat", "rb");
+            if(archivoDetalle==nullptr){
+                cout<< "No se pudo abrir el archivo"<<endl;
+                fclose(archivoDetalle);
+                return -1;
+            }
+        while(fread(&detalle, sizeof(detalleVenta), 1, archivoDetalle)==1){
+            if(ventas.getIDVenta()==detalle.getIDVenta()){
+                totalMes+=detalle.getPrecioTotal();
+            }
+        }
+        fclose(archivoDetalle);
+
+        }
+    }
+    fclose(totalXmes);
+    cout<< "Total del mes "<<mes<<" es: $ "<<totalMes<<endl;
+    return 0;
 }
