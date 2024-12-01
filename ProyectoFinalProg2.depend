@@ -24,7 +24,7 @@
 	"proveedores.h"
 	"productos.h"
 
-1733076259 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\main.cpp
+1733080115 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\main.cpp
 	<iostream>
 	<cstring>
 	"cliente.h"
@@ -686,14 +686,14 @@
 	<cstring>
 	<iostream>
 
-1733078988 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivocomprasalproveedor.cpp
+1733080020 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivocomprasalproveedor.cpp
 	"ArchivoComprasAlProveedor.h"
 	<cstring>
 	<iostream>
 	<iomanip>
 	<fstream>
 
-1731604884 c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivocomprasalproveedor.h
+1733079991 c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivocomprasalproveedor.h
 	"ComprasAlProveedor.h"
 	"ArchivoProductos.h"
 

@@ -12,4 +12,6 @@ public:
     bool listarCompras();
     void agregarRegistro();
     bool ActualizacionStockArchivoProductos(Producto& producto);
+
+    bool BuscarCompras();
 };

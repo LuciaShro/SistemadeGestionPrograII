@@ -153,4 +153,30 @@ bool ArchivoComprasAlProveedor::ActualizacionStockArchivoProductos(Producto& pro
     return true;
 }
 
+bool ArchivoComprasAlProveedor::BuscarCompras(){
+    FILE *buscarCompras;
+    ComprasAlProveedor compras;
+    buscarCompras=fopen(_nombreArchivoComprasAlProveedor, "rb");
+    if(buscarCompras==nullptr){
+        cout<< "No se pudo abrir el archivo"<<endl;
+        return false;
+    }
+    int idprov;
+    cout<< "Ingresar el ID del proveedor que queres buscar: ";
+    cin>>idprov;
+
+    bool encontrado=false;
+    while(fread(&compras, sizeof(ComprasAlProveedor), 1, buscarCompras)==1){
+        if(compras.getIdProveedor()==idprov){
+            compras.mostrar();
+            encontrado=true;
+        }
+    }
+    if(!encontrado){
+        cout<< "Id proveedor no encontrado"<<endl;
+    }
+    fclose(buscarCompras);
+    return encontrado;
+}
+
 
