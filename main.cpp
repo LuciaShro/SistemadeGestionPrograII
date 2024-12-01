@@ -31,11 +31,7 @@ int main(){
     ArchivoVenta venta;
     venta.listarRegistros();
 
-    ArchivoDetalleDeVenta detalle;
-    detalle.listarRegistros();
-
-
-    venta.VentasXmes();
+    venta.InformeVentaxMes();
 
     /*menuPrincipal();*/
     return 0;

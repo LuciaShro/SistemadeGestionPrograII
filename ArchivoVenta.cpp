@@ -315,3 +315,40 @@ float ArchivoVenta::VentasXmes(){
     cout<< "Total del mes "<<mes<<" es: $ "<<totalMes<<endl;
     return 0;
 }
+
+float ArchivoVenta::InformeVentaxMes(){
+   FILE *totalXmes;
+    Venta ventas;
+    detalleVenta detalle;
+    float totalMes[12]={};
+    totalXmes=fopen(_nombreArchivoVenta, "rb");
+    if(totalXmes==nullptr){
+        cout<< "No se pudo abrir el archivo"<<endl;
+        return -1;
+    }
+    while(fread(&ventas, sizeof(Venta), 1, totalXmes)==1){
+            FILE *archivoDetalle;
+            archivoDetalle=fopen("DetalleVenta.dat", "rb");
+            if(archivoDetalle==nullptr){
+                cout<< "No se pudo abrir el archivo"<<endl;
+                fclose(archivoDetalle);
+                return -1;
+            }
+        while(fread(&detalle, sizeof(detalleVenta), 1, archivoDetalle)==1){
+            if(ventas.getIDVenta()==detalle.getIDVenta()){
+                for(int i=1; i<13; i++){
+                    if(ventas.getMesVenta()==i){
+                        totalMes[i]+=detalle.getPrecioTotal();
+                    }
+                }
+            }
+        }
+        fclose(archivoDetalle);
+
+    }
+    fclose(totalXmes);
+    for(int i=1; i<13; i++){
+        cout<< "El total acumulado del mes "<<i<<" es  $ "<<totalMes[i]<<endl;
+    }
+    return 0;
+}

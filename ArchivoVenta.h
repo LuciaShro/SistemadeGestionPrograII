@@ -19,6 +19,7 @@ public:
     bool BuscarVentasXMes();
 
     float VentasXmes(); // Total de dinero acumulado por mes
+    float InformeVentaxMes();
 private:
     char _nombreArchivoVenta[50];
 };
