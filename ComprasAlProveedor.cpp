@@ -88,13 +88,13 @@ void ComprasAlProveedor::cargar(Producto& producto){
     int idproveedor, idproducto, dia, mes, anio;
     /*char nombreproducto[50];*/
     cout<< "FECHA DE COMPRA: ";
-    rlutil::locate(18,3);
+    rlutil::locate(18,2);
     cout<< "  /  /   ";
-    rlutil::locate(18,3);
+    rlutil::locate(18,2);
     cin>>dia;
-    rlutil::locate(21,3);
+    rlutil::locate(21,2);
     cin>>mes;
-    rlutil::locate(24,3);
+    rlutil::locate(24,2);
     cin>>anio;
 
 

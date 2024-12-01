@@ -29,25 +29,45 @@ bool ArchivoComprasAlProveedor::guardarComprasAlProveedor(ComprasAlProveedor& co
 void ArchivoComprasAlProveedor::agregarRegistro(){
     Producto producto;
     int idproducto;
+    int op;
 
     cout<< "INGRESE EL ID DEL PRODUCTO QUE VA A COMPRAR: ";
     cin>>idproducto;
+
     ArchivoProductos archivoProductos("archivoProductos.dat");
     if (!archivoProductos.buscarPRODUCTOID(idproducto, producto)) {
-        int op;
         cout << "¿DESEA AGREGAR UN NUEVO PRODUCTO?"<< "1-SI/2-NO"<<endl;
-        cin>>op;
-        if(op==1){
+
+        while(true){
+         cin>>op;
+         if(cin.fail()){
+            cin.clear();
+            cin.ignore();
+            cout << "Opcion invalida. Intente nuevamente (1-SI / 2-NO): ";
+            continue;
+         }
+         if(op==1){
             archivoProductos.agregarRegistro();
             if (!archivoProductos.buscarPRODUCTOID(idproducto, producto)) {
                 cout << "NO SE PUDO ENCONTRAR EL PRODUCTO AGREGADO" << endl;
                 return;
             }
+            break;
+         }
+         else if(op==2){
+            cout<< "Operacion cancelada"<<endl;
+            system("pause");
+            system("cls");
+            return;
         }
-        else{
-                return;
-        }
-    }
+        else {
+                cout << "Opción incorrecta. Intente nuevamente (1-SI / 2-NO): ";
+            }
+}
+ }
+ cout<< "Producto encontrado. Procediendo con la compra..."<<endl;
+ system("pause");
+ system("cls");
 
     cout<< "stock antes de la compra: "<<producto.getStock()<<endl;
     ComprasAlProveedor compras;
