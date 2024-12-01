@@ -13,5 +13,6 @@ public:
     void agregarRegistro();
     bool ActualizacionStockArchivoProductos(Producto& producto);
 
-    bool BuscarCompras();
+    bool BuscarComprasXProveedor();
+    bool BuscarComprasXMes();
 };

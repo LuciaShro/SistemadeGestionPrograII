@@ -19,7 +19,7 @@ bool ArchivoDevoluciones::guardarDevolucion(Devoluciones& devolucion){
     int escribir=fwrite(&devolucion, sizeof(Devoluciones), 1, ArchivoDevolucion);
     fclose(ArchivoDevolucion);
     if (escribir==1){
-            cout<< "¡NUEVO PRODUCTO AGREGADO!"<<endl;
+            cout<< "¡NUEVA DEVOLUCION AGREGADA!"<<endl;
             return true;
     }
 
@@ -128,6 +128,87 @@ bool ArchivoDevoluciones::listarDevoluciones(){
     fclose(listadoDevoluciones);
     return true;
 
+}
+
+bool ArchivoDevoluciones::BuscarDevolucionXIdProducto(){
+    FILE *buscarDevolucion;
+    Devoluciones devolucion;
+    buscarDevolucion=fopen(_nombreArchivoDevoluciones, "rb");
+    if(buscarDevolucion==nullptr){
+        cout<< "No se pudo abrir el archivo"<<endl;
+        return false;
+    }
+    int idProducto;
+    cout<< "Ingresar el id producto de la devolucion que desea buscar: ";
+    cin>>idProducto;
+
+    bool encontrado=false;
+
+    while(fread(&devolucion, sizeof(Devoluciones), 1, buscarDevolucion)==1){
+        if(devolucion.getIDProducto()==idProducto){
+            devolucion.mostrar();
+            encontrado=true;
+        }
+    }
+    if(!encontrado){
+        cout<< "Id producto no encontrado"<<endl;
+    }
+    fclose(buscarDevolucion);
+    return encontrado;
+}
+
+bool ArchivoDevoluciones::BuscarDevolucionXMes(){
+    FILE *buscarDevolucionF;
+    Devoluciones devolucion;
+    buscarDevolucionF=fopen(_nombreArchivoDevoluciones, "rb");
+    if(buscarDevolucionF==nullptr){
+        cout<< "No se pudo abrir el archivo"<<endl;
+        return false;
+    }
+    int mes;
+    cout<< "Ingresar el mes que desea buscar: ";
+    cin>>mes;
+
+    bool encontrado=false;
+
+    while(fread(&devolucion, sizeof(Devoluciones), 1, buscarDevolucionF)==1){
+        if(devolucion.getIngresoDevolucionMes()==mes){
+            devolucion.mostrar();
+            encontrado=true;
+        }
+    }
+    if(!encontrado){
+        cout<< "No se encuentran devoluciones registradas en el mes"<<endl;
+    }
+    fclose(buscarDevolucionF);
+    return encontrado;
+}
+
+bool ArchivoDevoluciones::BuscarDevolucionXIdProveedor(){
+    FILE *buscarDevolucionProveedor;
+    Devoluciones devolucion;
+    buscarDevolucionProveedor=fopen(_nombreArchivoDevoluciones, "rb");
+    if(buscarDevolucionProveedor==nullptr){
+        cout<< "No se pudo abrir el archivo"<<endl;
+        return false;
+    }
+    int idproveedor;
+    cout<< "Ingresar Id del proveedor que desea buscar devoluciones: ";
+    cin>>idproveedor;
+
+    bool encontrado=false;
+
+    while(fread(&devolucion, sizeof(Devoluciones), 1, buscarDevolucionProveedor)==1){
+        if(devolucion.getIDProveedor()==idproveedor){
+            devolucion.mostrar();
+            encontrado=true;
+        }
+    }
+    if(!encontrado){
+        cout<< "No se encuentran devoluciones registradas en el mes"<<endl;
+    }
+    fclose(buscarDevolucionProveedor);
+    return encontrado;
 }
 
 

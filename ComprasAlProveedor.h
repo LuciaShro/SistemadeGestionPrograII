@@ -30,6 +30,7 @@ public:
     float getPrecioUnitario();
     float getPrecioTotal();
     std::string getFechaDeCompra();
+    int getFechaDeCompraMes();
     void SumaDeStock(Producto& producto);
 
     void cargar(Producto& producto);

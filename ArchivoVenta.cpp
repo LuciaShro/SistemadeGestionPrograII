@@ -91,6 +91,7 @@ Venta ArchivoVenta::leerRegistro(int IdVenta){
     pVenta = fopen(_nombreArchivoVenta, "rb");
 
     if(pVenta == nullptr){
+        cout<< "No se pudo abrir el archivo"<<endl; // lo agrego por si no hay nada en el archivo
         return venta;
     }
 

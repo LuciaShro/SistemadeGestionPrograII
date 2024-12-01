@@ -85,13 +85,13 @@ void Venta::cargar(){
     ArchivoCliente cliente;
 
     cout<< "INGRESAR LA FECHA DE LA VENTA: ";
-    rlutil::locate(32,1);
+    rlutil::locate(32,2);
     cout<< "  /  /   ";
-    rlutil::locate(32,1);
+    rlutil::locate(32,2);
     cin>>dia;
-    rlutil::locate(35,1);
+    rlutil::locate(35,2);
     cin>>mes;
-    rlutil::locate(38,1);
+    rlutil::locate(38,2);
     cin>>anio;
     /*cin>> dia >> separador >> mes >> separador >> anio;*/
     setFecha(dia, mes, anio);

@@ -81,7 +81,7 @@ bool Cliente::PuntajeMeta()
 
 void Cliente::cargar()
 {
-    cout<< "------------ "<<"DATOS DEL CLIENTE"<< " --------------"<<endl;
+    /*cout<< "------------ "<<"DATOS DEL CLIENTE"<< " --------------"<<endl;*/
     Persona::cargar();
 }
 

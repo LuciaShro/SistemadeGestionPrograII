@@ -32,7 +32,7 @@ bool ArchivoVendedor::GuardarRegistro(const Vendedor &vendedor){
 }
 
 void ArchivoVendedor::FunGuardarRegistro(){
-    cout << "INGRESE LA INFORMACION DEL VENDEDOR " << endl;
+    /*cout << "INGRESE LA INFORMACION DEL VENDEDOR " << endl;*/
     ArchivoVendedor  ArchVendedor;
 
     Vendedor vendedor;
@@ -171,7 +171,9 @@ void ArchivoVendedor::FunModificarRegistro(){
 
     if(pos!= -1){
         vendedor = archVendedor.leerRegistro(pos);
-        cout << " INGRESE LA MODIFICACION " << endl;
+        cout << "Procesando para la modificacion.... " << endl;
+        system("pause");
+        system("cls");
         vendedor.cargar();
         modificarRegistro(pos, vendedor);
     }else{

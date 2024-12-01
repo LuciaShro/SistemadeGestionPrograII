@@ -57,6 +57,10 @@ string ComprasAlProveedor::getFechaDeCompra(){
     return _fecha.toString();
 }
 
+int ComprasAlProveedor::getFechaDeCompraMes(){
+    return _fecha.getMes();
+}
+
 int ComprasAlProveedor::getIdProducto(){
     return _producto.getIDProducto();
 }

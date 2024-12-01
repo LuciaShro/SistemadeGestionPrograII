@@ -153,7 +153,7 @@ bool ArchivoComprasAlProveedor::ActualizacionStockArchivoProductos(Producto& pro
     return true;
 }
 
-bool ArchivoComprasAlProveedor::BuscarCompras(){
+bool ArchivoComprasAlProveedor::BuscarComprasXProveedor(){
     FILE *buscarCompras;
     ComprasAlProveedor compras;
     buscarCompras=fopen(_nombreArchivoComprasAlProveedor, "rb");
@@ -162,7 +162,7 @@ bool ArchivoComprasAlProveedor::BuscarCompras(){
         return false;
     }
     int idprov;
-    cout<< "Ingresar el ID del proveedor que queres buscar: ";
+    cout<< "Ingresar el ID del proveedor: ";
     cin>>idprov;
 
     bool encontrado=false;
@@ -176,6 +176,33 @@ bool ArchivoComprasAlProveedor::BuscarCompras(){
         cout<< "Id proveedor no encontrado"<<endl;
     }
     fclose(buscarCompras);
+    return encontrado;
+}
+
+bool ArchivoComprasAlProveedor::BuscarComprasXMes(){
+    FILE *buscarComprasMes;
+    ComprasAlProveedor compras;
+    buscarComprasMes=fopen(_nombreArchivoComprasAlProveedor, "rb");
+    if(buscarComprasMes==nullptr){
+        cout<< "No se pudo abrir el archivo"<<endl;
+        return false;
+    }
+    int mes;
+    bool encontrado=false;
+
+    cout<< "Ingresar el mes que deseas buscar: ";
+    cin>>mes;
+
+    while(fread(&compras, sizeof(ComprasAlProveedor), 1, buscarComprasMes)==1){
+        if(compras.getFechaDeCompraMes()==mes){
+            compras.mostrar();
+            encontrado=true;
+        }
+    }
+    if(!encontrado){
+        cout<< "No se registraron compras el proveedor en dicho mes"<<endl;
+    }
+    fclose(buscarComprasMes);
     return encontrado;
 }
 

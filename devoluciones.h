@@ -20,6 +20,7 @@ class Devoluciones{
         std::string getIngresoDevolucion();
         int getIDProveedor();
         const char* getDevolucionRealizada();
+        int getIngresoDevolucionMes();
 
         void realizarDevolucion(Producto& producto);
         void ComparacionID(Producto& producto);

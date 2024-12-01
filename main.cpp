@@ -23,9 +23,17 @@ using namespace std;
 
 int main(){
 
-    ArchivoComprasAlProveedor compras("archivoComprasAlProveedor.dat");
-    compras.listarCompras();
-    compras.BuscarCompras();
+    /*ArchivoDevoluciones devolucion;
+    devolucion.listarDevoluciones();
+    devolucion.BuscarDevolucionXIdProducto();*/
+
+
+    ArchivoDetalleDeVenta detalle;
+    detalle.listarRegistros();
+
+
+    ArchivoProductos archivo("archivoProductos.dat");
+    archivo.listarRegistros();
 
     /*menuPrincipal();*/
     return 0;

@@ -46,6 +46,10 @@ string Devoluciones::getIngresoDevolucion(){
     return _ingresoDevolucion.toString();
 }
 
+int Devoluciones::getIngresoDevolucionMes(){
+    return _ingresoDevolucion.getMes();
+}
+
 int Devoluciones::getIDProveedor(){
     return _idProveedor.getIdproveedor();
 }
@@ -145,14 +149,16 @@ void Devoluciones::cargar(Producto& producto){
         break;
     }
     }
+    system("pause");
+    system("cls");
     cout<< "INGRESAR FECHA DE DEVOLUCION: ";
-    rlutil::locate(30,6);
+    rlutil::locate(30,1);
     cout<< "  /  /   ";
-    rlutil::locate(30,6);
+    rlutil::locate(30,1);
     cin>>dia;
-    rlutil::locate(33,6);
+    rlutil::locate(33,1);
     cin>>mes;
-    rlutil::locate(36,6);
+    rlutil::locate(36,1);
     cin>>anio;
 
 

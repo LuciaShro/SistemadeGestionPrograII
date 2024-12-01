@@ -15,4 +15,8 @@ public:
     bool listarDevoluciones();
     int getCantidadRegistros();
 
+    bool BuscarDevolucionXIdProducto();
+    bool BuscarDevolucionXMes();
+    bool BuscarDevolucionXIdProveedor();
+
 };

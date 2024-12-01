@@ -75,6 +75,8 @@ int ArchivoCliente::FunGuardarRegistro(){
         else{
             if(respuesta==1){
             cliente.setId(dni);
+            system("pause");
+            system("cls");
             cliente.cargar();
             cliente.agregarPuntos(10);
         }
