@@ -68,6 +68,7 @@ Proveedores ArchivoProveedores::leerRegistro(int IdProveedor){
     fread(&proveedor, sizeof(proveedor), 1, pProveedores);
 
     fclose(pProveedores);
+    return proveedor; // lo agregue porque no retornaba nada
 }
 
 int ArchivoProveedores::getCantidadRegistros(){
@@ -220,9 +221,8 @@ void ArchivoProveedores::BuscarProveedor(int id){
 
 }
 
-void ArchivoProveedores::leerRegistros(int idproveedor, int pos){
+void ArchivoProveedores::leerRegistros(int idproveedor, int pos, Proveedores &proveedor){
     FILE *ArchiProveedor;
-    Proveedores proveedor;
 
     ArchiProveedor=fopen(_nombreProveedores, "rb");
     if (ArchiProveedor==nullptr){
@@ -234,7 +234,8 @@ void ArchivoProveedores::leerRegistros(int idproveedor, int pos){
 
     if(fread(&proveedor, sizeof(Proveedores), 1, ArchiProveedor)==1){
         if(proveedor.getIdproveedor()==idproveedor){
-            proveedor.getMarca();
+            cout<< "Proveedor encontrado"<<endl;
+            cout<< "Marca del proveedor: "<<proveedor.getMarca()<<endl;
         }
         else{
             cout<< "Proveedor no encontrado"<<endl;

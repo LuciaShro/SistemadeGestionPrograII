@@ -17,7 +17,7 @@ public:
     bool VerificarRegistroExistente(int id);
     void BuscarProveedor(int id);
 
-    void leerRegistros(int idproveedor, int pos);
+    void leerRegistros(int idproveedor, int pos, Proveedores &proveedor);
 private:
     char _nombreProveedores[100];
 };

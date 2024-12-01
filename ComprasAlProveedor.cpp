@@ -1,4 +1,6 @@
 #include "ComprasAlProveedor.h"
+#include "ArchivoProductos.h"
+#include "productos.h"
 #include <cstring>
 #include <iostream>
 #include "rlutil.h"
@@ -84,7 +86,7 @@ void ComprasAlProveedor::SumaDeStock(Producto& producto){
 
 void ComprasAlProveedor::cargar(Producto& producto){
     int idproveedor, idproducto, dia, mes, anio;
-    char nombreproveedor[50], nombreproducto[50];
+    /*char nombreproducto[50];*/
     cout<< "FECHA DE COMPRA: ";
     rlutil::locate(18,3);
     cout<< "  /  /   ";
@@ -116,8 +118,11 @@ void ComprasAlProveedor::cargar(Producto& producto){
            Proveedores proveedor;
                 int pos = archivoProveedor.buscar(idproveedor);  // Buscar en el archivo el proveedor
                 if (pos != -1) {
-                    archivoProveedor.leerRegistros(idproveedor, pos); // Leer el proveedor de la posición encontrada
+                    archivoProveedor.leerRegistros(idproveedor, pos, proveedor);// Leer el proveedor de la posición encontrada
                     _proveedor.setMarca(proveedor.getMarca());  // Asignar la marca automáticamente
+                }
+                else{
+                    cout<< "Error al cargar los datos del proveedor"<<endl;
                 }
 
             break;
@@ -135,25 +140,70 @@ void ComprasAlProveedor::cargar(Producto& producto){
     cin.getline(nombreproveedor, 50);
     _proveedor.setMarca(nombreproveedor);*/
 
+    // MODIFICADO HOY 30-11-2024
+    Producto productoEncontrado;
+    ArchivoProductos archivoProductos("archivoProductos.dat");
+    cout<<"CONFIRMAR ID DEL PRODUCTO: ";
+    while(true){
+        cin>>idproducto;
+        if(cin.fail()|| idproducto<=0 || archivoProductos.buscar(idproducto)==-1){
+        cout<< "INCORRECTO. INTENTA NUEVAMENTE"<<endl;
+        cout<< "INGRESAR EL ID DEL PRODUCTO: ";
+        cin.clear();
+        cin.ignore();
+    }
+    else {
+        if(archivoProductos.buscarPRODUCTOID(idproducto, productoEncontrado)){
+            const char* nombre=productoEncontrado.getNombre();
+            int longitud = strlen(nombre); // para definir el tamaño
 
+            char* nombreProducto= new char[longitud+1]; // al finalizar hay que incluir el nulo del final
+            strcpy(nombreProducto, nombre);
+            _producto.setNombre(nombreProducto);
+            delete[] nombreProducto;
 
-    cout<<"ID DEL PRODUCTO: ";
-    cin>>idproducto;
-    _producto.setIDProducto(idproducto);
-    cin.ignore();
-
-
-
-    cout<< "NOMBRE DEL PRODUCTO: ";
-    cin.getline(nombreproducto, 50);
-    _producto.setNombre(nombreproducto);
+            _producto.setIDProducto(idproducto);
+            break;
+        }
+        else {
+            cout<< "Producto no encontrado"<<endl;
+            break;
+        }
+    }
+    }
 
 
 
     cout<< "CANTIDAD DE PRODUCTOS COMPRADOS: ";
-    cin>>_CantidadProductos;
+    while(true){
+        cin>>_CantidadProductos;
+        if(cin.fail() || _CantidadProductos<=0){
+        cout<< "INCORRECTO. INTENTA NUEVAMENTE"<<endl;
+        cin.clear();
+        cin.ignore();
+        cout<< "CANTIDAD DE PRODUCTOS COMPRADOS: ";
+    }
+    else{
+        setCantidadProductos(_CantidadProductos);
+        break;
+    }
+    }
+
     cout<< "PRECIO UNITARIO DEL PRODUCTO: $ ";
-    cin>>_PrecioUnitario;
+    while(true){
+        cin>>_PrecioUnitario;
+        if(cin.fail() || _PrecioUnitario<=0){
+        cout<< "Precio invalido. Intenta nuevamente."<<endl;
+        cin.clear();
+        cin.ignore();
+        cout<< "CANTIDAD DE PRODUCTOS COMPRADOS: ";
+    }
+    else{
+        setPrecioUnitario(_PrecioUnitario);
+        break;
+    }
+    }
+
     SumaDeStock(producto);
 }
 

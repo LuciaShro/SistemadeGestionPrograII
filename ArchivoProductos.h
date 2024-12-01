@@ -18,4 +18,6 @@
     bool actualizarProducto(Producto& producto);
     int getCantidadRegistros();
     Producto leerRegistro(int idProducto);  ///FUN. NUEVA
+
+    int buscar(int id);
 };

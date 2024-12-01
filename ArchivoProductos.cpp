@@ -237,4 +237,26 @@ Producto ArchivoProductos::leerRegistro(int idProducto){
     fclose(pProducto);
 }
 
+// AGREGADO HOY 30-11-2024
 
+int ArchivoProductos::buscar(int id){
+    FILE *pProductos;
+    Producto producto;
+    int pos = 0;
+
+    pProductos = fopen(_nombreArchivoProductos, "rb");
+
+    if(pProductos == nullptr){
+        return -1;
+    }
+
+    while(fread(&producto,sizeof(producto), 1, pProductos)== 1){
+        if(producto.getIDProducto() == id){
+            fclose(pProductos);
+            return pos; // En este caso, encontramos el ID
+        }
+        pos++;
+    }
+    fclose(pProductos);
+    return -1;  // EL ID NO FUE ENCONTRADO EN EL ARCHIVO
+}

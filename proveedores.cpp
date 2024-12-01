@@ -85,13 +85,15 @@ void Proveedores::cargar(){
     cout<< "INGRESAR LA MARCA: ";
     cin.ignore();
     cin.getline(_Marca, 50);
-    cout<< "INGRESAR EL ESTADO(0-INACTIVO, 1-ACTIVO): ";
-    cin>>_Estado;
+    /*cout<< "INGRESAR EL ESTADO(0-INACTIVO, 1-ACTIVO): ";
+    cin>>_Estado;*/
     cout<< "INGRESAR EL MEDIO DE CONTACTO: ";
     cin.ignore();
     cin.getline(_Contacto, 50);
     cout<< "INGRESAR LA DIRECCION DEL LOCAL/SUCURSAL: ";
     cin.getline(_Direccion, 100);
+
+    setEstado(1);
 }
 
 void Proveedores::mostrar(){

@@ -24,7 +24,7 @@
 	"proveedores.h"
 	"productos.h"
 
-1733011031 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\main.cpp
+1733075801 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\main.cpp
 	<iostream>
 	<cstring>
 	"cliente.h"
@@ -89,7 +89,7 @@
 1733002643 c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\cliente.h
 	"persona.h"
 
-1732321695 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\proveedores.cpp
+1733012967 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\proveedores.cpp
 	<iostream>
 	<cstring>
 	"Proveedores.h"
@@ -404,8 +404,10 @@
 	<cstring>
 	<iostream>
 
-1733011107 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\comprasalproveedor.cpp
+1733076026 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\comprasalproveedor.cpp
 	"ComprasAlProveedor.h"
+	"ArchivoProductos.h"
+	"productos.h"
 	<cstring>
 	<iostream>
 	"rlutil.h"
@@ -418,7 +420,7 @@
 
 1732314693 D
 
-1732980351 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoproductos.cpp
+1733063163 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoproductos.cpp
 	"ArchivoProductos.h"
 	"ComprasAlProveedor.h"
 	<cstring>
@@ -426,7 +428,7 @@
 	<iomanip>
 	<fstream>
 
-1732577293 c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoproductos.h
+1733063163 c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoproductos.h
 	"productos.h"
 
 1730762722 source:c:\users\administrator\onedrive\documentos\proyecto_progra_ii\proyectoprogramacion2\categoria.cpp
@@ -726,12 +728,12 @@
 1733001985 c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivocliente.h
 	"Cliente.h"
 
-1732235375 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoproveedores.cpp
+1733076037 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoproveedores.cpp
 	<iostream>
 	<cstring>
 	"ArchivoProveedores.h"
 
-1732234576 c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoproveedores.h
+1733076026 c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoproveedores.h
 	"proveedores.h"
 
 1732937372 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivovendedor.cpp
