@@ -196,7 +196,7 @@ void ComprasAlProveedor::cargar(Producto& producto){
         cout<< "Precio invalido. Intenta nuevamente."<<endl;
         cin.clear();
         cin.ignore();
-        cout<< "CANTIDAD DE PRODUCTOS COMPRADOS: ";
+        cout<< "PRECIO UNITARIO DEL PRODUCTO: $ ";
     }
     else{
         setPrecioUnitario(_PrecioUnitario);

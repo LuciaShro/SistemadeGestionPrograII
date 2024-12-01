@@ -24,10 +24,10 @@ using namespace std;
 int main(){
 
     ArchivoComprasAlProveedor compras("archivoComprasAlProveedor.dat");
-    /*for(int i=0; i<18; i++){
+    for(int i=0; i<18; i++){
         compras.agregarRegistro();
         system("cls");
-    }*/
+    }
     compras.listarCompras();
 
     ArchivoProductos archivoProductos("archivoProductos.dat");
