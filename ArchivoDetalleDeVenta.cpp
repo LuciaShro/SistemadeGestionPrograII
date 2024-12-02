@@ -48,6 +48,10 @@ void ArchivoDetalleDeVenta::FunGuardarRegistro(int idVenta){
 
     // probando que se reste el stock
     cout<< "Stock antes de la compra: "<<producto.getStock()<<endl;
+    if(producto.getStock()<=0){
+        cout<< "No hay cantidad suficiente. Intentalo nuevamente"<<endl;
+        producto = BuscarProducto(producto);
+    }
 
     detalle.cargar(producto); //Aca mande lo que se cargo automaticamente en producto
     archivoProductos.actualizarProducto(producto);
@@ -80,7 +84,8 @@ Producto ArchivoDetalleDeVenta::BuscarProducto(Producto &producto){
                 return producto;
             }
         }
-    cout<< "Producto no entrado. Intente nuevamente"<<endl;
+
+    cout<< "Producto invalido. Intente nuevamente"<<endl;
     }
     return Producto(); // puse como RETURN PRODUCTO ya que sino agrega una advertencia en el log
 }

@@ -23,15 +23,9 @@ using namespace std;
 
 int main(){
 
-    /*ArchivoDevoluciones devolucion;
-    devolucion.listarDevoluciones();
-    devolucion.BuscarDevolucionXIdProducto();*/
-
-
     ArchivoVenta venta;
     venta.listarRegistros();
 
-    venta.InformeVentaxMes();
 
     /*menuPrincipal();*/
     return 0;

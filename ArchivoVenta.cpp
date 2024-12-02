@@ -279,22 +279,48 @@ bool ArchivoVenta::BuscarVentasXMes(){
     fclose(ventasXmes);
     return encontrado;
 }
-
+// te solicita un anio y un mes
 float ArchivoVenta::VentasXmes(){
     FILE *totalXmes;
     Venta ventas;
     detalleVenta detalle;
     float totalMes=0;
+    int mes, anio;
     totalXmes=fopen(_nombreArchivoVenta, "rb");
     if(totalXmes==nullptr){
         cout<< "No se pudo abrir el archivo"<<endl;
         return -1;
     }
-    int mes;
-    cout<< "Ingresar el mes de total de ventas del 1 al 12: ";
-    cin>>mes;
+
+    do{
+        cout<< "Ingresar el mes de total de ventas del 1 al 12: ";
+        cin>>mes;
+        if(cin.fail() || mes<1 || mes>12){
+            cin.clear();
+            cin.ignore();
+            cout<< "Mes invalido. Intentar nuevamente"<<endl;
+        }
+        else{
+            break;
+        }
+    } while(true);
+
+    do{
+        cout<< "Ingresar el anio: ";
+        cin>>anio;
+        if(cin.fail() || anio<1000 || anio>9999){
+            cin.clear();
+            cin.ignore();
+            cout<< "Anio. Intentar nuevamente"<<endl;
+        }
+        else{
+            break;
+        }
+    } while(true);
+
+
     while(fread(&ventas, sizeof(Venta), 1, totalXmes)==1){
-        if(ventas.getMesVenta()==mes){
+        if(ventas.getMesVenta()==mes && ventas.getAnioVenta()==anio){
             FILE *archivoDetalle;
             archivoDetalle=fopen("DetalleVenta.dat", "rb");
             if(archivoDetalle==nullptr){
@@ -312,15 +338,16 @@ float ArchivoVenta::VentasXmes(){
         }
     }
     fclose(totalXmes);
-    cout<< "Total del mes "<<mes<<" es: $ "<<totalMes<<endl;
+    const char*nombresMeses[]={"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+    cout<< "Total del mes "<<nombresMeses[mes-1]<<"del anio "<<anio<<" es: $ "<<totalMes<<endl;
     return 0;
 }
-
+// Es similar a la funcion que figura abajo pero sin solicitar el anio
 float ArchivoVenta::InformeVentaxMes(){
    FILE *totalXmes;
     Venta ventas;
     detalleVenta detalle;
-    float totalMes[12]={};
+    float totalMes[13]={};
     totalXmes=fopen(_nombreArchivoVenta, "rb");
     if(totalXmes==nullptr){
         cout<< "No se pudo abrir el archivo"<<endl;
@@ -336,11 +363,8 @@ float ArchivoVenta::InformeVentaxMes(){
             }
         while(fread(&detalle, sizeof(detalleVenta), 1, archivoDetalle)==1){
             if(ventas.getIDVenta()==detalle.getIDVenta()){
-                for(int i=1; i<13; i++){
-                    if(ventas.getMesVenta()==i){
-                        totalMes[i]+=detalle.getPrecioTotal();
-                    }
-                }
+                int mes = ventas.getMesVenta();
+                totalMes[mes]+=detalle.getPrecioTotal();
             }
         }
         fclose(archivoDetalle);
@@ -350,5 +374,68 @@ float ArchivoVenta::InformeVentaxMes(){
     for(int i=1; i<13; i++){
         cout<< "El total acumulado del mes "<<i<<" es  $ "<<totalMes[i]<<endl;
     }
+    return 0;
+}
+
+float ArchivoVenta::InformeVentaxAnio(){
+    FILE *totalXanio;
+    Venta ventas;
+    detalleVenta detalle;
+    float totalMes[13]={};
+    float totalRecaudado=0;
+    int anio, cantidadVentas;
+    totalXanio=fopen(_nombreArchivoVenta, "rb");
+    if(totalXanio==nullptr){
+        cout<< "No se pudo abrir el archivo"<<endl;
+        return -1;
+    }
+
+    do{
+        cout<< "Ingresar el anio a buscar: ";
+        cin>>anio;
+        if(cin.fail() || anio < 1000 || anio >9999){
+            cin.clear();
+            cin.ignore();
+            cout<< "Anio invalido. Intente nuevamente: "<<endl;
+        }
+        else{
+            break;
+        }
+
+    } while(true);
+
+
+    while(fread(&ventas, sizeof(Venta), 1, totalXanio)==1){
+            FILE *archivoDetalle;
+            archivoDetalle=fopen("DetalleVenta.dat", "rb");
+            if(archivoDetalle==nullptr){
+                cout<< "No se pudo abrir el archivo"<<endl;
+                fclose(archivoDetalle);
+                return -1;
+            }
+        while(fread(&detalle, sizeof(detalleVenta), 1, archivoDetalle)==1){
+            if(ventas.getAnioVenta()==anio){
+                if(ventas.getIDVenta()==detalle.getIDVenta()){
+                    int mes = ventas.getMesVenta();
+                    totalMes[mes]+=detalle.getPrecioTotal();
+                    cantidadVentas=getCantidadRegistros();
+            }
+            }
+        }
+        fclose(archivoDetalle);
+
+    }
+    fclose(totalXanio);
+
+    const char*nombresMeses[]={"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+
+
+    for(int i=1; i<13; i++){
+        cout<<nombresMeses[i-1]<<":  $ "<<totalMes[i]<<endl;
+        totalRecaudado+=totalMes[i];
+    }
+
+    cout<< "El total recaudado es: $ "<<totalRecaudado<<endl;
+    cout<< "Cantidad total de ventas: "<<cantidadVentas<<endl;
     return 0;
 }

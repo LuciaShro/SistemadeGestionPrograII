@@ -18,8 +18,9 @@ public:
     void BuscarVenta(int id);
     bool BuscarVentasXMes();
 
-    float VentasXmes(); // Total de dinero acumulado por mes
+    float VentasXmes(); // Total de dinero acumulado por mes dependiendo el anio
     float InformeVentaxMes();
+    float InformeVentaxAnio(); // Total recaudado dependiendo el anio que ingreses
 private:
     char _nombreArchivoVenta[50];
 };

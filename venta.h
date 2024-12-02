@@ -16,6 +16,7 @@ class Venta{
         int getIDVenta();
         std::string getFecha();
         int getMesVenta();
+        int getAnioVenta();
         int getCliente();
         int getIDVendedor();
         const char* getFormaDePago();

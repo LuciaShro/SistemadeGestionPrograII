@@ -81,6 +81,10 @@ std::string Venta::getFecha(){
 int Venta::getMesVenta(){
     return _fecha.getMes();
 }
+
+int Venta::getAnioVenta(){
+    return _fecha.getAnio();
+}
 // MODIFICADO 27-11-2024 - LU PAZ
 void Venta::cargar(){
     int dia, mes, anio, idcliente, intentos;
