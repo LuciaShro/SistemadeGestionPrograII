@@ -24,7 +24,7 @@
 	"proveedores.h"
 	"productos.h"
 
-1733100854 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\main.cpp
+1733101611 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\main.cpp
 	<iostream>
 	<cstring>
 	"cliente.h"
@@ -748,7 +748,7 @@
 	"productos.h"
 	"persona.h"
 
-1733101100 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoventa.cpp
+1733101598 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoventa.cpp
 	<iostream>
 	"ArchivoVenta.h"
 	"ArchivoDetalleDeVenta.h"

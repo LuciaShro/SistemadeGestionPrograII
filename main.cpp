@@ -24,7 +24,7 @@ using namespace std;
 int main(){
 
     ArchivoVenta venta;
-    venta.listarRegistros();
+    venta.VentasXmes();
 
 
     /*menuPrincipal();*/

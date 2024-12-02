@@ -285,7 +285,7 @@ float ArchivoVenta::VentasXmes(){
     Venta ventas;
     detalleVenta detalle;
     float totalMes=0;
-    int mes, anio;
+    int mes, anio, cantidadVentasXmes;
     totalXmes=fopen(_nombreArchivoVenta, "rb");
     if(totalXmes==nullptr){
         cout<< "No se pudo abrir el archivo"<<endl;
@@ -331,6 +331,7 @@ float ArchivoVenta::VentasXmes(){
         while(fread(&detalle, sizeof(detalleVenta), 1, archivoDetalle)==1){
             if(ventas.getIDVenta()==detalle.getIDVenta()){
                 totalMes+=detalle.getPrecioTotal();
+                cantidadVentasXmes=getCantidadRegistros();
             }
         }
         fclose(archivoDetalle);
@@ -340,6 +341,7 @@ float ArchivoVenta::VentasXmes(){
     fclose(totalXmes);
     const char*nombresMeses[]={"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
     cout<< "Total del mes "<<nombresMeses[mes-1]<<"del anio "<<anio<<" es: $ "<<totalMes<<endl;
+    cout<< "Total cantidad de ventas de "<<nombresMeses[mes-1]<<" es: "<<cantidadVentasXmes<<endl;
     return 0;
 }
 // Es similar a la funcion que figura abajo pero sin solicitar el anio
