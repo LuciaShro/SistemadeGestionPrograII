@@ -260,3 +260,54 @@ int ArchivoProductos::buscar(int id){
     fclose(pProductos);
     return -1;  // EL ID NO FUE ENCONTRADO EN EL ARCHIVO
 }
+
+
+///CAMBIOS 3/12/2024
+
+bool ArchivoProductos::modificarRegistro(int pos, const Producto &producto){
+    FILE *pProductos;
+    bool resultado;
+
+    pProductos = fopen(_nombreArchivoProductos, "rb+");
+
+
+    if(pProductos == nullptr){
+        cout << "EL ARCHIVO NO PUDO SER ABIERTO CORRECTAMENTE " << endl; //titulo de prueba, luego eliminarlo
+        return false;
+    }
+
+    fseek(pProductos,sizeof(producto)*pos,SEEK_SET);
+
+    resultado = fwrite(&producto,sizeof(producto),1,pProductos) == 1;
+
+    fclose(pProductos);
+
+    return resultado;
+}
+
+void ArchivoProductos::FunModificarVectorStockVendido(Producto producto, int idVenta, int stock){
+    ArchivoProductos archivo("Productos.dat");
+
+    int pos = archivo.buscar(producto.getIDProducto());
+
+    if(pos!= -1){
+
+        producto.setStockVendidoXmes(idVenta, stock);
+
+        modificarRegistro(pos, producto);
+
+    }else{
+        cout << "LA VENTA NO SE HA SIDO ENCONTRADA EN EL SISTEMA" << endl;
+    }
+}
+
+void ArchivoProductos::StockVendido(){
+    ArchivoProductos archivo("Productos.dat");
+    Producto producto;
+
+    for(int i =0; i<archivo.getCantidadRegistros(); i++){
+            producto = archivo.leerRegistro(i);
+
+            producto.MostrarStockVendidoXmes();
+    }
+}

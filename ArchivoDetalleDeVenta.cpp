@@ -53,8 +53,12 @@ void ArchivoDetalleDeVenta::FunGuardarRegistro(int idVenta){
         producto = BuscarProducto(producto);
     }
 
+
     detalle.cargar(producto); //Aca mande lo que se cargo automaticamente en producto
     archivoProductos.actualizarProducto(producto);
+
+
+    archivoProductos.FunModificarVectorStockVendido(producto, idVenta, detalle.getCantidad()); ///AGREGADO LU.S 3/12
 
     if(ArchivoDetalle.GuardarRegistro(detalle)){
             cout << "DETALLE CARGADO CON EXITO" << endl;
@@ -205,7 +209,7 @@ void ArchivoDetalleDeVenta::FunModificarRegistro(){
     if(pos!= -1){
         detalle = ArchDetalle.leerRegistro(pos);
         cout << " INGRESE LA MODIFICACION " << endl;
-        producto.cargar();
+        producto.cargar(); ///REVISAR
 
         detalle.cargar(producto);
 

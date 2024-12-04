@@ -1,4 +1,5 @@
 #include "productos.h"
+#include "ArchivoVenta.h"
 #include <limits>
 #include <cstring>
 #include <iostream>
@@ -10,6 +11,7 @@ Producto::Producto(){
         _precio=0.0f;
         _stock=0;
         strcpy( _descripcion, "descripcion");
+        _AcuStockXmes[12] = {};
 }
 
 Producto::Producto(int id, char* nombre, float precio, int stock, char* descripcion){
@@ -19,6 +21,7 @@ Producto::Producto(int id, char* nombre, float precio, int stock, char* descripc
     _stock=stock;
     strcpy(_descripcion, descripcion);
     /*_fecha=fecha;*/
+    _AcuStockXmes[12] = {};
 }
 
 void Producto::setIDProducto(int id){
@@ -80,6 +83,25 @@ const char* Producto::getDescripcion(){
 void Producto::actualizarStock(int nuevoStock){
      if(nuevoStock >= 0) {
         _stock = nuevoStock;
+    }
+}
+
+void Producto::setStockVendidoXmes(int idVenta, int stock){
+    ArchivoVenta ArchVenta;
+    Venta venta;
+
+    int pos = ArchVenta.buscar(idVenta);
+    venta = ArchVenta.leerRegistro(pos);
+
+    if(venta.getAnioVenta() == 2024){
+        _AcuStockXmes[venta.getMesVenta()-1] += stock;
+    }
+}
+
+void Producto::MostrarStockVendidoXmes(){
+
+    for(int i=0; i<12; i++){
+        cout << "MES " << i << ":" << _AcuStockXmes[i] << endl;
     }
 }
 

@@ -19,5 +19,10 @@
     int getCantidadRegistros();
     Producto leerRegistro(int idProducto);  ///FUN. NUEVA
 
+    ///FUNCIONES NUEVAS LU.S
+    void StockVendido();
+    void FunModificarVectorStockVendido(Producto producto, int idVenta, int stock);
+    bool modificarRegistro(int pos, const Producto &producto);
+
     int buscar(int id);
 };
