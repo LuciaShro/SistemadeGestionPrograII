@@ -24,9 +24,7 @@ using namespace std;
 int main(){
 
     ArchivoVenta venta;
-    venta.VentasXmes();
-
-
+    venta.FunGuardarRegistro();
     /*menuPrincipal();*/
     return 0;
 

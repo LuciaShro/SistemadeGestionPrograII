@@ -21,6 +21,8 @@ public:
     bool ActualizacionPuntaje(Cliente& cliente);
     bool ActualizacionPuntajeResta(Cliente& cliente); // NUEVA FUNCION (lu paz)
 
+    bool ClienteEstadoInactivo(int idCliente, Cliente& cliente);
+
 private:
     char _nombreArchivoCliente[100];
 };

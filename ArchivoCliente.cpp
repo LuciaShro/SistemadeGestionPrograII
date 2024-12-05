@@ -50,46 +50,29 @@ int ArchivoCliente::FunGuardarRegistro(){
     }
     }
 
-    bool result = VerificarRegistroExistente(dni);
+    bool registrado = VerificarRegistroExistente(dni);
+    bool inactivo = ClienteEstadoInactivo(dni, cliente);
 
-    if(result){
-        cout<< "EL USUARIO YA SE ENCUENTRA REGISTRADO EN EL SISTEMA"<<endl;
-        /*cliente.agregarPuntos(puntos);*/
-        MostrarNombreyApellido(dni);
-        cliente.agregarPuntos(10);
-        ActualizacionPuntaje(cliente);
-        return dni;
-    }
-
-
-    cout << "CLIENTE NO EXISTENTE. ¿DESEA REGISTRARSE? 1-SI, 0-NO " << endl;
-    int respuesta;
-    while(true){
-        cin>>respuesta;
-        if(respuesta!=1 && respuesta!=0){
-            cout<< "RESPUESTA INCORRECTA"<<endl;
-            cout<< "INTENTA NUEVAMENTE: ";
-            cin.clear();
-            cin.ignore();
+    if(registrado){
+        if(inactivo){
+            cout<< "El cliente se encuentra inactivo."<<endl;
+            return -1;
         }
-        else{
-            if(respuesta==1){
-            cliente.setId(dni);
-            system("pause");
-            system("cls");
-            cliente.cargar();
+        else {
+            cout << "EL USUARIO YA SE ENCUENTRA REGISTRADO EN EL SISTEMA" << endl;
+            MostrarNombreyApellido(dni);
             cliente.agregarPuntos(10);
-        }
-        else{
-        cliente.CargarClienteSinRegistro();
-        }
-        break;
+            ActualizacionPuntaje(cliente);
+            return dni;
         }
     }
 
-     /*cliente.setId(dni);
-     cliente.cargar();
-     cliente.agregarPuntos(10);*/
+        cout<< "Cliente no registrado. Procedemos al registro..."<<endl;
+        system("pause");
+        system("cls");
+        cliente.setId(dni);
+        cliente.cargar();
+        cliente.agregarPuntos(10);
 
      if(GuardarRegistro(cliente)){
         cout<< "CLIENTE CARGADO CON EXITO"<<endl;
@@ -384,3 +367,28 @@ bool ArchivoCliente::ActualizacionPuntajeResta(Cliente& cliente){
         return false;
     }
 }
+
+bool ArchivoCliente::ClienteEstadoInactivo(int idCliente, Cliente& cliente){
+    FILE *clienteEstado;
+    clienteEstado=fopen(_nombreArchivoCliente, "rb");
+    if(clienteEstado==nullptr){
+        /*cout<< "No se pudo abrir el archivo"<<endl;*/
+        return false;
+    }
+    Cliente clientPrueba;
+
+    fseek(clienteEstado, 0, SEEK_SET);
+
+    while(fread(&clientPrueba, sizeof(Cliente), 1, clienteEstado)==1){
+        if(idCliente==clientPrueba.getId()){
+            if(strcmp(clientPrueba.getEstado(), "INACTIVO")==0){
+                fclose(clienteEstado);
+                return true;
+            }
+        }
+    }
+    fclose(clienteEstado);
+    return false;
+}
+
+

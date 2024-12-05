@@ -2,6 +2,8 @@
 #include "ArchivoVenta.h"
 #include "ArchivoDetalleDeVenta.h"
 #include "ArchivoVendedor.h"
+#include "ArchivoCliente.h"
+#include "Cliente.h"
 #include <cstring>
 #include "venta.h"
 
@@ -40,10 +42,15 @@ void ArchivoVenta::FunGuardarRegistro(){
         ArchivoDetalleDeVenta archDetalle;
         ArchivoVenta archivoV;
         Venta venta;
+        Cliente client;
+        ArchivoCliente archivoCliente;
+
+
+        venta.cargar();
+
 
         int Nventa = archivoV.ContarVenta();
         venta.setIDVenta(Nventa);
-        venta.cargar();
 
         if(archivoV.GuardarRegistro(venta)){
             cout << "VENTA CARGADA CON EXITO" << endl;
@@ -56,6 +63,7 @@ void ArchivoVenta::FunGuardarRegistro(){
         }else{
             cout << "NO SE PUDO CARGAR LA VENTA" << endl;
         }
+        }
 
         cout << "---------------------------------------------" << endl;
         cout << "DESEA REGISTRAR UNA NUEVA VENTA? 1-Si, 0-No " << endl;
@@ -64,10 +72,9 @@ void ArchivoVenta::FunGuardarRegistro(){
             cargar = 0;
         }
 
-    }
-
-
 }
+
+
 
 /*void ArchivoVenta::leerRegistros(){
     Venta venta;
@@ -441,3 +448,4 @@ float ArchivoVenta::InformeVentaxAnio(){
     cout<< "Cantidad total de ventas: "<<cantidadVentas<<endl;
     return 0;
 }
+

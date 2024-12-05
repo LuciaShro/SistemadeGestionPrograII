@@ -92,14 +92,27 @@ void Venta::cargar(){
     ArchivoVendedor archVendedor;
     ArchivoCliente cliente;
 
+     cout << "--------------------------------" << endl;
+    cout<< "INGRESE LOS DATOS DEL CLIENTE: ";
+
+    idcliente= cliente.FunGuardarRegistro();
+    if(idcliente!=-1){
+        _cliente.setId(idcliente);
+    }
+    else {
+        return;
+    }
+
+    system("pause");
+    system("cls");
     cout<< "INGRESAR LA FECHA DE LA VENTA: ";
-    rlutil::locate(32,2);
+    rlutil::locate(32,1);
     cout<< "  /  /   ";
-    rlutil::locate(32,2);
+    rlutil::locate(32,1);
     cin>>dia;
-    rlutil::locate(35,2);
+    rlutil::locate(35,1);
     cin>>mes;
-    rlutil::locate(38,2);
+    rlutil::locate(38,1);
     cin>>anio;
     /*cin>> dia >> separador >> mes >> separador >> anio;*/
     setFecha(dia, mes, anio);
@@ -123,7 +136,7 @@ void Venta::cargar(){
 
 
 
-    cout << "--------------------------------" << endl;
+    /*cout << "--------------------------------" << endl;
     cout<< "INGRESE LOS DATOS DEL CLIENTE: ";
 
     idcliente= cliente.FunGuardarRegistro();
@@ -131,8 +144,8 @@ void Venta::cargar(){
         _cliente.setId(idcliente);
     }
     else {
-        cout<< "No se pudo registrar el cliente"<<endl;
-    }
+        return;
+    }*/
 
 
     cout<< "INGRESE EL DNI DEL VENDEDOR: ";

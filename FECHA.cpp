@@ -66,6 +66,10 @@ void Fecha::setMes(int mes){
 }
 
 void Fecha::setAnio(int anio){
+    while(anio<1000 || anio>9999){
+        std::cout<< "Anio invalido. Intente nuevamente: ";
+        std::cin>>anio;
+    }
     _anio = anio;
 }
 

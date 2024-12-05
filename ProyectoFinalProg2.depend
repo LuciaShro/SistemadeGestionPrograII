@@ -24,7 +24,7 @@
 	"proveedores.h"
 	"productos.h"
 
-1733101611 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\main.cpp
+1733363730 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\main.cpp
 	<iostream>
 	<cstring>
 	"cliente.h"
@@ -67,7 +67,7 @@
 	"FECHA.h"
 	<string>
 
-1733096136 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\venta.cpp
+1733363480 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\venta.cpp
 	"venta.h"
 	<cstring>
 	<iostream>
@@ -103,7 +103,7 @@
 	"venta.h"
 	"detalleVenta.h"
 
-1732938760 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\fecha.cpp
+1733265060 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\fecha.cpp
 	"Fecha.h"
 	<iostream>
 
@@ -720,12 +720,12 @@
 1732577215 c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\menu.h
 	"rlutil.h"
 
-1733083700 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivocliente.cpp
+1733366771 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivocliente.cpp
 	<iostream>
 	<cstring>
 	"ArchivoCliente.h"
 
-1733001985 c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivocliente.h
+1733267639 c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivocliente.h
 	"Cliente.h"
 
 1733076037 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoproveedores.cpp
@@ -748,11 +748,13 @@
 	"productos.h"
 	"persona.h"
 
-1733101598 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoventa.cpp
+1733363480 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoventa.cpp
 	<iostream>
 	"ArchivoVenta.h"
 	"ArchivoDetalleDeVenta.h"
 	"ArchivoVendedor.h"
+	"ArchivoCliente.h"
+	"Cliente.h"
 	<cstring>
 	"venta.h"
 
