@@ -50,6 +50,7 @@ void ArchivoVenta::FunGuardarRegistro(){
 
         int Nventa = archivoV.ContarVenta();
         venta.setIDVenta(Nventa);
+
         if(estado){
              if(archivoV.GuardarRegistro(venta)){
             cout << "VENTA CARGADA CON EXITO" << endl;
