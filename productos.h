@@ -12,7 +12,9 @@ class Producto{
         void setStock(int stock);
         void setDescripcion(char* descripcion);
         /*void setFecha(int dia, int mes, int anio);*/
+        void setStockVendidoXmes(int idVenta, int stock);
 
+        void MostrarStockVendidoXmes();
         void actualizarStock(int stockNuevo);
         /*std::string getFecha();*/
         int getIDProducto();
@@ -25,6 +27,7 @@ class Producto{
         bool escribirDisco(int pos);
         bool leerDisco(int pos);
 
+
     private:
         int _IDProducto;
         char _nombre[100];
@@ -32,5 +35,5 @@ class Producto{
         /*Fecha _fecha;*/
         int _stock;
         char _descripcion[200];
-
+        int _AcuStockXmes[12];
 };
