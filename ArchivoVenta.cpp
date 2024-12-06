@@ -42,17 +42,16 @@ void ArchivoVenta::FunGuardarRegistro(){
         ArchivoDetalleDeVenta archDetalle;
         ArchivoVenta archivoV;
         Venta venta;
-        Cliente client;
+        Cliente cliente;
         ArchivoCliente archivoCliente;
 
 
-        venta.cargar();
-
+        bool estado = venta.cargar();
 
         int Nventa = archivoV.ContarVenta();
         venta.setIDVenta(Nventa);
-
-        if(archivoV.GuardarRegistro(venta)){
+        if(estado){
+             if(archivoV.GuardarRegistro(venta)){
             cout << "VENTA CARGADA CON EXITO" << endl;
             archDetalle.FunGuardarRegistro(Nventa); //como parametro se envie el id de la venta
 
@@ -60,17 +59,24 @@ void ArchivoVenta::FunGuardarRegistro(){
             ArchivoVendedor ArchVendedor;
             ArchVendedor.SetComision(Nventa, venta.getIDVendedor());///LLAMO A ARCH.VENDEDOR PARA HACER EL SET DE LA COMISION*/
 
+            }else{
+                cout << "NO SE PUDO CARGAR LA VENTA" << endl;
+            }
+
+
+            cout << "---------------------------------------------" << endl;
+            cout << "DESEA REGISTRAR UNA NUEVA VENTA? 1-Si, 0-No " << endl;
+            cin >> respuesta;
+            if(!respuesta){
+                cargar = 0;
+            }
         }else{
-            cout << "NO SE PUDO CARGAR LA VENTA" << endl;
-        }
+            cout << "NO SE PUEDE CARGAR LA VENTA POR INACTIVIDAD" << endl;
+            break;
         }
 
-        cout << "---------------------------------------------" << endl;
-        cout << "DESEA REGISTRAR UNA NUEVA VENTA? 1-Si, 0-No " << endl;
-        cin >> respuesta;
-        if(!respuesta){
-            cargar = 0;
-        }
+    }
+
 
 }
 
@@ -448,4 +454,5 @@ float ArchivoVenta::InformeVentaxAnio(){
     cout<< "Cantidad total de ventas: "<<cantidadVentas<<endl;
     return 0;
 }
+
 

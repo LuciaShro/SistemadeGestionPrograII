@@ -58,7 +58,7 @@ void ArchivoDetalleDeVenta::FunGuardarRegistro(int idVenta){
     archivoProductos.actualizarProducto(producto);
 
 
-    archivoProductos.FunModificarVectorStockVendido(producto, idVenta, detalle.getCantidad()); ///AGREGADO LU.S 3/12
+    //archivoProductos.FunModificarVectorStockVendido(producto, idVenta, detalle.getCantidad()); ///AGREGADO LU.S 3/12
 
     if(ArchivoDetalle.GuardarRegistro(detalle)){
             cout << "DETALLE CARGADO CON EXITO" << endl;
