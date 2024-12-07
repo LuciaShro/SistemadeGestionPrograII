@@ -80,23 +80,45 @@ void ArchivoDetalleDeVenta::FunGuardarRegistro(int idVenta){
 }
 
 ///AGREGUE EL BUSCAR PRODUCTO (EN EL .H TAMBIEN) // MODIFICACION POR LU PAZ PARA LA VALIDACIÓN DEL BUSCAR PRODUCTO
-Producto ArchivoDetalleDeVenta::BuscarProducto(Producto &producto){
+
+Producto ArchivoDetalleDeVenta::BuscarProducto(Producto &producto) {
     ArchivoProductos archivo("archivoProductos.dat");
     int id;
-    while (id!=producto.getIDProducto() || id<=0){
-        cout << "Ingrese el id del Producto: ";
+
+    while (true) { //  se rompe solo cuando se encuentra un producto válido
+        cout << "Ingrese el ID del Producto: ";
         cin >> id;
-        for(int i=0;i<archivo.getCantidadRegistros(); i++){
+
+        if (id <= 0) { // validar ID positivo
+            cout << "El ID debe ser mayor a 0. Intente nuevamente." << endl;
+            continue;
+        }
+
+        bool productoEncontrado = false;
+
+        for (int i = 0; i < archivo.getCantidadRegistros(); i++) {
             producto = archivo.leerRegistro(i);
-            if(id == producto.getIDProducto()){
-                return producto;
+
+            if (id == producto.getIDProducto()) {
+                productoEncontrado = true;
+
+                if (strcmp(producto.getEstado(), "INACTIVO") == 0) {
+                    cout << "El producto se encuentra inactivo y no se puede vender. Intente con otro." << endl;
+                    break; // Volver al inicio del while
+                }
+
+                return producto; // Producto válido encontrado
             }
         }
 
-    cout<< "Producto invalido. Intente nuevamente"<<endl;
+        if (!productoEncontrado) {
+            cout << "Producto inválido o no encontrado. Intente nuevamente." << endl;
+        }
     }
-    return Producto(); // puse como RETURN PRODUCTO ya que sino agrega una advertencia en el log
+
+    return Producto(); // Esto nunca se ejecutará porque el bucle es infinito hasta encontrar un producto válido
 }
+
 
 detalleVenta ArchivoDetalleDeVenta::leerRegistro(int IdVenta){
     FILE *pDetalle;

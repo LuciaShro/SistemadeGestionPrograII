@@ -390,16 +390,16 @@ int ArchivoProductos::InformeProductos(){
 
     cout << setw(10) << "Mes/ID";
         for (int i = 0; i < cantidadProductos; i++) {
-        cout << setw(10) << ProductosRegistrados[i];
+        cout << setw(7) << ProductosRegistrados[i];
     }
     cout << endl; // la fila en donde se encuentran los ID de los productos
 
-    cout << string(10 + cantidadProductos * 10, '-') << endl;
+    cout << string(7 + cantidadProductos * 7, '-') << endl;
 
     for (int mes = 1; mes <= 12; mes++) {
         cout << setw(10) << nombresMeses[mes-1];
         for (int i = 0; i < cantidadProductos; i++) {
-            cout << setw(10) << TotalProductosxMes[i * 12 + mes];
+            cout << setw(7) << TotalProductosxMes[i * 12 + mes];
         }
         cout << endl;
     }
