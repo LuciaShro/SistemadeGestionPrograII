@@ -83,7 +83,7 @@ void ArchivoDetalleDeVenta::FunGuardarRegistro(int idVenta){
 Producto ArchivoDetalleDeVenta::BuscarProducto(Producto &producto){
     ArchivoProductos archivo("archivoProductos.dat");
     int id;
-    while (id!=producto.getIDProducto()){
+    while (id!=producto.getIDProducto() || id<=0){
         cout << "Ingrese el id del Producto: ";
         cin >> id;
         for(int i=0;i<archivo.getCantidadRegistros(); i++){

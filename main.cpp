@@ -24,7 +24,9 @@ using namespace std;
 int main(){
 
     ArchivoVenta venta;
-    venta.FunGuardarRegistro();
+    ArchivoDetalleDeVenta detalle;
+    venta.listarRegistros();
+    detalle.listarRegistros();
 
     /*menuPrincipal();*/
     return 0;
