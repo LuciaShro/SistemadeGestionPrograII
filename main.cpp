@@ -24,10 +24,10 @@ using namespace std;
 int main(){
 
 
-   ArchivoVenta venta;
-   venta.FunGuardarRegistro();
+//   ArchivoVenta venta;
+//   venta.FunGuardarRegistro();
 
-    /*menuPrincipal();*/
+    menuPrincipal();
     return 0;
 
 }
