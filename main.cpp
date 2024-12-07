@@ -23,9 +23,8 @@ using namespace std;
 
 int main(){
 
-
-    ArchivoProductos productos("archivoProductos.dat");
-    productos.listarRegistros();
+    ArchivoVenta venta;
+    venta.FunGuardarRegistro();
 
     /*menuPrincipal();*/
     return 0;
