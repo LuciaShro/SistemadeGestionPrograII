@@ -51,7 +51,7 @@ int ArchivoCliente::FunGuardarRegistro(){
     }
 
     bool registrado = VerificarRegistroExistente(dni);
-    bool inactivo = ClienteEstadoInactivo(dni, cliente);
+    bool inactivo = ClienteEstadoInactivo(dni, cliente); ///FUN CLIENTE ACT/INAC
 
     if(registrado){
         if(inactivo){

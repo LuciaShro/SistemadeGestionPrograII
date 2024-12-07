@@ -23,6 +23,7 @@ using namespace std;
 
 int main(){
 
+
     ArchivoProductos archivo("archivoProductos.dat");
     archivo.InformeProductos();
 
@@ -34,6 +35,27 @@ cout << "---------------" << endl;
 ArchivoDetalleDeVenta detalle;
 detalle.listarRegistros();*/
 
+//
+//    ArchivoVenta venta;
+// venta.FunGuardarRegistro();
+    //venta.listarRegistros();
+
+//    ArchivoVenta venta;
+//    venta.VentasXmes();
+//
+//   ArchivoProductos archivo("archivoProductos");
+//    archivo.listarRegistros();
+//    archivo.StockVendido();
+//
+//    ArchivoVenta venta;
+//    venta.FunGuardarRegistro();
+//    cout << "---------------" << endl;
+//    venta.listarRegistros();
+//
+//cout << "---------------" << endl;
+//    ArchivoDetalleDeVenta detalle;
+//    detalle.listarRegistros();
+//
 //    ArchivoCliente cliente;
 //    cliente.listarRegistros();
 
@@ -41,7 +63,9 @@ detalle.listarRegistros();*/
 vendedor.FunGuardarRegistro();*/
 
 
-
+//
+//     ArchivoComprasAlProveedor compras("archivoComprasAlProvedor.dat");
+//     compras.agregarRegistro();
 
     /*menuPrincipal();*/
     return 0;

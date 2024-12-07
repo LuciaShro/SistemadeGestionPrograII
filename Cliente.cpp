@@ -49,6 +49,9 @@ bool Cliente::PuntajeMeta()
 
                 switch(respuesta)
                 {
+                case 0:
+                cout << "Genial sus puntos quedan guardados para ser utulizados en una proxima ocasion " << endl;
+                return false;
                 case 1:
                     resto = _Puntaje - 100;
                     _Puntaje = resto;
@@ -57,9 +60,6 @@ bool Cliente::PuntajeMeta()
                     cout <<"Cantidad de puntos que quedan disponibles: " << getPuntaje() << endl;
                     archCliente.ActualizacionPuntajeResta(*this);
                     return true;
-                case 2:
-                    cout << "Genial sus puntos quedan guardados para ser utulizados en una proxima ocasion " << endl;
-                    return false;
                 default:
                     intentos++;
                     if(intentos == 3)

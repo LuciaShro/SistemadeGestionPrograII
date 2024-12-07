@@ -86,7 +86,8 @@ int Venta::getAnioVenta(){
     return _fecha.getAnio();
 }
 // MODIFICADO 27-11-2024 - LU PAZ
-void Venta::cargar(){
+bool Venta::cargar(){
+    bool estado = 1;
     int dia, mes, anio, idcliente, intentos;
     /*char separador;*/
     ArchivoVendedor archVendedor;
@@ -100,7 +101,7 @@ void Venta::cargar(){
         _cliente.setId(idcliente);
     }
     else {
-        return;
+        return 0;
     }
 
     system("pause");
@@ -128,7 +129,7 @@ void Venta::cargar(){
             cout << "INGRESO INCORRECTO, VUELVA A INTENTARLO " << endl;
             cout << "---------------------------------------------" << endl;
             intentos++;
-            if(intentos == 3){return;}
+            if(intentos == 3){break;}
             cout<< "INGRESE LA FORMA DE PAGO(1-Efectivo, 2-Debito, 3-Credito, 4-Billetera Virtual): ";
             cin>>formaDePago;
         }
@@ -170,6 +171,8 @@ void Venta::cargar(){
         break;
     }
     }
+
+    return estado;
 }
 
 

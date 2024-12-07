@@ -21,7 +21,7 @@ class Venta{
         int getIDVendedor();
         const char* getFormaDePago();
 
-        void cargar();
+        bool cargar();
         void mostrar();
         bool escribirDisco(int pos);
         bool leerDisco(int pos);

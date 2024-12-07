@@ -43,8 +43,6 @@ void ArchivoVenta::FunGuardarRegistro(){
         ArchivoVenta archivoV;
         Venta venta;
 
-
-
         int Nventa = archivoV.ContarVenta();
         venta.setIDVenta(Nventa);
         venta.cargar();
