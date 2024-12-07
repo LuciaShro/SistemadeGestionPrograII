@@ -18,13 +18,12 @@
     bool actualizarProducto(Producto& producto);
     int getCantidadRegistros();
     Producto leerRegistro(int idProducto);  ///FUN. NUEVA
+    bool BajaRegistroProducto();
 
     ///FUNCIONES NUEVAS LU.S
-    /*void StockVendido();
-    void FunModificarVectorStockVendido(Producto producto, int idVenta, int stock);
-    bool modificarRegistro(int pos, const Producto &producto);*/
+    bool modificarRegistro(int pos, const Producto &producto);
 
-    int InformeProductos();
+    int InformeProductos(); // Lu paz
 
     int buscar(int id);
 };

@@ -1,4 +1,6 @@
 #include "persona.h"
+#include "ArchivoCliente.h"
+#include "ArchivoVendedor.h"
 #include <cstring>
 #include <iostream>
 #include "rlutil.h"
@@ -147,6 +149,8 @@ void Persona::CargarClienteSinRegistro(){
 
 void Persona::cargar(){
     int dia, mes, anio;
+    ArchivoCliente archivoCliente;
+    ArchivoVendedor archivoVendedor;
     /*char separador;*/
 
     cout<< "DNI: ";
@@ -157,6 +161,12 @@ void Persona::cargar(){
         cout<< "INGRESAR EL DNI: ";
         cin.clear();
         cin.ignore();
+    }
+    else if(archivoCliente.buscar(_Id)!=-1 || archivoVendedor.buscar(_Id)!=-1){
+        cout<< "El DNI que intentas ingresar ya se encuentra registrado. Intenta nuevamente"<<endl;
+        system("pause");
+        system("cls");
+        cout<< "Ingresar el DNI: ";
     }
     else{
         cin.ignore();

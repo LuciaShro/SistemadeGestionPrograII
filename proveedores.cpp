@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include "Proveedores.h"
+#include "ArchivoProveedores.h"
 #include <cstring>
 using namespace std;
 
@@ -69,14 +70,19 @@ const char* Proveedores::getDireccionSucursal(){
 }
 
 void Proveedores::cargar(){
+    ArchivoProveedores prov;
     cout<< "INGRESAR EL ID DEL PROVEEDOR: ";
     while(true){
         cin>>_Idproveedor;
-        if(cin.fail() || _Idproveedor<0){
+        if(cin.fail() || _Idproveedor<=0){
         cout<< "INCORRECTO. INTENTA NUEVAMENTE"<<endl;
         cout<< "INGRESAR EL ID DEL PROVEEDOR: ";
         cin.clear();
         cin.ignore();
+    }
+    else if(prov.buscar(_Idproveedor)!=-1){
+        cout<< "El ID de proveedor que intentas ingresar ya se encuentra registrado en sistema. Intenta nuevamente"<<endl;
+        cout<< "Ingresar el ID del Proveedor: ";
     }
     else{
         break;

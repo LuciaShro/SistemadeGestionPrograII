@@ -24,7 +24,7 @@
 	"proveedores.h"
 	"productos.h"
 
-1733547788 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\main.cpp
+1733550976 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\main.cpp
 	<iostream>
 	<cstring>
 	"cliente.h"
@@ -47,9 +47,10 @@
 	"ArchivoCliente.h"
 	"menu.h"
 
-1733548225 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\productos.cpp
+1733550398 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\productos.cpp
 	"productos.h"
 	"ArchivoVenta.h"
+	"ArchivoProductos.h"
 	<limits>
 	<cstring>
 	<iostream>
@@ -58,8 +59,10 @@
 	<string>
 	"FECHA.h"
 
-1733009322 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\persona.cpp
+1733551158 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\persona.cpp
 	"persona.h"
+	"ArchivoCliente.h"
+	"ArchivoVendedor.h"
 	<cstring>
 	<iostream>
 	"rlutil.h"
@@ -90,10 +93,11 @@
 1733002643 c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\cliente.h
 	"persona.h"
 
-1733012967 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\proveedores.cpp
+1733550796 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\proveedores.cpp
 	<iostream>
 	<cstring>
 	"Proveedores.h"
+	"ArchivoProveedores.h"
 	<cstring>
 
 1731278247 c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\proveedores.h
@@ -421,7 +425,7 @@
 
 1732314693 D
 
-1733548381 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoproductos.cpp
+1733549271 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoproductos.cpp
 	"ArchivoProductos.h"
 	"ComprasAlProveedor.h"
 	"ArchivoDetalleDeVenta.h"
@@ -431,7 +435,7 @@
 	<iomanip>
 	<fstream>
 
-1733453716 c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoproductos.h
+1733549248 c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoproductos.h
 	"productos.h"
 
 1730762722 source:c:\users\administrator\onedrive\documentos\proyecto_progra_ii\proyectoprogramacion2\categoria.cpp

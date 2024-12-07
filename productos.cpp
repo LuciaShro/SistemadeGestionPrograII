@@ -1,5 +1,6 @@
 #include "productos.h"
 #include "ArchivoVenta.h"
+#include "ArchivoProductos.h"
 #include <limits>
 #include <cstring>
 #include <iostream>
@@ -99,16 +100,21 @@ void Producto::actualizarStock(int nuevoStock){
 
 void Producto::cargar(){
     /*char separador;*/
+    ArchivoProductos archivoProductos("archivoProductos.dat");
     float precio;
     cout << "-----------------" << "INFORMACION DEL PRODUCTO"<< "-----------------" <<endl;
     cout<< "INGRESAR EL ID DEL PRODUCTO: ";
     while(true){
         cin>>_IDProducto;
-        if(cin.fail()){
+        if(cin.fail()|| _IDProducto<=0){
         cout<< "INCORRECTO. INTENTA NUEVAMENTE"<<endl;
         cout<< "INGRESAR EL ID DEL PRODUCTO: ";
         cin.clear();
         cin.ignore();
+    }
+    else if(archivoProductos.buscar(_IDProducto)!=-1){
+            cout<< "El ID producto que intentas ingresar ya se encuentra registrado. Intenta nuevamente"<<endl;
+            cout<< "Ingresar el ID producto: ";
     }
     else{
         break;
@@ -120,8 +126,21 @@ void Producto::cargar(){
     cout<< "INDICAR DESCRIPCION DEL PRODUCTO: ";
     cin.getline(_descripcion, 200);
     cout<< "INGRESAR EL PRECIO: $ ";
-    cin>>precio;
-    setPrecio(precio);
+    while(true){
+        cin>>precio;
+        if(cin.fail() || precio<=0){
+        cout<< "Precio invalido. Intenta nuevamente."<<endl;
+        cin.clear();
+        cin.ignore();
+        cout<< "Ingresar el precio del producto: $ ";
+    }
+    else{
+        setPrecio(precio);
+        break;
+    }
+    }
+
+
     /*cout<< "INGRESAR EL STOCK: ";
     cin>>stock;
     setStock(stock);*/

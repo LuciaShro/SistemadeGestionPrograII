@@ -269,7 +269,7 @@ int ArchivoProductos::buscar(int id){
 
 ///CAMBIOS 3/12/2024
 
-/*bool ArchivoProductos::modificarRegistro(int pos, const Producto &producto){
+bool ArchivoProductos::modificarRegistro(int pos, const Producto &producto){
     FILE *pProductos;
     bool resultado;
 
@@ -288,7 +288,26 @@ int ArchivoProductos::buscar(int id){
     fclose(pProductos);
 
     return resultado;
-}*/
+}
+
+bool ArchivoProductos::BajaRegistroProducto(){
+    Producto product;
+    int id, pos;
+
+    cout<< "Ingrese el ID del Producto que desea dar de baja: ";
+    cin>>id;
+
+    pos = buscar(id);
+
+    if(pos == -1){
+        cout << "El producto no ha sido encontrado en el sistema" << endl;
+        return false;
+    }
+
+    product=leerRegistro(pos);
+    product.setEstado(false);
+    return modificarRegistro(pos, product);
+}
 
 int ArchivoProductos::InformeProductos(){
     FILE *fileProductos;
