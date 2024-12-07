@@ -11,13 +11,13 @@ class Producto{
         void setPrecio(float precio);
         void setStock(int stock);
         void setDescripcion(char* descripcion);
+        void setEstado(bool estado);
         /*void setFecha(int dia, int mes, int anio);*/
-        void setStockVendidoXmes(int idVenta, int stock);
 
-        void MostrarStockVendidoXmes();
         void actualizarStock(int stockNuevo);
         /*std::string getFecha();*/
         int getIDProducto();
+        const char* getEstado();
         const char* getNombre();
         float getPrecio();
         int getStock();
@@ -35,5 +35,5 @@ class Producto{
         /*Fecha _fecha;*/
         int _stock;
         char _descripcion[200];
-        int _AcuStockXmes[12];
+        bool _Estado;
 };

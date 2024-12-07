@@ -180,9 +180,3 @@ void Venta::mostrar(){
     cout<< "ID DEL VENDEDOR: "<<_idVendedor<<endl;
     cout<< "FORMA DE PAGO: "<<getFormaDePago()<<endl;
 }
-
-bool Venta::escribirDisco(int pos){
-}
-
-bool Venta::leerDisco(int pos){
-}

@@ -11,7 +11,6 @@ Producto::Producto(){
         _precio=0.0f;
         _stock=0;
         strcpy( _descripcion, "descripcion");
-        _AcuStockXmes[12] = {};
 }
 
 Producto::Producto(int id, char* nombre, float precio, int stock, char* descripcion){
@@ -21,7 +20,6 @@ Producto::Producto(int id, char* nombre, float precio, int stock, char* descripc
     _stock=stock;
     strcpy(_descripcion, descripcion);
     /*_fecha=fecha;*/
-    _AcuStockXmes[12] = {};
 }
 
 void Producto::setIDProducto(int id){
@@ -48,6 +46,10 @@ void Producto::setStock(int stock){
 
 void Producto::setDescripcion(char* descripcion){
         strcpy(_descripcion, descripcion);
+}
+
+void Producto::setEstado(bool estado){
+    _Estado = estado;
 }
 
 /*void Producto::setFecha(int dia, int mes, int anio){
@@ -80,28 +82,18 @@ const char* Producto::getDescripcion(){
     return _descripcion;
 }
 
+const char* Producto::getEstado(){
+    if(_Estado){
+        return "ACTIVO";
+    }
+    else {
+        return "INACTIVO";
+    }
+}
+
 void Producto::actualizarStock(int nuevoStock){
      if(nuevoStock >= 0) {
         _stock = nuevoStock;
-    }
-}
-
-void Producto::setStockVendidoXmes(int idVenta, int stock){
-    ArchivoVenta ArchVenta;
-    Venta venta;
-
-    int pos = ArchVenta.buscar(idVenta);
-    venta = ArchVenta.leerRegistro(pos);
-
-    if(venta.getAnioVenta() == 2024){
-        _AcuStockXmes[venta.getMesVenta()-1] += stock;
-    }
-}
-
-void Producto::MostrarStockVendidoXmes(){
-
-    for(int i=0; i<12; i++){
-        cout << "MES " << i << ":" << _AcuStockXmes[i] << endl;
     }
 }
 
@@ -136,6 +128,7 @@ void Producto::cargar(){
     /*cout<< "INDICAR FECHA: ";
     cin>> dia >> separador >> mes >> separador >> anio;
     setFecha(dia, mes, anio);*/
+    setEstado(1);
 }
 
 void Producto::mostrar(){
@@ -145,13 +138,6 @@ void Producto::mostrar(){
     cout<< "DESCRIPCION DEL PRODUCTO: "<<getDescripcion()<<endl;
     cout<< "PRECIO: $ "<<getPrecio()<<endl;
     cout<< "STOCK DEL PRODUCTO: "<<getStock()<<endl;
+    cout<< "ESTADO DEL PRODUCTO: "<<getEstado()<<endl;
    /* cout<< "FECHA: "<<getFecha()<<endl;*/
 }
-
-/*bool Producto::escribirDisco(int pos){
-
-}
-
-bool Producto::leerDisco(int pos){
-
-}*/

@@ -42,15 +42,12 @@ void ArchivoVenta::FunGuardarRegistro(){
         ArchivoDetalleDeVenta archDetalle;
         ArchivoVenta archivoV;
         Venta venta;
-        Cliente client;
-        ArchivoCliente archivoCliente;
 
-
-        venta.cargar();
 
 
         int Nventa = archivoV.ContarVenta();
         venta.setIDVenta(Nventa);
+        venta.cargar();
 
         if(archivoV.GuardarRegistro(venta)){
             cout << "VENTA CARGADA CON EXITO" << endl;
@@ -63,15 +60,13 @@ void ArchivoVenta::FunGuardarRegistro(){
         }else{
             cout << "NO SE PUDO CARGAR LA VENTA" << endl;
         }
-        }
-
         cout << "---------------------------------------------" << endl;
         cout << "DESEA REGISTRAR UNA NUEVA VENTA? 1-Si, 0-No " << endl;
         cin >> respuesta;
         if(!respuesta){
             cargar = 0;
         }
-
+        }
 }
 
 

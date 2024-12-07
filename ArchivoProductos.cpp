@@ -1,5 +1,7 @@
 #include "ArchivoProductos.h"
 #include "ComprasAlProveedor.h"
+#include "ArchivoDetalleDeVenta.h"
+#include "ArchivoVenta.h"
 #include <cstring>
 #include <iostream>
 #include <iomanip>
@@ -49,6 +51,7 @@ bool ArchivoProductos::listarRegistros(){
          << setw(35) << "DESCRIPCION"
          << setw(12) << "PRECIO"
          << setw(15) << "STOCK"
+         << setw (17) << "ESTADO"
          /*<< setw(17) << "FECHA"*/
          << endl;
     cout << string(110, '-') << endl;
@@ -62,6 +65,7 @@ bool ArchivoProductos::listarRegistros(){
              << setw(12) << fixed << setprecision(2) << producto.getPrecio()
              << setw(15) << producto.getStock()
             /* << setw(17) << producto.getFecha()*/
+             << setw (17) << producto.getEstado()
              << endl;
     }
     fclose(listadoProductos);
@@ -235,6 +239,7 @@ Producto ArchivoProductos::leerRegistro(int idProducto){
     fread(&producto, sizeof(producto), 1, pProducto);
 
     fclose(pProducto);
+    return producto;
 }
 
 // AGREGADO HOY 30-11-2024
@@ -264,7 +269,7 @@ int ArchivoProductos::buscar(int id){
 
 ///CAMBIOS 3/12/2024
 
-bool ArchivoProductos::modificarRegistro(int pos, const Producto &producto){
+/*bool ArchivoProductos::modificarRegistro(int pos, const Producto &producto){
     FILE *pProductos;
     bool resultado;
 
@@ -283,31 +288,113 @@ bool ArchivoProductos::modificarRegistro(int pos, const Producto &producto){
     fclose(pProductos);
 
     return resultado;
-}
+}*/
 
-void ArchivoProductos::FunModificarVectorStockVendido(Producto producto, int idVenta, int stock){
-    ArchivoProductos archivo("Productos.dat");
-
-    int pos = archivo.buscar(producto.getIDProducto());
-
-    if(pos!= -1){
-
-        producto.setStockVendidoXmes(idVenta, stock);
-
-        modificarRegistro(pos, producto);
-
-    }else{
-        cout << "LA VENTA NO SE HA SIDO ENCONTRADA EN EL SISTEMA" << endl;
+int ArchivoProductos::InformeProductos(){
+    FILE *fileProductos;
+    fileProductos=fopen("archivoProductos.dat", "rb");
+    if(fileProductos==nullptr){
+        cout<< "No se pudo abrir el archivo"<<endl;
+        return -1;
     }
-}
+    Producto product;
+    Venta venta;
+    detalleVenta detalle;
 
-void ArchivoProductos::StockVendido(){
-    ArchivoProductos archivo("Productos.dat");
-    Producto producto;
+    int anio;
 
-    for(int i =0; i<archivo.getCantidadRegistros(); i++){
-            producto = archivo.leerRegistro(i);
+    int cantidadProductos=getCantidadRegistros();
 
-            producto.MostrarStockVendidoXmes();
+    int* TotalProductosxMes=new int [cantidadProductos*12]{}; // total productos por mes
+
+    int* ProductosRegistrados=new int[cantidadProductos]; // los productos registrados que se encuentran en el archivo
+    int posicion=0;
+
+    while(fread(&product, sizeof(Producto), 1, fileProductos)==1){
+        ProductosRegistrados[posicion]=product.getIDProducto();
+        posicion++;
     }
+    fclose(fileProductos);
+
+    do{
+        cout<< "Ingresar el anio a buscar: ";
+        cin>>anio;
+        if(cin.fail() || anio < 1000 || anio >9999){
+            cin.clear();
+            cin.ignore();
+            cout<< "Anio invalido. Intente nuevamente: "<<endl;
+        }
+        else{
+            break;
+        }
+
+    } while(true);
+
+        FILE *ArchivoVenta;
+        ArchivoVenta=fopen("Venta.dat", "rb");
+        if(ArchivoVenta==nullptr){
+            cout<< "No pudo abrirse el archivo de Venta"<<endl;
+            delete [] TotalProductosxMes;
+            delete [] ProductosRegistrados;
+            return -1;
+        }
+
+        while(fread(&venta, sizeof(Venta), 1, ArchivoVenta)==1){
+            FILE *detalleFile;
+            detalleFile=fopen("DetalleVenta.dat", "rb");
+            if(detalleFile==nullptr){
+                cout<< "No pudo abrirse el archivo de detalle de venta"<<endl;
+                delete [] TotalProductosxMes;
+                delete [] ProductosRegistrados;
+                return -1;
+            }
+            while(fread(&detalle, sizeof(detalleVenta), 1, detalleFile)==1){
+                if(venta.getAnioVenta()==anio){
+                    if(detalle.getIDVenta()==venta.getIDVenta()){
+                        int mes=venta.getMesVenta();
+                            for(int i=0;  i<cantidadProductos; i++){
+                                if(detalle.getIDProducto()==ProductosRegistrados[i]){
+                                  TotalProductosxMes[i*12+mes]+=detalle.getCantidad();
+                                  break;
+                                }
+                            }
+
+                }
+                }
+            }
+            fclose(detalleFile);
+        }
+        fclose(ArchivoVenta);
+
+
+    const char*nombresMeses[]={"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+
+    cout << setw(10) << "Mes/ID";
+        for (int i = 0; i < cantidadProductos; i++) {
+        cout << setw(10) << ProductosRegistrados[i];
+    }
+    cout << endl; // la fila en donde se encuentran los ID de los productos
+
+    cout << string(10 + cantidadProductos * 10, '-') << endl;
+
+    for (int mes = 1; mes <= 12; mes++) {
+        cout << setw(10) << nombresMeses[mes-1];
+        for (int i = 0; i < cantidadProductos; i++) {
+            cout << setw(10) << TotalProductosxMes[i * 12 + mes];
+        }
+        cout << endl;
+    }
+
+    /*for(int i=0; i<cantidadProductos; i++){
+        cout<< "Producto id: "<<ProductosRegistrados[i]<<endl;
+       for(int mes=1; mes<=12; mes++){
+            cout<<nombresMeses[mes-1]<<": "<<TotalProductosxMes[i*12+mes]<<" vendidos"<<endl;
+       }
+    }*/ // en esta parte lo muestra por separado sin la tabla realizada
+
+    delete [] TotalProductosxMes;
+    delete [] ProductosRegistrados;
+    return 0;
 }
+
+

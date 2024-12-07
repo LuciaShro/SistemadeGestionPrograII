@@ -16,6 +16,8 @@ public:
     int buscar(int id);
     void BuscarDetalle(int id);
     Producto BuscarProducto(Producto &producto);
+
+    int CantidadProductosXmes();
 private:
     char _NombreArchivoDetalle[100];
 };

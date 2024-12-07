@@ -23,34 +23,25 @@ using namespace std;
 
 int main(){
 
-    ArchivoVenta venta;
-    venta.FunGuardarRegistro();
+    ArchivoProductos archivo("archivoProductos.dat");
+    archivo.InformeProductos();
 
 //    ArchivoVenta venta;
 //    venta.VentasXmes();
-
-   ArchivoProductos archivo("archivoProductos");
-    //archivo.listarRegistros();
-    archivo.StockVendido();
-//
-//    ArchivoVenta venta;
-//    venta.FunGuardarRegistro();
-//    cout << "---------------" << endl;
-//    venta.listarRegistros();
-//
-//cout << "---------------" << endl;
-//    ArchivoDetalleDeVenta detalle;
-//    detalle.listarRegistros();
+/*ArchivoVenta venta;
+   venta.listarRegistros();
+cout << "---------------" << endl;
+ArchivoDetalleDeVenta detalle;
+detalle.listarRegistros();*/
 
 //    ArchivoCliente cliente;
 //    cliente.listarRegistros();
 
-//      ArchivoVendedor vendedor;
-//      vendedor.FunGuardarRegistro();
+ /*ArchivoVendedor vendedor;
+vendedor.FunGuardarRegistro();*/
 
 
-//     ArchivoComprasAlProveedor compras("archivoComprasAlProvedor.dat");
-//     compras.agregarRegistro();
+
 
     /*menuPrincipal();*/
     return 0;
