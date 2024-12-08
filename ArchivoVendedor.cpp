@@ -3,6 +3,7 @@
 #include "ArchivoDetalleDeVenta.h"
 #include <cstring>
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 ArchivoVendedor::ArchivoVendedor(){
@@ -101,15 +102,49 @@ void ArchivoVendedor::mostrarVendedor(Vendedor vendedor){
 }
 
 void ArchivoVendedor::listarRegistros(){
-    //FILE *pVendedor;
-    ArchivoVendedor archVendedor;
+    FILE *pVendedor;
     Vendedor vendedor;
 
-    for(int i=0; i<archVendedor.getCantidadRegistros(); i++){
-        archVendedor.mostrarVendedor(archVendedor.leerRegistro(i));
+    pVendedor=fopen(_nombreArchivoVendedor, "rb");
+    if(pVendedor==nullptr){
+        cout<< "No se pudo abrir el archivo de vendedores"<<endl;
     }
 
-    cout << "--------------------------------------------" << endl;
+    cout << left << setw(10) << "DNI"
+         << setw(15) << "APELLIDO"
+         << setw(15) << "NOMBRE"
+         << setw(15) << "TELEFONO"
+         << setw(30) << "MAIL"
+         << setw (15) << "DOMICILIO"
+         << setw(15) << "INGRESO"
+         << setw(14) << "COMISION"
+         << setw (9) << "ESTADO"
+         << setw (9) << "NACIMIENTO"
+         << endl;
+    cout << string(148, '-') << endl;
+
+
+    while(fread(&vendedor, sizeof(Vendedor), 1, pVendedor)==1){
+
+             cout << left << setw(10) << vendedor.getId()
+             << setw(15) << vendedor.getApellidos()
+             << setw(15) << vendedor.getNombres()
+             << setw(15) << vendedor.getTelefono()
+             << setw(30) << vendedor.getMail()
+            << setw(15) << vendedor.getDomicilio()
+             << setw (15) << vendedor.getFechaIngreso()
+             << setw(14)<< vendedor.getComisiones()
+             << setw(9)<< vendedor.getEstado()
+             << setw(9)<< vendedor.getNacimiento()
+             << endl;
+    }
+    fclose(pVendedor);
+
+    /*for(int i=0; i<archVendedor.getCantidadRegistros(); i++){
+        archVendedor.mostrarVendedor(archVendedor.leerRegistro(i));
+    } // Lo cambio por formato tabla
+
+    cout << "--------------------------------------------" << endl;*/
 }
 
 bool ArchivoVendedor::modificarRegistro(int pos, const Vendedor &vendedor){

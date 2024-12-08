@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include "ArchivoCliente.h"
+#include <iomanip>
 using namespace std;
 
 ArchivoCliente::ArchivoCliente(){
@@ -127,16 +128,48 @@ void ArchivoCliente::mostrarCliente(Cliente cliente){
 }
 
 void ArchivoCliente::listarRegistros(){
-    /*FILE *pCliente;*/ // lo comento porque en ningun momento se utiliza
+    FILE *pCliente;
     Cliente cliente;
-    ArchivoCliente archCliente;
+    pCliente=fopen(_nombreArchivoCliente, "rb");
+    if(pCliente==nullptr){
+        cout<< "No se pudo abrir el archivo de clientes"<<endl;
+    }
 
-    for(int i=0; i<archCliente.getCantidadRegistros();i++){
+    cout << left << setw(10) << "DNI"
+         << setw(15) << "APELLIDO"
+         << setw(15) << "NOMBRE"
+         << setw(15) << "TELEFONO"
+         << setw(30) << "MAIL"
+         << setw (20) << "DOMICILIO"
+         << setw(20) << "NACIMIENTO"
+         << setw(10) << "PUNTAJE"
+         << setw (10) << "ESTADO"
+         << endl;
+    cout << string(145, '-') << endl;
+
+
+    while(fread(&cliente, sizeof(Cliente), 1, pCliente)==1){
+
+             cout << left << setw(10) << cliente.getId()
+             << setw(15) << cliente.getApellidos()
+             << setw(15) << cliente.getNombres()
+             << setw(15) << cliente.getTelefono()
+             << setw(30) << cliente.getMail()
+            << setw(20) << cliente.getDomicilio()
+             << setw (20) << cliente.getNacimiento()
+             << setw(10)<< cliente.getPuntaje()
+             << setw(10)<< cliente.getEstado()
+             << endl;
+    }
+    fclose(pCliente);
+
+
+    /*for(int i=0; i<archCliente.getCantidadRegistros();i++){
         cout << "CLIENTE " << i+1 << endl;
         archCliente.mostrarCliente(archCliente.leerRegistro(i));
 
         cout << "--------------------------------------------" << endl;
-    }
+    }*/ // lo comento para utilizar el mostrar en formato tabla
 }
 
 

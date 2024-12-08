@@ -94,7 +94,7 @@ void Proveedores::cargar(){
     /*cout<< "INGRESAR EL ESTADO(0-INACTIVO, 1-ACTIVO): ";
     cin>>_Estado;*/
     cout<< "INGRESAR EL MEDIO DE CONTACTO: ";
-    cin.ignore();
+    /*cin.ignore();*/
     cin.getline(_Contacto, 50);
     cout<< "INGRESAR LA DIRECCION DEL LOCAL/SUCURSAL: ";
     cin.getline(_Direccion, 100);
@@ -110,7 +110,3 @@ void Proveedores::mostrar(){
     cout<< "DIRECCION DEL LOCAL/SUCURSAL: "<<getDireccionSucursal()<<endl;
 
 }
-
-bool Proveedores::escribirDisco(int pos){}
-
-bool Proveedores::leerDisco(int pos){}

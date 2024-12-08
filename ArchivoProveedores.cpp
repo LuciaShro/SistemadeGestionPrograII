@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <cstring>
 #include "ArchivoProveedores.h"
 using namespace std;
@@ -103,12 +104,34 @@ void ArchivoProveedores::listarRegistros(){
     if(pProvedores==nullptr){
         cout<< "NO SE PUDO ABRIR EL ARCHIVO"<<endl;
     }
-    for(int i=0; i<archProveedor.getCantidadRegistros();i++){
+
+    cout<< left
+         << setw(20) << "ID DEL PROVEEDOR"
+         << setw(25) << "MARCA"
+         << setw(20) << "ESTADO"
+         << setw(20) << "CONTACTO"
+         << setw(40) << "DIRECCION"
+         << endl;
+    cout << string(115, '-') << endl;
+
+    while(fread(&proveedor, sizeof(Proveedores), 1,pProvedores)==1){
+         cout<< left
+         << setw(20) << proveedor.getIdproveedor()
+         << setw(25) << proveedor.getMarca()
+         << setw(20) << proveedor.getEstado()
+         << setw(20) << proveedor.getContacto()
+         << setw(40) << proveedor.getDireccionSucursal()
+         << endl;
+    cout << string(115, '-') << endl;
+    }
+
+
+    /*for(int i=0; i<archProveedor.getCantidadRegistros();i++){
         cout << "PROVEEDOR " << i+1 << endl;
         archProveedor.mostrarProveedor(archProveedor.leerRegistro(i));
 
         cout << "--------------------------------------------" << endl;
-    }
+    }*/ // Cambio para que se visualice en formato tabla
 
     fclose(pProvedores);
 }
@@ -184,7 +207,7 @@ bool ArchivoProveedores::BajaDeRegistro(){
     ArchivoProveedores archProveedor;
     int id, pos;
 
-    cout <<"INGRESE EL ID DEL CLIENTE QUE DESEA ELIMINAR: " << endl;
+    cout <<"INGRESE EL ID DEL PROVEEDOR QUE DESEA ELIMINAR: " << endl;
     cin >> id;
 
     pos = archProveedor.buscar(id);
