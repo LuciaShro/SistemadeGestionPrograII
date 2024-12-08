@@ -24,9 +24,8 @@ using namespace std;
 int main(){
 
 
-    ArchivoVendedor vendedor;
-    vendedor.listarRegistros();
-    /*menuPrincipal();*/
+    menuPrincipal();
+
     return 0;
 
 }
