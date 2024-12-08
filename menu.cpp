@@ -45,7 +45,8 @@ void menuPrincipal(){
 //        mostrarCentrado(" 8 - CONFIGURACIONES",13);
         mostrarCentrado(" 0 - SALIR",13);
         mostrarCentrado("Seleccione una opcion para avanzar: ", 18);
-        cin >> opcion;
+
+        cin>> opcion;
 
         switch (opcion){
             case 1: system("cls"); menuVentas(); break;
@@ -55,7 +56,7 @@ void menuPrincipal(){
             case 5: system("cls"); menuProveedores(); break; //devoluciones va dentro
             case 6: system("cls"); menuInformes(); break;
 
-            case 0: cout << "  Saliendo del sistema..."; break;
+            case 0: cout << endl << "                                             Saliendo del sistema..." << endl; break;
             default:
             rlutil::setColor(rlutil::RED);
             cout << "  Numero de Opcion invalida, por favor intente nuevamente." << endl;
@@ -82,13 +83,15 @@ void menuClientes() {
         cin >> opcion;
 
         switch(opcion) {
-            case 1: cliente.FunGuardarRegistro(); break;
-            case 2: cliente.listarRegistros(); break;
-            case 3: cout << "Ingrese el ID del vendedor que desea consultar "; cin>> id; cliente.leerRegistro(id); break;
-            case 4: cliente.FunModificarRegistro(); break;
-            case 5: cliente.BajaDeRegistro(); break;
+            case 1: system("cls"); cliente.FunGuardarRegistro(); break;
+            case 2: system("cls"); cliente.listarRegistros(); break;
+            case 3: system("cls"); cout << "Ingrese el ID del vendedor que desea consultar "; cin>> id; cliente.leerRegistro(id); break;
+            case 4: system("cls"); cliente.FunModificarRegistro(); break;
+            case 5: system("cls"); cliente.BajaDeRegistro(); break;
             case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); menuPrincipal(); break;
         }
+        system("pause");
+        system("cls");
     } while(opcion!=0);
 }
 void menuVendedores() {
@@ -106,13 +109,15 @@ void menuVendedores() {
         cin >> opcion;
 
         switch(opcion) {
-            case 1: vendedor.FunGuardarRegistro(); break;
-            case 2: vendedor.listarRegistros(); break;
-            case 3: cout << "Ingrese el ID del vendedor que desea consultar"; cin >> id; vendedor.leerRegistro(id); break;
-            case 4: vendedor.FunModificarRegistro(); break;
-            case 5: vendedor.BajaDeRegistro(); break;
+            case 1: system("cls"); vendedor.FunGuardarRegistro(); break;
+            case 2: system("cls"); vendedor.listarRegistros(); break;
+            case 3: system("cls"); cout << "Ingrese el ID del vendedor que desea consultar"; cin >> id; vendedor.leerRegistro(id); break;
+            case 4: system("cls"); vendedor.FunModificarRegistro(); break;
+            case 5: system("cls"); vendedor.BajaDeRegistro(); break;
             case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); menuPrincipal(); break;
         }
+        system("pause");
+        system("cls");
     } while(opcion!=0);
 }
 void menuVentas() {
@@ -121,18 +126,22 @@ void menuVentas() {
     do {
         cout << endl << "============ VENTAS ============" << endl << endl;
         cout << "  1 - Registrar Ventas" <<endl;
-        cout << "  2 - Listar Ventas" << endl;
+        cout << "  2 - Listar Ventas" << endl; ///VER SI SOLO MOSTRAR LAS VENTAS O LAS FACTURAS
         cout << "  3 - Consultar Ventas" << endl;
+        cout << "  4 - Historial de Facturas " << endl;
         cout << "  0 - Volver al Menu Principal" << endl;
         cout << endl << "  Seleccione una opcion: " ;
         cin >> opcion;
 
         switch(opcion) {
-            case 1: venta.FunGuardarRegistro(); break;
-            case 2: venta.listarRegistros(); break;
-            case 3: cout << "Ingrese el ID de la venta que desee buscar "; cin>> id; venta.leerRegistro(id); break;
-            case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); menuPrincipal(); break;
+            case 1: system("cls"); venta.FunGuardarRegistro(); break;
+            case 2: system("cls"); venta.listarRegistros(); break;
+            case 3: system("cls"); cout << "Ingrese el ID de la venta que desee buscar "; cin>> id; venta.leerRegistro(id); break;
+            case 4: system("cls"); venta.ListarHistorialDeFacturas(); break;
+            case 0:cout << "Volviendo al menu principal... " << endl; system("cls"); menuPrincipal(); break;
         }
+        system("pause");
+        system("cls");
     } while(opcion!=0);
 }
 void menuProveedores() {
@@ -163,18 +172,20 @@ void menuProveedores() {
         cin >> opcion;
 
         switch(opcion) {
-            case 1: ; break;
-            case 2: proveedores.FunGuardarRegistro(); break;
-            case 3: proveedores.listarRegistros(); break;
-            case 4: cout << "Ingrese el ID del proveedor que desee eliminar del listado: "; cin >> id; proveedores.leerRegistro(id); break;
+            case 1: system("cls"); proveedores.FunGuardarRegistro(); break;
+            case 2: system("cls"); proveedores.listarRegistros(); break;
+            case 3: system("cls"); cout << "Ingrese el ID del proveedor que desee eliminar del listado: "; cin >> id; proveedores.leerRegistro(id); break;
+            case 4: system("cls"); proveedores.BajaDeRegistro(); break;
 
-            case 5: compras.agregarRegistro(); break;
-            case 6: compras.listarCompras(); break;
+            case 5: system("cls"); compras.agregarRegistro(); break;
+            case 6: system("cls"); compras.listarCompras(); break;
 
-            case 7: devoluciones.agregarDevolucion(); break;
-            case 8: devoluciones.listarDevoluciones(); break;
-            case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); menuPrincipal(); break;
+            case 7: system("cls"); devoluciones.agregarDevolucion(); break;
+            case 8: system("cls"); devoluciones.listarDevoluciones(); break;
+            case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); menuPrincipal();
         }
+        system("pause");
+        system("cls");
     } while(opcion!=0);
 }
 void menuProductos() {
@@ -192,16 +203,16 @@ void menuProductos() {
         cin >> opcion;
 
         switch(opcion) {
-            case 1: archivo.agregarRegistro(); break;
-            case 2: archivo.listarRegistros(); break;
-            case 3: archivo.buscarProductoPorID(); break;
-            case 4: archivo.modificarPrecioProducto(); break;
-            case 5: archivo.BajaRegistroProducto(); break;
+            case 1: system("cls"); archivo.agregarRegistro(); break;
+            case 2: system("cls"); archivo.listarRegistros(); break;
+            case 3: system("cls"); archivo.buscarProductoPorID(); break;
+            case 4: system("cls"); archivo.modificarPrecioProducto(); break;
+            case 5: system("cls"); archivo.BajaRegistroProducto(); break;
             cout << endl;
-            case 0: cout << "Volviendo al menu principal... " << endl;
-            system("cls"); menuPrincipal();
-            break;
+            case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); menuPrincipal(); break;
         }
+        system("pause");
+        system("cls");
     } while(opcion!=0);
 }
 //void menuDevoluciones() {
@@ -233,7 +244,7 @@ void menuInformes(){
         switch(opcion) {
             case 1: system("cls"); venta.InformeVentaxAnio(); break;
             case 2: system("cls"); productos.InformeProductos(); break;
-            case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); menuPrincipal(); break;
+            case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); menuPrincipal();
         }
 
         cout << endl;
@@ -265,3 +276,15 @@ void menuInformes(){
 //        }
 //    } while(opcion!=4);
 //}
+
+bool ValidacionNumsEnteros(int &opcion){
+    cin>>opcion;
+    if(cin.fail()||opcion<0){
+    cin.clear();/// limpia el estado de error
+    cin.ignore(10000,'\n');/// lo que hace es ignorar (borrar) el caracter, hasta el salto de línea
+    cout<<"ENTRADA INVALIDA, PORFAVOR, INGRESE UN NUMERO (ENTERO)."<<endl;
+    return false;
+    }
+    cin.ignore(10000,'\n');
+    return true;
+}

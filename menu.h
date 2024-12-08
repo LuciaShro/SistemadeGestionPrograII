@@ -11,6 +11,7 @@ void menuDevoluciones();
 void menuProveedores();
 void menuInformes();
 void menuConfiguraciones();
+bool ValidacionNumsEnteros(int &opcion);
 
 void mostrarCentrado(std::string& texto, int fila);
 #endif // MENU_H_INCLUDED

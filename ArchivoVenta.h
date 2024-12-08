@@ -21,6 +21,8 @@ public:
     float VentasXmes(); // Total de dinero acumulado por mes dependiendo el anio
     float InformeVentaxMes();
     float InformeVentaxAnio(); // Total recaudado dependiendo el anio que ingreses
+    void ListarFactura(int idRegistroVenta); //Muestra la factura de compra, segun el id de venta y detalle;
+    void ListarHistorialDeFacturas();
 private:
     char _nombreArchivoVenta[50];
 };

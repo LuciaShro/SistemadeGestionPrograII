@@ -60,10 +60,16 @@ void ArchivoVenta::FunGuardarRegistro(){
             ArchivoVendedor ArchVendedor;
             ArchVendedor.SetComision(Nventa, venta.getIDVendedor());///LLAMO A ARCH.VENDEDOR PARA HACER EL SET DE LA COMISION*/
 
+            system("pause");
+            system("cls");
+            cout << "---------FACTURA-------- " << endl;
+            ListarFactura(Nventa);
             }else{
                 cout << "NO SE PUDO CARGAR LA VENTA" << endl;
             }
 
+            system("pause");
+            system("cls");
 
             cout << "---------------------------------------------" << endl;
             cout << "DESEA REGISTRAR UNA NUEVA VENTA? 1-Si, 0-No " << endl;
@@ -78,6 +84,10 @@ void ArchivoVenta::FunGuardarRegistro(){
 
     }
 
+//    system("pause");
+//    system("cls");
+
+    //ListarFactura();
 
 }
 
@@ -455,3 +465,40 @@ float ArchivoVenta::InformeVentaxAnio(){
     return 0;
 }
 
+
+void ArchivoVenta::ListarFactura(int idRegistroVenta){
+    ArchivoDetalleDeVenta ArchDetalle;
+    Venta venta;
+    detalleVenta detalle;
+
+    int posVenta = buscar(idRegistroVenta);
+    int posDeatlle = ArchDetalle.buscar(idRegistroVenta);
+
+    venta = leerRegistro(posVenta);
+    detalle = ArchDetalle.leerRegistro(posDeatlle);
+
+    venta.mostrar();
+    detalle.mostrar();
+}
+
+void ArchivoVenta::ListarHistorialDeFacturas(){
+    //ArchivoVenta ArchVenta;
+    ArchivoDetalleDeVenta ArchDetalle;
+    Venta venta;
+    detalleVenta detalle;
+
+    for(int i=0; i<getCantidadRegistros(); i++){
+        int posVenta = buscar(i+1);
+        int posDeatlle = ArchDetalle.buscar(i+1);
+
+        venta = leerRegistro(posVenta);
+        detalle = ArchDetalle.leerRegistro(posDeatlle);
+
+        cout << "------------VENTA " << i+1 << " ----------" << endl;
+
+        venta.mostrar();
+        detalle.mostrar();
+        cout << endl << endl;
+    }
+
+}

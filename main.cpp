@@ -26,6 +26,9 @@ int main(){
 
     menuPrincipal();
 
+//    ArchivoDetalleDeVenta detalle;
+//    detalle.listarRegistros();
+
     return 0;
 
 }
