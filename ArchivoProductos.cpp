@@ -373,7 +373,7 @@ int ArchivoProductos::InformeProductos(){
                         int mes=venta.getMesVenta();
                             for(int i=0;  i<cantidadProductos; i++){
                                 if(detalle.getIDProducto()==ProductosRegistrados[i]){
-                                  TotalProductosxMes[i*12+mes]+=detalle.getCantidad();
+                                  TotalProductosxMes[i*12+(mes-1)]+=detalle.getCantidad();
                                   break;
                                 }
                             }
@@ -396,8 +396,8 @@ int ArchivoProductos::InformeProductos(){
 
     cout << string(7 + cantidadProductos * 7, '-') << endl;
 
-    for (int mes = 1; mes <= 12; mes++) {
-        cout << setw(10) << nombresMeses[mes-1];
+    for (int mes = 0; mes < 12; mes++) {
+        cout << setw(10) << nombresMeses[mes];
         for (int i = 0; i < cantidadProductos; i++) {
             cout << setw(7) << TotalProductosxMes[i * 12 + mes];
         }

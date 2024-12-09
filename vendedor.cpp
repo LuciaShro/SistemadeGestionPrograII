@@ -41,13 +41,13 @@ void Vendedor::cargar(){
     /*char separador;*/
     Persona::cargar();
     cout<< "FECHA DE INGRESO DEL VENDEDOR: ";
-    rlutil::locate(31,7);
+    rlutil::locate(31,8);
     cout<< "  /  /   ";
-    rlutil::locate(31,7);
+    rlutil::locate(31,8);
     cin>>dia;
-    rlutil::locate(34,7);
+    rlutil::locate(34,8);
     cin>>mes;
-    rlutil::locate(37,7);
+    rlutil::locate(37,8);
     cin>>anio;
 
     /*cin>> dia >> separador >> mes >> separador >> anio;*/

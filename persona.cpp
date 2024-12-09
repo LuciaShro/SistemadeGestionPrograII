@@ -199,11 +199,13 @@ void Persona::cargar(){
     cin.ignore();
     /*cin>>_Telefono;*/
     cin.getline(_Telefono, 11);
-    setTelefono(_Telefono);
 
     cout<< "MAIL: ";
     /*cin>>_Mail;*/
     cin.getline(_Mail, 100);
+
+    cout<< "DOMICILIO: ";
+    cin.getline(_Domicilio, 100);
 
     /*cout<< "(0-INACTIVO, 1-ACTIVO): ";
     cin>>_Estado;*/
@@ -217,5 +219,6 @@ void Persona::mostrar(){
     cout<< "EL NACIMIENTO ES: "<<getNacimiento()<<endl;
     cout<< "EL TELEFONO ES: "<<getTelefono()<<endl;
     cout<< "EL MAIL ES: "<<getMail()<<endl;
+    cout<< "EL DOMICILIO ES: "<<getDomicilio()<<endl;
     cout<< "EL ESTADO DE LA PERSONA ES: "<<getEstado()<<endl;
 }

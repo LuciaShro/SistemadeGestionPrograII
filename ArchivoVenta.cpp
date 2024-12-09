@@ -408,7 +408,7 @@ float ArchivoVenta::InformeVentaxAnio(){
     detalleVenta detalle;
     float totalMes[13]={};
     float totalRecaudado=0;
-    int anio, cantidadVentas;
+    int anio, cantidadVentas=0;
     totalXanio=fopen(_nombreArchivoVenta, "rb");
     if(totalXanio==nullptr){
         cout<< "No se pudo abrir el archivo"<<endl;
@@ -431,6 +431,9 @@ float ArchivoVenta::InformeVentaxAnio(){
 
 
     while(fread(&ventas, sizeof(Venta), 1, totalXanio)==1){
+            if(ventas.getAnioVenta()==anio){
+                cantidadVentas++;
+            }
             FILE *archivoDetalle;
             archivoDetalle=fopen("DetalleVenta.dat", "rb");
             if(archivoDetalle==nullptr){
@@ -443,7 +446,6 @@ float ArchivoVenta::InformeVentaxAnio(){
                 if(ventas.getIDVenta()==detalle.getIDVenta()){
                     int mes = ventas.getMesVenta();
                     totalMes[mes]+=detalle.getPrecioTotal();
-                    cantidadVentas=getCantidadRegistros();
             }
             }
         }

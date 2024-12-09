@@ -116,10 +116,10 @@ void ArchivoVendedor::listarRegistros(){
          << setw(15) << "TELEFONO"
          << setw(30) << "MAIL"
          << setw (15) << "DOMICILIO"
-         << setw(15) << "INGRESO"
-         << setw(14) << "COMISION"
-         << setw (9) << "ESTADO"
-         << setw (9) << "NACIMIENTO"
+         << setw(20) << "INGRESO"
+         << setw(12) << "COMISION"
+         << setw (15) << "ESTADO"
+         << setw (15) << "NACIMIENTO"
          << endl;
     cout << string(148, '-') << endl;
 
@@ -132,10 +132,10 @@ void ArchivoVendedor::listarRegistros(){
              << setw(15) << vendedor.getTelefono()
              << setw(30) << vendedor.getMail()
             << setw(15) << vendedor.getDomicilio()
-             << setw (15) << vendedor.getFechaIngreso()
-             << setw(14)<< vendedor.getComisiones()
-             << setw(9)<< vendedor.getEstado()
-             << setw(9)<< vendedor.getNacimiento()
+             << setw (20) << vendedor.getFechaIngreso()
+             << setw(12)<< vendedor.getComisiones()
+             << setw(15)<< vendedor.getEstado()
+             << setw(15)<< vendedor.getNacimiento()
              << endl;
     }
     fclose(pVendedor);
@@ -189,6 +189,7 @@ int ArchivoVendedor::buscar(int id){
 
 void ArchivoVendedor::FunModificarRegistro(){
     int id, pos;
+    char mail[100], telefono[11], domicilio[100];
     ArchivoVendedor archVendedor;
     Vendedor vendedor;
     /*Producto producto;
@@ -209,7 +210,16 @@ void ArchivoVendedor::FunModificarRegistro(){
         cout << "Procesando para la modificacion.... " << endl;
         system("pause");
         system("cls");
-        vendedor.cargar();
+        cout << "INGRESE EL TELEFONO: ";
+        cin >> telefono;
+        vendedor.setTelefono(telefono);
+        cout << "INGRESE EL MAIL: ";
+        cin >> mail;
+        vendedor.setMail(mail);
+        cout<< "INGRESE EL DOMICILIO: ";
+        cin.ignore();
+        cin.getline(domicilio, 100);
+        vendedor.setDomicilio(domicilio);
         modificarRegistro(pos, vendedor);
     }else{
         cout << "EL VENDEDOR NO HA SIDO ENCONTRADA EN EL SISTEMA" << endl;
