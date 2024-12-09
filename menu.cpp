@@ -26,11 +26,52 @@ void mostrarCentrado(const std::string& texto, int fila) {
     std::cout << texto;
 }
 
+//void menuPrincipal(){
+//    rlutil::setBackgroundColor(rlutil::WHITE);
+//    rlutil::setColor(rlutil::BLACK);
+//    int opcion;
+//    do {
+//        rlutil::cls();
+//        mostrarCentrado("----------------------",3);
+//        mostrarCentrado("----------------------",5);
+//        mostrarCentrado("MENU PRINCIPAL", 4);
+//        mostrarCentrado(" 1 - VENTAS",6);
+//        mostrarCentrado(" 2 - PRODUCTOS",7);
+//        mostrarCentrado(" 3 - VENDEDORES",8);
+//        mostrarCentrado(" 4 - CLIENTES",9);
+//        mostrarCentrado(" 5 - PROVEEDORES",10);
+//        mostrarCentrado(" 6 - INFORMES", 11);
+////        mostrarCentrado(" 7 - INFORMES", 12);
+////        mostrarCentrado(" 8 - CONFIGURACIONES",13);
+//        mostrarCentrado(" 0 - SALIR",13);
+//        mostrarCentrado("Seleccione una opcion para avanzar: ", 18);
+//
+//        cin>> opcion;
+//
+//        switch (opcion){
+//            case 1: system("cls"); menuVentas(); break;
+//            case 2: system("cls"); menuProductos(); break;
+//            case 3: system("cls"); menuVendedores(); break;
+//            case 4: system("cls"); menuClientes(); break;
+//            case 5: system("cls"); menuProveedores(); break; //devoluciones va dentro
+//            case 6: system("cls"); menuInformes(); break;
+//
+//            case 0: cout << endl << "                                             Saliendo del sistema..." << endl; break;
+//            default:
+//            rlutil::setColor(rlutil::RED);
+//            cout << "  Numero de Opcion invalida, por favor intente nuevamente." << endl;
+//            rlutil::anykey(); // esto es para cuando queremos que muestre el mensaje de incorrecto y luego introduzca la opcion nuevamente
+//            rlutil::setColor(rlutil::BLACK);
+//        }
+//    }while(opcion !=0);
+//}
+
 void menuPrincipal(){
     rlutil::setBackgroundColor(rlutil::WHITE);
     rlutil::setColor(rlutil::BLACK);
     int opcion;
-    do {
+    bool ciclo = true;
+    while(ciclo!=false){
         rlutil::cls();
         mostrarCentrado("----------------------",3);
         mostrarCentrado("----------------------",5);
@@ -46,9 +87,14 @@ void menuPrincipal(){
         mostrarCentrado(" 0 - SALIR",13);
         mostrarCentrado("Seleccione una opcion para avanzar: ", 18);
 
-        cin>> opcion;
-
-        switch (opcion){
+        cin >> opcion;
+        if(cin.fail()||opcion<0){
+           cin.clear();/// limpia el estado de error
+           cin.ignore(10000,'\n');/// lo que hace es ignorar (borrar) el caracter, hasta el salto de línea
+           cout<<"ENTRADA INVALIDA, PORFAVOR, INGRESE UN NUMERO (ENTERO)."<<endl;
+           system("pause");
+        }else{
+            switch (opcion){
             case 1: system("cls"); menuVentas(); break;
             case 2: system("cls"); menuProductos(); break;
             case 3: system("cls"); menuVendedores(); break;
@@ -56,14 +102,16 @@ void menuPrincipal(){
             case 5: system("cls"); menuProveedores(); break; //devoluciones va dentro
             case 6: system("cls"); menuInformes(); break;
 
-            case 0: cout << endl << "                                             Saliendo del sistema..." << endl; break;
+            case 0: cout << endl << "                                             Saliendo del sistema..." << endl; ciclo = false; break;
             default:
             rlutil::setColor(rlutil::RED);
             cout << "  Numero de Opcion invalida, por favor intente nuevamente." << endl;
             rlutil::anykey(); // esto es para cuando queremos que muestre el mensaje de incorrecto y luego introduzca la opcion nuevamente
             rlutil::setColor(rlutil::BLACK);
+            }
         }
-    }while(opcion !=0);
+
+    };
 }
 
 void menuClientes() {
@@ -83,14 +131,13 @@ void menuClientes() {
         cin >> opcion;
 
         switch(opcion) {
-            case 1: system("cls"); cliente.FunGuardarRegistro(); break;
-            case 2: system("cls"); cliente.listarRegistros(); break;
-            case 3: system("cls"); cout << "Ingrese el ID del vendedor que desea consultar "; cin>> id; cliente.leerRegistro(id); break;
-            case 4: system("cls"); cliente.FunModificarRegistro(); break;
-            case 5: system("cls"); cliente.BajaDeRegistro(); break;
-            case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); menuPrincipal(); break;
+            case 1: system("cls"); cliente.FunGuardarRegistro(); system("pause"); break;
+            case 2: system("cls"); cliente.listarRegistros(); system("pause"); break;
+            case 3: system("cls"); cliente.BuscarCliente(); system("pause"); break;
+            case 4: system("cls"); cliente.FunModificarRegistro(); system("pause"); break;
+            case 5: system("cls"); cliente.BajaDeRegistro(); system("pause"); break;
+            case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); break;
         }
-        system("pause");
         system("cls");
     } while(opcion!=0);
 }
@@ -109,14 +156,21 @@ void menuVendedores() {
         cin >> opcion;
 
         switch(opcion) {
-            case 1: system("cls"); vendedor.FunGuardarRegistro(); break;
-            case 2: system("cls"); vendedor.listarRegistros(); break;
-            case 3: system("cls"); cout << "Ingrese el ID del vendedor que desea consultar"; cin >> id; vendedor.leerRegistro(id); break;
-            case 4: system("cls"); vendedor.FunModificarRegistro(); break;
-            case 5: system("cls"); vendedor.BajaDeRegistro(); break;
-            case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); menuPrincipal(); break;
+            case 1: system("cls"); vendedor.FunGuardarRegistro(); system("pause"); break;
+            case 2: system("cls"); vendedor.listarRegistros(); system("pause"); break;
+            case 3: system("cls"); cout << "Ingrese el ID del vendedor que desea consultar: "; cin >> id;
+            while(true){
+                cout << "Ingrese el ID del vendedor que desea consultar: "; cin >> id;
+                if(id>0){
+                vendedor.BuscarVendedor(id); system("pause");
+                break;
+                }
+            }
+            break;
+            case 4: system("cls"); vendedor.FunModificarRegistro(); system("pause"); break;
+            case 5: system("cls"); vendedor.BajaDeRegistro();system("pause"); break;
+            case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); break;
         }
-        system("pause");
         system("cls");
     } while(opcion!=0);
 }
@@ -134,13 +188,20 @@ void menuVentas() {
         cin >> opcion;
 
         switch(opcion) {
-            case 1: system("cls"); venta.FunGuardarRegistro(); break;
-            case 2: system("cls"); venta.listarRegistros(); break;
-            case 3: system("cls"); cout << "Ingrese el ID de la venta que desee buscar "; cin>> id; venta.leerRegistro(id); break;
-            case 4: system("cls"); venta.ListarHistorialDeFacturas(); break;
-            case 0:cout << "Volviendo al menu principal... " << endl; system("cls"); menuPrincipal(); break;
+            case 1: system("cls"); venta.FunGuardarRegistro(); system("pause"); break;
+            case 2: system("cls"); venta.listarRegistros(); system("pause"); break;
+            case 3: system("cls");
+            while(true){
+                     cout << "Ingrese el ID de la venta que desee buscar "; cin>> id;
+                    if(id>0){
+                    venta.BuscarVenta(id); system("pause"); break;
+                    }
+                }
+            break;
+            case 4: system("cls"); venta.ListarHistorialDeFacturas();  system("pause"); break;
+            case 0:cout << "Volviendo al menu principal... " << endl; system("cls"); break;
         }
-        system("pause");
+
         system("cls");
     } while(opcion!=0);
 }
@@ -172,19 +233,26 @@ void menuProveedores() {
         cin >> opcion;
 
         switch(opcion) {
-            case 1: system("cls"); proveedores.FunGuardarRegistro(); break;
-            case 2: system("cls"); proveedores.listarRegistros(); break;
-            case 3: system("cls"); cout << "Ingrese el ID del proveedor que desee eliminar del listado: "; cin >> id; proveedores.leerRegistro(id); break;
-            case 4: system("cls"); proveedores.BajaDeRegistro(); break;
+            case 1: system("cls"); proveedores.FunGuardarRegistro(); system("pause"); break;
+            case 2: system("cls"); proveedores.listarRegistros(); system("pause"); break;
+            case 3: system("cls");
+               while(true){
+                    cout << "Ingrese el ID que desea buscar: "; cin >> id;
+                    if(id>0){
+                    proveedores.BuscarProveedor(id); system("pause");
+                    break;
+                    }
+                }
+            break;
+            case 4: system("cls"); proveedores.BajaDeRegistro(); system("pause"); break;
 
-            case 5: system("cls"); compras.agregarRegistro(); break;
-            case 6: system("cls"); compras.listarCompras(); break;
+            case 5: system("cls"); compras.agregarRegistro(); system("pause"); break;
+            case 6: system("cls"); compras.listarCompras(); system("pause"); break;
 
-            case 7: system("cls"); devoluciones.agregarDevolucion(); break;
-            case 8: system("cls"); devoluciones.listarDevoluciones(); break;
-            case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); menuPrincipal();
+            case 7: system("cls"); devoluciones.agregarDevolucion(); system("pause"); break;
+            case 8: system("cls"); devoluciones.listarDevoluciones(); system("pause"); break;
+            case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); break;
         }
-        system("pause");
         system("cls");
     } while(opcion!=0);
 }
@@ -203,15 +271,14 @@ void menuProductos() {
         cin >> opcion;
 
         switch(opcion) {
-            case 1: system("cls"); archivo.agregarRegistro(); break;
-            case 2: system("cls"); archivo.listarRegistros(); break;
-            case 3: system("cls"); archivo.buscarProductoPorID(); break;
-            case 4: system("cls"); archivo.modificarPrecioProducto(); break;
-            case 5: system("cls"); archivo.BajaRegistroProducto(); break;
+            case 1: system("cls"); archivo.agregarRegistro(); system("pause"); break;
+            case 2: system("cls"); archivo.listarRegistros(); system("pause"); break;
+            case 3: system("cls"); archivo.buscarProductoPorID(); system("pause"); break;
+            case 4: system("cls"); archivo.modificarPrecioProducto(); system("pause"); break;
+            case 5: system("cls"); archivo.BajaRegistroProducto(); system("pause"); break;
             cout << endl;
-            case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); menuPrincipal(); break;
+            case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); break;
         }
-        system("pause");
         system("cls");
     } while(opcion!=0);
 }
@@ -242,9 +309,9 @@ void menuInformes(){
         cout << endl << "  Seleccione una opcion: " ; cin >> opcion;
 
         switch(opcion) {
-            case 1: system("cls"); venta.InformeVentaxAnio(); break;
-            case 2: system("cls"); productos.InformeProductos(); break;
-            case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); menuPrincipal();
+            case 1: system("cls"); venta.InformeVentaxAnio(); system("pause"); break;
+            case 2: system("cls"); productos.InformeProductos(); system("pause"); break;
+            case 0: cout << "Volviendo al menu principal... " << endl; system("cls"); break;
         }
 
         cout << endl;
@@ -252,7 +319,6 @@ void menuInformes(){
 //        cout << "Presiona cualquier tecla para continuar..." << std::endl;
 //        cin.get(); // Espera una entrada del usuario
 
-        system("pause");
         system("cls");
     } while(opcion!=0);
 }
@@ -276,15 +342,3 @@ void menuInformes(){
 //        }
 //    } while(opcion!=4);
 //}
-
-bool ValidacionNumsEnteros(int &opcion){
-    cin>>opcion;
-    if(cin.fail()||opcion<0){
-    cin.clear();/// limpia el estado de error
-    cin.ignore(10000,'\n');/// lo que hace es ignorar (borrar) el caracter, hasta el salto de línea
-    cout<<"ENTRADA INVALIDA, PORFAVOR, INGRESE UN NUMERO (ENTERO)."<<endl;
-    return false;
-    }
-    cin.ignore(10000,'\n');
-    return true;
-}

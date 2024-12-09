@@ -408,7 +408,7 @@ float ArchivoVenta::InformeVentaxAnio(){
     detalleVenta detalle;
     float totalMes[13]={};
     float totalRecaudado=0;
-    int anio, cantidadVentas;
+    int anio, cantidadVentas=0;
     totalXanio=fopen(_nombreArchivoVenta, "rb");
     if(totalXanio==nullptr){
         cout<< "No se pudo abrir el archivo"<<endl;
@@ -431,6 +431,9 @@ float ArchivoVenta::InformeVentaxAnio(){
 
 
     while(fread(&ventas, sizeof(Venta), 1, totalXanio)==1){
+            if(ventas.getAnioVenta()==anio){
+                cantidadVentas++;
+            }
             FILE *archivoDetalle;
             archivoDetalle=fopen("DetalleVenta.dat", "rb");
             if(archivoDetalle==nullptr){
@@ -443,7 +446,6 @@ float ArchivoVenta::InformeVentaxAnio(){
                 if(ventas.getIDVenta()==detalle.getIDVenta()){
                     int mes = ventas.getMesVenta();
                     totalMes[mes]+=detalle.getPrecioTotal();
-                    cantidadVentas=getCantidadRegistros();
             }
             }
         }
@@ -465,40 +467,43 @@ float ArchivoVenta::InformeVentaxAnio(){
     return 0;
 }
 
-
 void ArchivoVenta::ListarFactura(int idRegistroVenta){
     ArchivoDetalleDeVenta ArchDetalle;
     Venta venta;
     detalleVenta detalle;
 
     int posVenta = buscar(idRegistroVenta);
-    int posDeatlle = ArchDetalle.buscar(idRegistroVenta);
-
     venta = leerRegistro(posVenta);
-    detalle = ArchDetalle.leerRegistro(posDeatlle);
-
     venta.mostrar();
-    detalle.mostrar();
+
+    for (int j = 0; j < ArchDetalle.getCantidadRegistros(); j++) {
+        detalle = ArchDetalle.leerRegistro(j);
+        if (detalle.getIDVenta() == venta.getIDVenta()) {
+                detalle.mostrar();
+        }
+    }
 }
 
-void ArchivoVenta::ListarHistorialDeFacturas(){
-    //ArchivoVenta ArchVenta;
+void ArchivoVenta::ListarHistorialDeFacturas() {
     ArchivoDetalleDeVenta ArchDetalle;
     Venta venta;
     detalleVenta detalle;
 
-    for(int i=0; i<getCantidadRegistros(); i++){
-        int posVenta = buscar(i+1);
-        int posDeatlle = ArchDetalle.buscar(i+1);
-
+    for (int i = 0; i < getCantidadRegistros(); i++) {
+        int posVenta = buscar(i + 1);
         venta = leerRegistro(posVenta);
-        detalle = ArchDetalle.leerRegistro(posDeatlle);
 
-        cout << "------------VENTA " << i+1 << " ----------" << endl;
-
+        cout << "------------VENTA " << i + 1 << " ----------" << endl;
         venta.mostrar();
-        detalle.mostrar();
+
+        for (int j = 0; j < ArchDetalle.getCantidadRegistros(); j++) {
+            detalle = ArchDetalle.leerRegistro(j);
+
+            // Verificar si el detalle corresponde a la venta actual
+            if (detalle.getIDVenta() == venta.getIDVenta()) {
+                detalle.mostrar();
+            }
+        }
         cout << endl << endl;
     }
-
 }

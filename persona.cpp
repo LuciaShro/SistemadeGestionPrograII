@@ -205,6 +205,9 @@ void Persona::cargar(){
     /*cin>>_Mail;*/
     cin.getline(_Mail, 100);
 
+    cout << "DOMICILIO: ";
+    cin.getline(_Domicilio, 100);
+
     /*cout<< "(0-INACTIVO, 1-ACTIVO): ";
     cin>>_Estado;*/
     setEstado(1);
