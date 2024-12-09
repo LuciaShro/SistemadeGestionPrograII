@@ -49,7 +49,7 @@ void ArchivoDetalleDeVenta::FunGuardarRegistro(int idVenta){
 
     // probando que se reste el stock
     cout<< "Stock antes de la compra: "<<producto.getStock()<<endl;
-    if(producto.getStock()<=0){
+    while(producto.getStock()<=0){
         cout<< "No hay cantidad suficiente. Intentalo nuevamente"<<endl;
         producto = BuscarProducto(producto);
     }

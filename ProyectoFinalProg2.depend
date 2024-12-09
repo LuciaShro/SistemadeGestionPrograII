@@ -59,7 +59,7 @@
 	<string>
 	"FECHA.h"
 
-1733711122 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\persona.cpp
+1733771073 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\persona.cpp
 	"persona.h"
 	"ArchivoCliente.h"
 	"ArchivoVendedor.h"
@@ -425,7 +425,7 @@
 
 1732314693 D
 
-1733715255 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoproductos.cpp
+1733770962 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoproductos.cpp
 	"ArchivoProductos.h"
 	"ComprasAlProveedor.h"
 	"ArchivoDetalleDeVenta.h"
@@ -717,7 +717,7 @@
 	"proveedores.h"
 	"ArchivoProductos.h"
 
-1733710995 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\menu.cpp
+1733774388 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\menu.cpp
 	<iostream>
 	"menu.h"
 	"cliente.h"
@@ -760,7 +760,7 @@
 1733076026 c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoproveedores.h
 	"proveedores.h"
 
-1733705479 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivovendedor.cpp
+1733773815 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivovendedor.cpp
 	"ArchivoVendedor.h"
 	"ArchivoVenta.h"
 	"ArchivoDetalleDeVenta.h"
@@ -773,7 +773,7 @@
 	"productos.h"
 	"persona.h"
 
-1733712935 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoventa.cpp
+1733773691 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoventa.cpp
 	<iostream>
 	"ArchivoVenta.h"
 	"ArchivoDetalleDeVenta.h"
@@ -786,7 +786,7 @@
 1733694933 c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivoventa.h
 	"venta.h"
 
-1733590665 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivodetalledeventa.cpp
+1733776364 source:c:\users\lucia\downloads\programacionproyectotpi\proyectoprogramacion2\archivodetalledeventa.cpp
 	<iostream>
 	<cstring>
 	"ArchivoDetalleDeVenta.h"
@@ -1157,7 +1157,7 @@
 	"proveedores.h"
 	"ArchivoProductos.h"
 
-1733681712 source:c:\users\administrator\onedrive\documentos\proyectoii\sistemadegestionprograii\archivoproductos.cpp
+1733716015 source:c:\users\administrator\onedrive\documentos\proyectoii\sistemadegestionprograii\archivoproductos.cpp
 	"ArchivoProductos.h"
 	"ComprasAlProveedor.h"
 	"ArchivoDetalleDeVenta.h"
@@ -1173,7 +1173,7 @@
 	<cstring>
 	"ArchivoProveedores.h"
 
-1733681712 source:c:\users\administrator\onedrive\documentos\proyectoii\sistemadegestionprograii\archivovendedor.cpp
+1733717968 source:c:\users\administrator\onedrive\documentos\proyectoii\sistemadegestionprograii\archivovendedor.cpp
 	"ArchivoVendedor.h"
 	"ArchivoVenta.h"
 	"ArchivoDetalleDeVenta.h"
@@ -1192,7 +1192,7 @@
 	"venta.h"
 	"detalleVenta.h"
 
-1733686583 source:c:\users\administrator\onedrive\documentos\proyectoii\sistemadegestionprograii\archivoventa.cpp
+1733716693 source:c:\users\administrator\onedrive\documentos\proyectoii\sistemadegestionprograii\archivoventa.cpp
 	<iostream>
 	"ArchivoVenta.h"
 	"ArchivoDetalleDeVenta.h"
@@ -1249,7 +1249,7 @@
 	"Fecha.h"
 	<iostream>
 
-1733681712 source:c:\users\administrator\onedrive\documentos\proyectoii\sistemadegestionprograii\persona.cpp
+1733702960 source:c:\users\administrator\onedrive\documentos\proyectoii\sistemadegestionprograii\persona.cpp
 	"persona.h"
 	"ArchivoCliente.h"
 	"ArchivoVendedor.h"
@@ -1272,7 +1272,7 @@
 	"ArchivoProveedores.h"
 	<cstring>
 
-1733681712 source:c:\users\administrator\onedrive\documentos\proyectoii\sistemadegestionprograii\vendedor.cpp
+1733703266 source:c:\users\administrator\onedrive\documentos\proyectoii\sistemadegestionprograii\vendedor.cpp
 	<iostream>
 	<cstring>
 	"Vendedor.h"
@@ -1287,7 +1287,7 @@
 	"ArchivoCliente.h"
 	"rlutil.h"
 
-1733686029 source:c:\users\administrator\onedrive\documentos\proyectoii\sistemadegestionprograii\main.cpp
+1733716273 source:c:\users\administrator\onedrive\documentos\proyectoii\sistemadegestionprograii\main.cpp
 	<iostream>
 	<cstring>
 	"cliente.h"
@@ -1313,7 +1313,7 @@
 1733690135 c:\users\administrator\onedrive\documentos\proyectoii\sistemadegestionprograii\menu.h
 	"rlutil.h"
 
-1733691064 source:c:\users\administrator\onedrive\documentos\proyectoii\sistemadegestionprograii\menu.cpp
+1733719242 source:c:\users\administrator\onedrive\documentos\proyectoii\sistemadegestionprograii\menu.cpp
 	<iostream>
 	"menu.h"
 	"cliente.h"

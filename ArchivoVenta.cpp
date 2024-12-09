@@ -271,7 +271,12 @@ void ArchivoVenta::BuscarVenta(int id){
     ArchivoVenta archVenta;
 
     int pos = archVenta.buscar(id);
-    archVenta.mostrarVenta(archVenta.leerRegistro(pos));
+    if(buscar(id)==-1){
+        cout<< "El id de venta indicado no existe"<<endl;
+    }
+    else{
+        archVenta.mostrarVenta(archVenta.leerRegistro(pos));
+    }
 
 }
 
@@ -467,40 +472,43 @@ float ArchivoVenta::InformeVentaxAnio(){
     return 0;
 }
 
-
 void ArchivoVenta::ListarFactura(int idRegistroVenta){
     ArchivoDetalleDeVenta ArchDetalle;
     Venta venta;
     detalleVenta detalle;
 
     int posVenta = buscar(idRegistroVenta);
-    int posDeatlle = ArchDetalle.buscar(idRegistroVenta);
-
     venta = leerRegistro(posVenta);
-    detalle = ArchDetalle.leerRegistro(posDeatlle);
-
     venta.mostrar();
-    detalle.mostrar();
+
+    for (int j = 0; j < ArchDetalle.getCantidadRegistros(); j++) {
+        detalle = ArchDetalle.leerRegistro(j);
+        if (detalle.getIDVenta() == venta.getIDVenta()) {
+                detalle.mostrar();
+        }
+    }
 }
 
-void ArchivoVenta::ListarHistorialDeFacturas(){
-    //ArchivoVenta ArchVenta;
+void ArchivoVenta::ListarHistorialDeFacturas() {
     ArchivoDetalleDeVenta ArchDetalle;
     Venta venta;
     detalleVenta detalle;
 
-    for(int i=0; i<getCantidadRegistros(); i++){
-        int posVenta = buscar(i+1);
-        int posDeatlle = ArchDetalle.buscar(i+1);
-
+    for (int i = 0; i < getCantidadRegistros(); i++) {
+        int posVenta = buscar(i + 1);
         venta = leerRegistro(posVenta);
-        detalle = ArchDetalle.leerRegistro(posDeatlle);
 
-        cout << "------------VENTA " << i+1 << " ----------" << endl;
-
+        cout << "------------VENTA " << i + 1 << " ----------" << endl;
         venta.mostrar();
-        detalle.mostrar();
+
+        for (int j = 0; j < ArchDetalle.getCantidadRegistros(); j++) {
+            detalle = ArchDetalle.leerRegistro(j);
+
+            // Verificar si el detalle corresponde a la venta actual
+            if (detalle.getIDVenta() == venta.getIDVenta()) {
+                detalle.mostrar();
+            }
+        }
         cout << endl << endl;
     }
-
 }

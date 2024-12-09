@@ -415,5 +415,3 @@ int ArchivoProductos::InformeProductos(){
     delete [] ProductosRegistrados;
     return 0;
 }
-
-

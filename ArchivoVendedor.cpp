@@ -192,13 +192,6 @@ void ArchivoVendedor::FunModificarRegistro(){
     char mail[100], telefono[11], domicilio[100];
     ArchivoVendedor archVendedor;
     Vendedor vendedor;
-    /*Producto producto;
-    Venta venta;
-    detalleVenta detalle;
-
-    producto.cargar();
-    venta.cargar();
-    detalle.cargar(producto);*/ // Lu Paz lo comenta para realizarlo de otra manera y que no se tengan que cargar todos los datos
 
     cout << "INGRESE EL ID DEL VENDEDOR QUE DESEA MODIFICAR" << endl;
     cin >> id;
@@ -207,6 +200,7 @@ void ArchivoVendedor::FunModificarRegistro(){
 
     if(pos!= -1){
         vendedor = archVendedor.leerRegistro(pos);
+
         cout << "Procesando para la modificacion.... " << endl;
         system("pause");
         system("cls");
@@ -220,6 +214,16 @@ void ArchivoVendedor::FunModificarRegistro(){
         cin.ignore();
         cin.getline(domicilio, 100);
         vendedor.setDomicilio(domicilio);
+
+        cout << "INGRESE EL NUMERO TELEFONO "; cin >> telefono;
+        vendedor.setTelefono(telefono);
+        cout << "INGRESE EL MAIL "; cin >> mail;
+        vendedor.setMail(mail);
+        cout << "INGRESE EL DOMICILIO ";
+        cin.ignore();
+        cin.getline(domicilio, 100);
+        vendedor.setDomicilio(domicilio);
+
         modificarRegistro(pos, vendedor);
     }else{
         cout << "EL VENDEDOR NO HA SIDO ENCONTRADA EN EL SISTEMA" << endl;
@@ -267,7 +271,12 @@ void ArchivoVendedor::BuscarVendedor(int id){
     ArchivoVendedor archVendedor;
 
     int pos = archVendedor.buscar(id);
-    archVendedor.mostrarVendedor(archVendedor.leerRegistro(pos));
+    if(buscar(id)==-1){
+        cout<< "El id vendedor indicado no existe."<<endl;
+    }
+    else{
+        archVendedor.mostrarVendedor(archVendedor.leerRegistro(pos));
+    }
 }
 
 
@@ -296,4 +305,3 @@ void ArchivoVendedor::SetComision(int idVenta, int idVendedor){
 
      modificarRegistro(posVendedor,vendedor);
 }
-
